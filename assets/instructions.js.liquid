@@ -1,0 +1,142 @@
+  document.addEventListener('DOMContentLoaded', () => {
+   
+                         
+  
+  var chairSelect = document.getElementById('chair-select');
+  var deskSelect = document.getElementById('desk-select');
+  var categorySelect = document.getElementById('category-select');
+  var selectedModel = document.getElementById('selected-model');
+ 
+  
+  reset();
+ 
+  
+  function reset(){
+  	deskSelect.style.display = 'none';
+  	chairSelect.style.display = 'none';
+    selectedModel.style.display = 'none';
+  }
+  
+  if(performance.navigation.type == 2){
+   location.reload(true);
+	} 
+  
+   categorySelect.addEventListener('input', (e) => {
+    if(categorySelect.options[categorySelect.selectedIndex].value === 'chair'){
+        chairSelect.style.display = 'block';
+      	deskSelect.style.display = 'none';
+      	category = 'chair';
+    } else if (categorySelect.options[categorySelect.selectedIndex].value === 'desk'){
+        deskSelect.style.display = 'block';
+      	chairSelect.style.display = 'none';
+      	category = 'desk';
+    } else {
+      reset();
+    }
+  });
+  
+  
+ 
+  	chairSelect.addEventListener('input', (e) => {
+    	var selectedChair = chairSelect.options[chairSelect.selectedIndex].value;
+      	var selectedChairFiles = selectedChair.split("+");
+      
+      	var chairPdf = selectedChairFiles[0];
+      	var chairVideo = selectedChairFiles[1];
+      	var chairBranding = selectedChairFiles[2];
+      	var chairTear = selectedChairFiles[3];
+      
+      	var chairPdfHTML, chairVideoHTML, chairTearHTML, chairBrandingHTML;
+      
+      if (chairPdf !== ''){
+        chairPdfHTML = '<div class="assembly__files"><div class="assembly__pdfs"><div class="assembly__pdf"><a href="'+ chairPdf +'">Assembly<br />Instructions</a></div>';
+      } else {
+        chairPdfHTML = '';
+      };
+      
+      if (chairVideo !== ''){
+        chairVideoHTML = '<div class="assembly__section"><div class="assembly__video" ><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/'+ chairVideo +'?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" rel="0"; showinfo="0";  modestbranding="1"; allowfullscreen></iframe></div></div>';
+      } else {
+        chairVideoHTML = '<div class="assembly__section"><div class="no-video"></div>';
+      };
+      
+      if (chairBranding !== ''){
+        chairBrandingHTML = '<div class="assembly__branding"><a href="'+ chairBranding +'">Branding<br />Bundle</a></div></div></div>';
+      } else {
+        chairBrandingHTML = '';
+      };
+      
+      if (chairTear !== ''){
+        chairTearHTML = '<div class="assembly__tear-sheet"><a href="'+ chairTear +'">Product<br />Details</a></div></div>';
+      } else {
+        chairTearHTML = '';
+      };
+        
+       
+      
+      selectedModel.style.display = 'block';
+    
+
+      selectedModel.innerHTML = chairVideoHTML + chairPdfHTML + chairTearHTML + chairBrandingHTML;
+       	
+
+  
+  });
+    
+    
+    
+    
+      	deskSelect.addEventListener('input', (event) => {
+    	var selectedDesk = deskSelect.options[deskSelect.selectedIndex].value;
+      	var selectedDeskFiles = selectedDesk.split("+");
+      
+      	var deskPdf = selectedDeskFiles[0];
+      	var deskVideo = selectedDeskFiles[1];
+      	var deskBranding = selectedDeskFiles[2];
+      	var deskTear = selectedDeskFiles[3];
+      
+      	var deskPdfHTML, deskVideoHTML, deskTearHTML, deskBrandingHTML;
+      
+      if (deskPdf !== ''){
+        deskPdfHTML = '<div class="assembly__files"><div class="assembly__pdfs"><div class="assembly__pdf"><a href="'+ deskPdf +'">Assembly<br />Instructions</a></div>';
+      } else {
+        deskPdfHTML = '';
+      };
+      
+      if (deskVideo !== ''){
+        deskVideoHTML = '<div class="assembly__section"><div class="assembly__video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/'+ deskVideo +'?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" rel="0"; showinfo="0";  modestbranding="1"; allowfullscreen></iframe></div></div>';
+      } else {
+        deskVideoHTML = '<div class="assembly__section"><div class="no-video"></div>';
+      };
+      
+      if (deskBranding !== ''){
+        deskBrandingHTML = '<div class="assembly__branding"><a href="'+ deskBranding +'">Branding<br />Bundle</a></div></div></div>';
+      } else {
+        deskBrandingHTML = '';
+      };
+      
+      if (deskTear !== ''){
+        deskTearHTML = '<div class="assembly__tear-sheet"><a href="'+ deskTear +'">Product<br />Details</a></div></div>';
+      } else {
+        deskTearHTML = '';
+      };
+        
+       
+      
+      selectedModel.style.display = 'block';
+    
+
+      selectedModel.innerHTML = deskVideoHTML + deskPdfHTML + deskTearHTML + deskBrandingHTML;
+       	
+
+  
+  })
+        
+        
+        
+        
+        
+    
+    
+    });
+  

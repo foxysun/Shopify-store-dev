@@ -1,0 +1,64 @@
+
+<div class="view_section">
+  <div class="qpv_clicker"></div>
+  <div class="quick_product_view">
+    
+    <span class="close_popup"><i class="ion-ios-close-empty"></i></span>
+    
+    <div class="grid">
+
+      <div class="grid__item one-half">
+        <div class="quick_product_slider">
+          <div class="product_slider">
+            <div class="product_carousel">
+              <img src="/" id="ProductQuickPhotoImg" alt="Product Title"/>
+
+            </div>
+            <div class="pro_quick_pagger">
+            <div id="quick_pager" class="thumbs">
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+		
+      <div class="grid__item one-half">
+        <div class="quick_product_desc">
+
+          
+          <div class="product_detail_section">
+			<div class="product_detail">
+            
+            
+            <div class="price"><span></span><del><span class="compare-price"></span></del></div>
+            <p class="product__description"></p>  
+            <form  action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="product-actions-{{ product.id }} product_form quick_form">
+
+              <select name="id" id="productSelect" class="product-single__variants">
+              </select>
+				
+              
+              <div class="qty_section">
+                <h4>{{ 'products.product.quantity' | t | capitalize }}</h4>
+                <div class="qty_box">
+                  <button type="button" class="plus"><span class="ion-ios-plus-outline"></span></button>
+                  <input type="text" value="1" readonly="readonly" name="quantity" class="product-quantity" id="quantity">
+                  <button type="button" class="minus"><span class="ion-ios-minus-outline"></span></button>
+                </div>
+              </div>
+
+              <input type="submit" value="{{ 'products.product.add_to_cart' | t | capitalize }}" id="AddToCart" class="btn quick_add"  data-pro_id=""/>
+			 </form>
+		  </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  
+</div>

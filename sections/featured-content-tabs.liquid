@@ -1,0 +1,461 @@
+<style>
+/* Tabs Nav styles*/
+
+#tabsContainer {
+  display: block;
+  width: 100%;
+}
+
+.tabs-nav ul {
+  padding: 0;
+  width: 80%;
+  margin: 60px auto 0 auto;
+  text-align: center;
+}
+
+.tabs-nav li {
+  display: inline-block;
+  background: #fffff;
+  border-width: 0 0 0 0;
+  margin: 0 15px;
+}
+
+.tabs-nav li::after {
+  content: "";
+  display: block;
+  border-top: 3px solid #cccccc;
+  width: 120px;
+  margin: 0 auto;
+}
+.tabs-nav li.active::after {
+  content: "";
+  display: block;
+  border-top: 3px solid #e71c39;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.tabs-nav a {
+  display: block;
+  padding: 0 30px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+}
+/* Tabs Active state styles*/
+
+.tabs-nav li.active {
+  background: #fff;
+}
+
+.tabs-nav li.active a {
+  color: inherit;
+}
+/*Tabs Content styles*/
+
+.tabs-content {
+  padding: 10px;
+  background: #fff;
+  margin-top: -1px;
+  overflow: hidden;
+}
+  
+
+.tabs-content img {
+  margin-right: 10px;
+}
+/* Hide All the content divs EXCEPT the first one */
+
+.tabs-content div:not(:first-child) {
+  display: none;
+}
+
+.tab-content span {
+  display: block;
+}
+.tab-content {
+  display: flex;
+  align-items: center;
+}
+.tabs-content {
+  width: 80%;
+  margin: 60px auto;
+}
+.tab-content-content {
+  font-size: 16px;
+  width: 25%;
+  padding-left: 60px;
+}
+.tab-content-content p{
+  font-size: 20px;
+}
+.tab-content-header {
+  font-family: "Oswald", sans-serif;
+  width: 25%;
+  font-size: 40px;
+  line-height: 1;
+  text-align: right;
+  padding-right: 60px;
+}
+.tab-content-header h4 {
+  color: #e71c39;
+  margin-bottom: 0;
+}
+.tab-content-header h3 {
+  color: #333;
+  margin-bottom: 0;
+}
+
+.tab-content-content-header {
+  text-transform: uppercase;
+  font-size: 32px;
+  color: #333;
+  font-family: "Oswald", sans-serif;
+
+}
+
+.tab-content-image {
+  width: 50%;
+}
+.tab-content-image img {
+  width: 100%;
+}
+.tab-content-button.btn {
+  font-family: "Oswald", sans-serif;
+  background-color: #E71C39;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+}
+.tab-content-button.btn:hover {
+  background-color: #fff;
+  color: #E71C39;
+}
+@media  (max-width: 1450px) {  
+  
+.tabs-nav ul {
+    width: 90%;
+  }
+  .tabs-content {
+    width: 90%;
+    margin: 60px auto;
+  }
+}
+@media  (min-width: 1025px) {  
+  .tabs-nav__mobile{
+    display: none;
+  }
+}
+
+@media  (max-width: 1024px) { 
+  .tab-content-content p {
+    font-size: 24px;
+  }
+    
+  .tabs-nav__desktop{
+    display: none;
+  }
+  
+     .tabs-nav  .owl-item.active li.active::after{
+     content: "";
+      display: block;
+      border-top: 3px solid #e71c39;
+      width: 120px;
+      margin: 0 auto;
+   }
+   .tabs-nav  .owl-item.active li::after{
+     content: "";
+      display: block;
+      border-top: 3px solid #cccccc;
+      width: 120px;
+      margin: 0 auto;
+   }
+    .tabs-nav ul {
+    width: 100%;
+    margin: 30px auto 0 auto;
+
+    }
+      .tab-content {
+      display: flex;
+        flex-direction: column;
+      align-items: center;
+    }
+    .tabs-content {
+      width: 100%;
+      margin: 30px auto;
+    }
+    .tab-content-content {
+      font-size: 16px;
+      width: 95%;
+      padding-left: 0;
+      margin: 15px auto;
+      text-align: center;
+    }
+    .tab-content span.tab-content-header {
+      font-family: "Oswald", sans-serif;
+      width: 95%;
+      font-size: 30px;
+      line-height: 1;
+      text-align: center;
+      padding-right: 0;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    .tab-content-header h4 {
+      color: #e71c39;
+
+     font-size: 30px;
+      padding: 0 0 0 0;
+    }
+    .tab-content-header h3 {
+      color: #333; margin-right: 10px;
+      margin-bottom: 0;
+       padding: 0 0 0 0;
+      font-size: 30px;
+    }
+
+    
+.tab-content-content p.tab-content-content-header {
+      text-transform: uppercase;
+      font-size: 28px;
+      color: #333;
+      font-family: "Oswald", sans-serif;
+      text-align: center;
+      font-weight: 700;
+    }
+    .tab-content-content-header::after{
+      content:"+";
+      display: inline-block;
+      color: #e71c39;
+      font-weight: 700;
+       
+    }
+
+    .tab-content-image {
+      width: 100%;
+    }
+    .tab-content-image img {
+      width: 100%;
+    }
+  
+  
+.tab-content-button.btn{
+  width: 180px;
+  border-radius: 5px;
+}
+
+
+
+}
+</style>
+
+
+
+<div id="tabsContainer">
+
+  <div class="tabs-nav tabs-nav__desktop">
+    <ul>
+      
+{% if section.blocks.size > 0 %}
+{% assign tab_count = 0 %}
+{% for block in section.blocks %}
+      
+      <li><a href="#tab{{tab_count}}">{{ block.settings.tab-name }}</a></li>
+      
+{% assign tab_count = tab_count | plus: 1 %}
+{% endfor %}
+{% endif %}
+      
+    </ul>
+  </div>
+  
+  
+  
+<div class="tabs-nav tabs-nav__mobile">
+    <ul class="feature-tab-content owl-carousel">
+      
+{% if section.blocks.size > 0 %}
+{% assign tab_count = 0 %}
+{% for block in section.blocks %}
+      <li class="item" ><a href="#tab{{tab_count}}">{{ block.settings.tab-name }}</a></li>
+      
+{% assign tab_count = tab_count | plus: 1 %}
+{% endfor %}
+{% endif %}
+      
+    </ul>
+  </div>
+  
+  
+  
+  
+
+  <section class="tabs-content">
+    
+    
+{% if section.blocks.size > 0 %}
+{% assign tab_content_count = 0 %}  
+{% for block in section.blocks %}
+    
+    
+    <div id="tab{{tab_content_count}}" >
+      <article class="tab-content">
+        <span class="tab-content-header">
+          <h3 class="animated fadeIn 2s" >{{ block.settings.tab-content-heading-black }}</h3>
+          <h4 class="animated fadeIn 2s">{{ block.settings.tab-content-heading-red }}</h4>
+        </span>
+        <span class="tab-content-image animated fadeIn">
+            <img src="  {{ block.settings.tab-content-image |  img_url:'1000x' }}" alt="{{ block.settings.tab-content-image-alt }}" />  
+        </span>
+        <span class="tab-content-content animated fadeIn 2s">
+           <p class="tab-content-content-header">{{ block.settings.tab-content-description-heading }}</p> 
+          <p>{{ block.settings.tab-content-description-copy }}</p>
+          <a href="{{ block.settings.tab-button-link }}" class="tab-content-button btn">{{ block.settings.tab-button-text }}</a>
+        </span>
+      </article>
+    </div>
+    
+{% assign tab_content_count = tab_content_count | plus: 1 %}   
+{% endfor %}
+{% endif %}
+    
+    
+    
+  </section>
+  
+
+</div>
+
+<script>
+  
+
+$('#tabsContainer .owl-carousel').owlCarousel({
+  loop: true,
+  margin: 0,
+  nav: false,
+  items: 4,
+  autoplay: false,
+  autoplayHoverPause: true,
+  center: false,
+  dots: false,
+  responsive: {
+    0: {
+      items: 1.5,
+      stagePadding:0,
+      nav: false,
+      dots: false,
+    },
+    600: {
+      items: 2.5,
+      stagePadding:0,
+      nav: false,
+      dots: false,
+    },
+    1000: {
+      items: 4,
+      stagePadding:0,
+      nav: false,
+      dots: false,
+    }
+  }
+})
+
+</script>
+
+<script>
+  $(function() {
+    
+    $('.tabs-nav li:first-child').addClass('active');
+    
+  $('.tabs-nav a').click(function() {
+
+    //Check if the tabs menu has active class
+    $('.tabs-nav li').removeClass('active');
+    $(this).parent().addClass('active');
+
+    // Display active tab
+    var currentTab = $(this).attr('href');
+    $('.tabs-content div').hide();
+    $(currentTab).show();
+
+    return false;
+  });
+});
+        
+</script>
+
+
+{% schema %}
+  {
+    "name": "Feature Content Tabs",
+    "blocks":[
+		{
+			"type":"select",
+			"name": "Add Tab",
+			"settings":[
+				{	
+                  "id": "tab-name",
+                  "type":"text",
+                  "label": "Title for tab"
+				},
+       			{
+                  "type": "text",
+                  "id": "tab-content-heading-black",
+                  "label": "Content Heading (black)"
+                },
+
+				{
+				  "id": "tab-content-heading-red",
+				  "type": "text",
+				  "label": "Content Heading (red)"
+				},
+				{
+				  "id": "tab-content-image",
+				  "type": "image_picker",
+				  "label": "Content Image"
+				},
+				{
+				  "id": "tab-content-image-alt",
+				  "type": "text",
+				  "label": "Content Image Alt Text"
+				},
+				{
+					"id": "tab-content-description-heading",
+					"type": "text",
+					"label": "Content Description Heading"
+				},
+				{
+					"id": "tab-content-description-copy",
+					"type": "textarea",
+					"label": "Content Description Heading"
+				},
+				{
+					"id": "tab-button-text",
+					"type": "text",
+					"label": "Button Text"
+				},
+		
+				{
+					"id": "tab-button-link",
+					"type": "url",
+					"label": "Button Link"
+				}
+
+			]
+		}
+  
+	]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

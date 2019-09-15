@@ -1,0 +1,54 @@
+
+<!-- /templates/page.liquid -->
+
+<!-- ======================== Header ========================= -->
+
+     
+<div class="header_banner blog_banner">
+    	<h1>{{ page.title }}</h1>
+    	<span class="header_overlay"></span>
+        {% if settings.page_banner != blank %} 	
+        	<img src="{{ settings.page_banner | img_url : 'master' }}" alt="{{ page.title }}" />
+        {% else %}
+        {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+       {% endif %} 
+</div>   
+
+
+
+<!-- ======================= About Content ==================== -->
+
+
+<div class="container">
+  {{ page.content }}
+  
+  <h2 class="secondary-heading">Why <span class="uppercase">Respawn</span>?</h2>
+  
+  <div class="about-section">
+    <div class="about-section__intro">
+      {{ page.metafields["global"]["page-introduction"] }}
+    </div>
+    <div class="about-section__video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.metafields["global"]["main-video"] }}?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="about-us__partnerships">
+     <h2 class="secondary-heading">Partnerships</h2>
+  {{ page.metafields["global"]["partnerships"] }}
+{% section 'partnership-slider' %}
+</div>
+
+
+<div class="about-us__photos">
+  {% assign photos = page.metafields["global"]["photos"] | split: ',' %}
+  {% for photo in photos %}
+  	<img src="{{ photo }}" />
+  {% endfor %}
+</div>
+
+
+
+
+

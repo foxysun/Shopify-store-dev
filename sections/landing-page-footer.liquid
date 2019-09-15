@@ -1,0 +1,161 @@
+{% comment %} MetaField data {% endcomment %}
+{% assign Landing-footer-image = page.metafields["global"]["Landing-footer-image"] %}
+
+<style>
+#shopify-section-landing-page-footer .landing-page__lower-footer--content .landing-page__lower-footer--item-heading,
+#shopify-section-landing-page-footer .landing-page__lower-footer--content .landing-page__lower-footer--item-content,
+#shopify-section-landing-page-footer .landing-page__lower-footer--content .landing-page__lower-footer--item-content a {
+  color: #2699fb;
+}
+  {% if Landing-footer-image != blank %}
+  .landing-page__footer--background {
+    background-image: url("{{ Landing-footer-image }}");
+  }
+  {% endif %}
+  
+  .landing-page__footer--middle-img {
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  @media (max-width: 1550px) { 
+ 		.landing-page__footer--header{
+      margin-top: 150px;
+    }
+  }
+  @media (max-width: 930px) { 
+ 		.landing-page__footer--header{
+      margin-top: 250px;
+    }
+  }
+    @media (max-width: 750px) { 
+ 		.landing-page__footer--header{
+        margin-top: 0;
+    }
+    .landing-page__footer--content {
+      width: 98%;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .reveal-modal-bg {
+    z-index: 2;
+   }
+  
+  
+</style>
+
+<div class="landing-page__footer--background">
+  </div>
+  <div class="landing-page__footer--content">
+ 
+    <h2 class="secondary-heading landing-page__footer--header">Why Respawn?</h2>
+    
+    <div class="landing-page__footer--items">
+      <div class="landing-page__footer--item">
+        <h4 class="landing-page__footer--item-heading landing-page__footer--item--shipping">Same-day Shipping</h4>
+        <p class="landing-page__footer--item-content">Don’t sit around waiting (no pun intended) for your next addition to your battlestation. RESPAWN by OFM will ship out the same day that your order is received to ensure delivery as quickly as possible.</p>
+      </div>
+
+      <div class="landing-page__footer--item">
+        <h4 class="landing-page__footer--item-heading landing-page__footer--item--quality">Trusted by the Best.</h4>
+        <p class="landing-page__footer--item-content">Trusted by professional teams, players, leagues, and organizations, RESPAWN by OFM provides you with a variety of economical options that allow casual gamers to sit in the same furniture as the pros. </p>
+        
+      </div>
+
+      <div class="landing-page__footer--item">
+        <h4 class="landing-page__footer--item-heading landing-page__footer--item--comfort">Ergonomic Furniture</h4>
+        <p class="landing-page__footer--item-content">We’re a furniture company making gaming furniture, not a gaming company trying to make furniture. RESPAWN products are brought to you by OFM Inc. We provide you with ergonomic comfort to increase your in-game performance.</p>
+      </div>
+
+      <div class="landing-page__footer--item">
+        <h4 class="landing-page__footer--item-heading landing-page__footer--item--ergonomic">Limited Lifetime Warranty</h4>
+        <p class="landing-page__footer--item-content">RESPAWN by OFM has a lifetime warranty on all defects in original material and workmanship for all of our product. We will repair or replace any product or component that has defects in material or workmanship. <a style="color:red; text-decoration: underline;" href="/pages/support">Exclusions apply</a>.</p>
+        
+      </div>
+    </div>
+ 
+
+  {% comment %} <div class="landing-page__footer--middle-img">
+  {% if page.metafields["global"]["Landing-Page-Footer-Md-Img"] != blank %}
+    <img src="{{  page.metafields["global"]["Landing-Page-Footer-Md-Img"]  }}" alt="{{ page.metafields["global"]["Landing-Page-Footer-Md-Img-Alt"] }}" />
+  {% else %}
+    {{ 'image' | placeholder_svg_tag }}
+  {% endif %}
+  </div> {% endcomment %}
+  
+  <div class="landing-page__lower-footer--content">
+    <div class="landing-page__lower-footer--items">
+      <div class="landing-page__lower-footer--item landing-page__lower-footer--item--about">
+        <h4 class="landing-page__lower-footer--item-heading ">About</h4>
+        <p class="landing-page__lower-footer--item-content">RESPAWN by OFM's gaming chairs are designed to match every gamer's reach - whether it's an extended playing session, a quick match, or using their rig for work.</p>
+        <img src="{{ 'SM-RESPAWNbyOFM_Logo_grey.png' | asset_url }}" alt="RESPAWN logo" class="landing-page__lower-footer--item-logo" />
+
+      </div>
+      
+      <div class="landing-page__lower-footer--item--follow landing-page__lower-footer--item">
+        <h4 class="landing-page__lower-footer--item-heading ">Follow Respawn</h4>
+        <div class="landing-page__lower-footer--item-content">
+          <a href="https://www.instagram.com/respawnproducts/">Instragram</a>
+          <a href="https://www.facebook.com/Respawn-Products-400756303674476/">Facebook</a>
+          <a href="https://twitter.com/RespawnProducts">Twitter</a>
+          <a href="https://www.youtube.com/channel/UCCBVRevg1GijQAuvxzO58fA/featured">YouTube</a>
+        </div>
+      </div>
+      
+      <div class="landing-page__lower-footer--item landing-page__lower-footer--item--company">
+        <h4 class="landing-page__lower-footer--item-heading ">Company</h4>
+        <div class="landing-page__lower-footer--item-content">
+          <a href="/">Shop Full Site</a>
+          <a href="/pages/contact-us">Contact us</a>
+          <a href="/pages/contact-us">Support</a>
+        </div>
+      </div>
+      
+       <div class="landing-page__lower-footer--item landing-page__lower-footer--item--payment">
+        <h4 class="landing-page__lower-footer--item-heading ">Payment</h4>
+        <p class="landing-page__lower-footer--item-content">
+          We accept the following methods of payment:
+        </p>
+        <div class="landing-page__lower-footer--item-payment-methods">
+          <img src="{{ 'amex.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+          <img src="{{ 'discover.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+          <img src="{{ 'master-card.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+          <img src="{{ 'paypal.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+          <img src="{{ 'venmo.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+          <img src="{{ 'visa.svg' | asset_url  }}" class="landing-page__lower-footer--item-payment-method" />
+         </div>
+      </div>
+  
+    </div>
+    </div>
+
+  </div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Landing Page Footer",
+    "settings": [
+
+		{
+			"id" : "footer-background-image",
+			"type" : "image_picker",
+			"label" : "Footer Background Image"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

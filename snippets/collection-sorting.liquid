@@ -1,0 +1,85 @@
+<!-- /snippets/collection-sorting.liquid -->
+
+ <div class="sort_dropdown">
+                                        
+   <button type="submit" class="dropdown_btn" id="sorting_title"> {{ 'collections.sorting.title' | t }} <span><i class="ion-arrow-down-b"></i></span></button>
+                                    
+   <ul class="dropdown_menu" id="sort_by" role="menu" style="overflow: hidden; display: none;">
+      <li {% if collection.sort_by contains 'manual' %}class="active"{% endif %}><a href="featured" name="manual"   data-translate="collections.sorting.featured">{{ 'collections.sorting.featured' | t }}</a></li>
+      <li {% if collection.sort_by contains 'best-selling' %}class="active"{% endif %}><a href="best_selling" name="best-selling" data-translate="collections.sorting.best_selling">{{ 'collections.sorting.best_selling' | t }}</a></li>
+      {% comment %}<li {% if collection.sort_by contains 'title-ascending' %}class="active"{% endif %}><a href="title-ascending" name="title-ascending" data-translate="collections.sorting.az">{{ 'collections.sorting.az' | t }}</a></li>{% endcomment %}
+      {% comment %}<li {% if collection.sort_by contains 'title-descending' %}class="active"{% endif %}><a href="title-descending" name="title-descending" data-translate="collections.sorting.za">{{ 'collections.sorting.za' | t }}</a></li>{% endcomment %}
+      <li {% if collection.sort_by contains 'price-ascending' %}class="active"{% endif %}><a href="price-ascending" name="price-ascending" data-translate="collections.sorting.price_ascending">{{ 'collections.sorting.price_ascending' | t }}</a></li>
+      <li {% if collection.sort_by contains 'price-descending' %}class="active"{% endif %}><a href="price-descending" name="price-descending" data-translate="collections.sorting.price_descending">{{ 'collections.sorting.price_descending' | t }}</a></li>
+      {% comment %}<li {% if collection.sort_by contains 'created-descending' %}class="active"{% endif %}><a href="created-descending" name="created-descending" data-translate="collections.sorting.date_descending">{{ 'collections.sorting.date_descending' | t }}</a></li>{% endcomment %}
+      {% comment %}<li {% if collection.sort_by contains 'created-ascending' %}class="active"{% endif %}><a href="created-ascending" name="created-ascending" data-translate="collections.sorting.date_ascending">{{ 'collections.sorting.date_ascending' | t }}</a></li>{% endcomment %}
+   </ul>
+                          
+  </div>
+
+
+
+{% comment %}
+  Toggle between collection.liquid and collection.list.liquid with the
+  ?view= parameter.
+
+<div class="collection-view">
+  <button type="button" title="{{ 'collections.general.grid_view' | t }}" class="change-view{% unless template contains 'list' %} change-view--active{% endunless %}" data-view="grid">
+    <span class="icon-fallback-text">
+      <span class="icon icon-grid-view" aria-hidden="true"></span>
+      <span class="fallback-text">{{ 'collections.general.grid_view' | t }}</span>
+    </span>
+  </button>
+  <button type="button" title="{{ 'collections.general.list_view' | t }}" class="change-view{% if template contains 'list' %} change-view--active{% endif %}" data-view="list">
+    <span class="icon-fallback-text">
+      <span class="icon icon-list-view" aria-hidden="true"></span>
+      <span class="fallback-text">{{ 'collections.general.list_view' | t }}</span>
+    </span>
+  </button>
+</div>
+
+<script>
+  /*============================================================================
+    Inline JS because collection liquid object is only available
+    on collection pages and not external JS files
+  ==============================================================================*/
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+
+  $(function() {
+    $('#SortBy')
+      .val('{{ collection.sort_by | default: collection.default_sort_by }}')
+      .bind('change', function() {
+        Shopify.queryParams.sort_by = jQuery(this).val();
+        location.search = jQuery.param(Shopify.queryParams);
+      }
+    );
+  });
+
+
+   $("#sort_by li a").each(function(index, element) {
+      $(this).click(function(){
+        $("#sort_by li").removeClass("active");
+         $(this).parent().addClass("active");
+         $(".filter-sortby button").text($(this).attr("name"));
+         Shopify.queryParams.sort_by = $(this).attr("name");
+         location.search = jQuery.param(Shopify.queryParams);
+      });
+  });
+
+var search_str = location.search;
+var search = search_str.search("sort_by=");
+if(search != -1 ){
+  var sort_title = search_str.substring(search_str.indexOf("y=") + 2);
+  $("#sorting_title").html(sort_title + '<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>');
+}
+</script>
+
+{% endcomment %}

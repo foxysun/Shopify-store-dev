@@ -1,0 +1,61 @@
+
+{% assign on_sale = false %}
+{% if item.compare_at_price >  .price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+
+{% assign sold_out = true %}
+{% if item.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<div class="grid__item three-twelfths small--one-whole medium--one-half"> 
+
+  <div class="product_item">
+  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical product-actions-{{ item.id }}">
+
+     <select name="id" id="productSelect" class="product-single__variants"  style="display:none;">
+    {% for variant in item.variants %}
+    {% if variant.available %}
+    <option {% if variant == item.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">
+    {{ variant.title }} - {{ variant.price | money_with_currency }}
+    </option>
+    {% else %}
+    <option disabled="disabled"> {{ variant.title }} - {{ 'products.product.sold_out' | t }} </option>
+    {% endif %}
+    {% endfor %}
+
+</select>
+                        
+  <div class="product_img">
+     <img src="{{ item.featured_image.src | img_url: 'large' }}" /> 
+
+   {% if item.available  %} 
+    <div class="overlay">
+     <button><span class="ion-ios-cart" id="AddToCart"></span></button>
+    </div>
+    {% endif %}
+    </div>
+    
+  <div class="product_desc">
+  <a href="{{ item.url | within: collection }}">
+  {{ item.title | capitalize  }}</a>
+    <p>{{ item.price | money }}
+    {% if item.compare_at_price %}
+    <span><del>{{ item.compare_at_price | money }}</del></span>
+    {% endif %}
+    </p>
+
+     {% if sold_out %}<span class="onsale">{{ 'products.product.sold_out' | t }} </span>{% endif %}
+                         
+
+                          {% if on_sale %}
+                             <span class="onsale">Sale</span>
+                          {% endif %}
+                   
+  </div>
+
+  </div>
+  </form>
+</div>

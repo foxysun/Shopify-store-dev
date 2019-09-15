@@ -1,0 +1,214 @@
+
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+  <h1>{{ page.title }}</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+{% if section.settings.enable_google_map %}
+<div class="container"   data-scrollwheel = "{{ section.settings.enable_google_zoom }}"  data-section-id="{{ section.id }}"  data-section-type="contact-map" data-zoom_level="{{ section.settings.map_zoom_level }}" data-address="{{ section.settings.google_map_address }}">
+	<div class="con_map" id="map-canvas">
+	</div>
+{% endif %}   
+<div class="container">
+ <div class="contact_section">
+   <div class="grid">
+     <div class="grid__item one-whole">
+     	{{ page.content }}
+     </div>
+    <div class="grid__item one-half small--one-whole medium-large--seven-twelfths">
+
+        <div class="contact_form">    <!-- Contact Form Start -->
+
+          {% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+          <p class="note form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          {% assign name_attr = 'contact.form.name' | t | handle %}
+          <div class="row">
+
+            <label for="ContactFormName" >{{ 'contact.form.name' | t }}</label>
+
+            <input type="text" id="ContactFormName" name="contact[{{ name_attr }}]"  value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+          </div>
+
+          <div class="row">
+            <label for="ContactFormEmail" >{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+
+          </div>
+
+          <div class="row">
+            <label for="ContactFormMessage" >{{ 'contact.form.message' | t }}</label>
+            <textarea rows="10" id="ContactFormMessage"  name="contact[body]" >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <div class="submit_row">
+            <button type="submit" class="btn">send</button>
+          </div>
+
+          {% endform %}
+
+        </div>                
+
+      </div>
+
+      <div class="grid__item one-half small--one-whole medium-large--five-twelfths">
+
+        {{ page.content }}
+
+        <div class="grid">
+          <div class="grid__item two-twelfths medium-down--hide medium-large--hide"></div>
+          <div class="grid__item ten-twelfths medium--one-whole">
+           {% if section.settings.enable_phone %}
+              <div class="contact_detail">
+                <h4>{{ section.settings.phone_title }}</h4>
+                <a href="tel:{{ section.settings.phone_no_1 }}">{{ section.settings.phone_no_1 }}</a> 
+                <a href="tel:{{ section.settings.phone_no_2 }}">{{ section.settings.phone_no_2 }}</a>
+              </div>
+            {% endif %}
+
+             {% if section.settings.enable_email_address %}  
+              <div class="contact_detail">
+                <h4>{{ section.settings.email_address_title }}</h4>
+                <a href="mailto:{{ section.settings.email_address_1 }}">{{ section.settings.email_address_1 }}</a> 
+                <a href="mailto:{{ section.settings.email_address_2 }}">{{ section.settings.email_address_2 }}</a>
+              </div>
+             {% endif %}
+             {% if section.settings.enable_address %}	
+              <div class="contact_detail">
+                  <h4>{{ section.settings.address_title }}</h4>
+                  <p>{{ section.settings.address_content }} </p>
+              </div>
+              {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+ {% if section.settings.enable_google_map and section.settings.google_map_address != blank %}
+{{ "//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" | script_tag }}
+
+{% endif %} 
+  
+{% schema %}
+  {
+    "name": "Contact Us",
+    "settings": [
+  	 {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner Image"
+      },
+      {
+        "type": "header",
+        "content": "Google Map"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_google_map",
+        "label": "Show"
+      },
+      {
+        "type": "textarea",
+        "id": "google_map_address",
+        "label": "Address"
+      },
+      {
+        "type": "text",
+        "id": "map_zoom_level",
+        "label": "Zoom Level"
+      },
+  	 {
+        "type": "checkbox",
+        "id": "enable_google_zoom",
+        "label": "Enable Scrool Wheel Zoom",
+		"default":false
+      },
+		
+  	 {
+		"type":"header",
+		"content":"Contact Detail"
+	},
+	{
+		"type":"checkbox",
+		"id":"enable_phone",
+		"label":"Display Phone Number"
+	},
+	{
+		"type":"text",
+		"id":"phone_title",
+		"label":"Title Name"
+	},
+	{
+		"type":"text",
+		"id":"phone_no_1",
+		"label":"Number 1"
+	},
+	{
+		"type":"text",
+		"id":"phone_no_2",
+		"label":"Number 2"
+	},
+	{
+		"type":"checkbox",
+		"id":"enable_email_address",
+		"label":"Display Email Address"
+	},
+	{
+		"type":"text",
+		"id":"email_address_title",
+		"label":"Title Name"
+	},
+    {
+      "type":"text",
+      "id":"email_address_1",
+      "label":"Email Address 1"
+    },
+	{
+		"type":"text",
+		"id":"email_address_2",
+		"label":"Email Address 2"
+	},
+	{
+		"type":"checkbox",
+		"id":"enable_address",
+		"label":"Enable Address"
+   },
+	{
+		"type":"text",
+		"id":"address_title",
+		"label":"Title"
+	},
+	{
+		"type":"textarea",
+		"id":"address_content",
+		"label":"Address"
+   }
+  
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

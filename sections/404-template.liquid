@@ -1,0 +1,68 @@
+<div class="error_content" style=" background: url({% if section.settings.image != blank %}{{ section.settings.image | img_url: 'master' }}{% else %}{{ 'password-image.png' | asset_url  }}{% endif %}) no-repeat center center;background-size:cover;">
+  <div class="error_message wow fadeIn">
+     {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %} 
+    {% if section.settings.logo_use_image %}
+    <a href="/" itemprop="url">
+      <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ shop.name }}" itemprop="logo">
+    </a>
+    {% else %}
+    <h1><a href="/" itemprop="url">{{ shop.name }}</a></h1>
+    {% endif %}
+    <font color="#fff"><h1><span>404</span>Page Not Found</h1></font>
+    <p>{{ 'general.404.subtext_html' | t }}</p>
+    
+    {% if section.settings.enable_share_404 %}
+    <div class="social_icons">
+      {% include 'social-links' %}
+    </div>
+    {% endif %}
+  </div>
+  
+</div>
+
+
+{% schema %}
+    {
+    "name": "404 Page",
+    "settings": [
+	 {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use Custom Logo"
+      },	
+	  {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom Logo"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Max Logo Width",
+        "default": "450"
+      },	
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+
+      {
+        "type": "checkbox",
+        "id": "enable_share_404",
+        "label": "Enable Social Sharing",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

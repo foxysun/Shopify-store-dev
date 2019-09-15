@@ -1,0 +1,294 @@
+{% assign grid_results = false %}
+
+{% comment %}
+  Check to enforce respond.js
+{% endcomment %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+
+{% comment %}
+  Avoid accessing search.results before the opening paginate tag.
+  If you do, the pagination of results will be broken.
+{% endcomment %}
+
+
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+  <h1>Search</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+{% if canonical_url contains 'type=product' %}  
+
+{% assign limit = section.settings.search_pagination_limit  %}
+
+{% else %}
+{% assign limit = section.settings.search_aticle_pagination_limit  %}
+
+{% endif %}
+ 
+{%  paginate search.results by limit %}  
+ <div id="search_layout" data-section-id="{{ section.id }}" data-section-type="serach-section">  
+   <div class="grid container">
+            <div class="grid__item one-whole small--one-whole medium--one-whole"> <!-- add large_product_list class for two grid -->
+            
+             <div class="page_item">
+
+                {% if search.performed %}
+                {% if search.results_count == 0 %}
+                <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+                   {% if canonical_url contains 'type=product' %}  
+                   {% include 'search-bar' with 'search-product' %}                	
+                   {% elsif canonical_url contains 'type=article' %}
+                   {% include 'search-bar' with 'search-article' %}
+                   {% else %}
+                   {% include 'search-bar' with 'search' %}
+                   {% endif %}	
+
+                {% else %}
+                <p>{{ 'general.search.results_for_html' | t: terms: search.terms }}</p>
+                {% endif %}
+                {% else %}
+                 <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+                  {% if canonical_url contains 'type=product' %}  
+                      {% include 'search-bar' with 'search-product' %}                	
+                    {% elsif canonical_url contains 'type=article' %}
+                      {% include 'search-bar' with 'search-article' %}
+                    {% else %}
+                       {% include 'search-bar' with 'search' %}
+                    {% endif %}	 
+
+                 {% endif %}
+
+                  
+                </div>
+
+              <!--======  #PRODUCT LIST  ============-->      
+  
+                   
+              {% if search.performed %} 
+              {%  if search.results_count > 0  %}
+                  <div id="collection">
+                     <div class="grid">
+
+                      <div class="product_listing">
+                        {% for item in search.results %}
+
+                        {% if item.object_type == 'product' %}
+						{% assign product = item %}
+                        <div class="grid__item three-twelfths small--one-whole medium--one-half"> 
+                        {% include 'product-grid-item' %} 
+                        </div>
+                        {% endif %}
+
+                        {% endfor %}
+                      </div>
+
+                    </div>
+                  </div>
+              
+              
+          <div id="blog">
+                <div class="blog_section">
+                
+                    <div class="grid">
+                     
+                      <div class="blog_listing">
+                      {% for item in search.results %}
+                      
+                        {% if item.object_type == 'article' %}
+
+                        <div class="blog_item grid__item one-half small--one-whole medium--one-whole medium-large--one-half">
+
+                          <div class="blog_img">
+                            <a href="{{ item.url }}">  
+                              <img src="{{ item.image.src | img_url: 'grande' }}" alt="{{ item.title }}" /> </a>
+
+                          </div>
+
+                          <div class="blog_desc">
+                            <h4>{{ item.published_at | date: "%d %B, %Y" }} / by <span>{{ item.author }}</span></h4>
+                            <a href="{{ item.url }}" class="title">{{ item.title }}</a>
+                            {% if item.excerpt.size > 0 %}
+
+                            <p> {{ item.excerpt  }}</p>
+                            {% else %}
+                            <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+
+                            {% endif %}
+                            <a href="{{ item.url }}" class="btn">Read More</a>
+                          </div>
+
+                        </div>
+                    
+						 {% endif %}
+                      {% endfor %}
+                          </div>
+                     
+                      </div>
+                  
+                </div>
+              </div>
+
+          <div class="container" id="page">
+
+                <h2>Pages</h2>
+                {% for item in search.results %}
+                {% if item.object_type == 'page' %} 
+                <div class="content">
+                  <h3>{{ item.title | link_to: item.url }}</h3> 
+                  <p>{{ item.content | strip_html | truncatewords: 30 }}</p>    
+                </div>
+                {% endif %}
+                {% endfor %}
+
+              </div>  
+
+              {% endif %}
+
+
+              {% endif %}
+
+              {% if paginate.pages > 1 %}
+              <div class="pagination">
+              {% include 'pagination' %}
+              </div>
+              {% endif %}
+
+   </div>
+   </div>
+</div>
+ {% endpaginate %}
+{% else %}
+  {% include 'respond' %}
+  {% layout none %}
+{% endunless %}
+
+
+
+<script>
+  
+  var product_detail = $(".product_item").html();
+  
+  if(product_detail){
+      
+  }else{
+  $("#collection").hide();
+  }
+  
+  
+  var blog_detail = $('.blog_item').html();
+  
+  if(blog_detail){
+  
+  }else{
+    $("#blog").hide();
+  }
+  
+  var page_detail = $("#page .content").html();
+  
+   if(page_detail){
+  
+  }else{
+    $("#page").hide();
+  }
+  
+</script>
+
+
+{% schema %}
+  {
+    "name": "Search Page",
+    "settings": [
+	 {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner Image"
+      },		
+      {
+        "type": "select",
+        "id": "search_pagination_limit",
+        "label": "Number Of Search Products  Per Page",
+        "options": [
+          {
+            "value": "48",
+            "label": "48"
+          },
+          {
+            "value": "36",
+            "label": "36"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "18",
+            "label": "18"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "12"
+      },
+    {
+        "type": "select",
+        "id": "search_aticle_pagination_limit",
+        "label": "Number Of Search Articles  Per Page",
+        "options": [
+          {
+            "value": "48",
+            "label": "48"
+          },
+          {
+            "value": "36",
+            "label": "36"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "18",
+            "label": "18"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "6"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,27 @@
+{{ 'overrides.css' | asset_url | stylesheet_tag }}
+<style>
+  
+
+  
+  header.home_header {
+    background: none;
+}
+
+
+</style>
+
+<!-- spurit_po-added -->
+{% include 'spurit_po-product-snippet' %}
+<!-- /spurit_po-added -->
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+<!-- /templates/product.new.liquid -->
+
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-new-template.liquid
+{% endcomment %}
+
+{% section 'product-new-template' %}
+
+{{product.metafields.shogun.below}}
+

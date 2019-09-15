@@ -1,0 +1,308 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <meta name="msvalidate.01" content="27983795B85421D2510CDAE7FF6F4A09" />
+  <meta name="google-site-verification" content="UPFbmqeC541XFiKo5IBK3VuA0ZYJ6U0c4_zTBO1BZ7o" />
+  <!-- Basic page needs ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% if settings.favicon %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  <meta name="keywords" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300italic,300,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+  <!-- CSS ================================================== -->
+
+  {{ 'style.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css' | stylesheet_tag }} 
+  {{ 'owl.carousel.css' | asset_url | stylesheet_tag }}
+  {{ 'animate.css' | asset_url | stylesheet_tag }}
+  {{ 'reveal.css' | asset_url | stylesheet_tag }}
+  {{ 'overrides.css' | asset_url | stylesheet_tag }}
+
+  
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+
+  
+ 
+
+<!--- js ====================================== -->
+
+{{ 'jquery.min.js' | asset_url | script_tag }}
+     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+{{ 'wow.min.js'  | asset_url | script_tag }}  
+{{ 'jquery.bxslider.js' | asset_url | script_tag }}
+  {{ 'mixitup.jquery.js' | asset_url | script_tag }}
+  {{ 'owl.carousel.js' | asset_url | script_tag }}
+  {{ 'owl.navigation.js' | asset_url | script_tag }}
+
+{{ 'jquery-ui.js' | asset_url | script_tag }}
+{{ 'jquery-mobile.js' | asset_url | script_tag }}
+ {{ 'reveal.js' | asset_url | script_tag }}
+ {% if settings.enable_product_image_zoom %} 
+	{{ 'jquery.zoom.js' | asset_url | script_tag }}
+ {% endif %} 
+{{ 'grids.js' | asset_url | script_tag }} 
+{{ 'nice-scroll.js' | asset_url | script_tag }} 
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  	{{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {% endif %}
+{{ 'lodash.js' | asset_url | script_tag }}
+{{ 'jquery.cookie.js'  | asset_url | script_tag }} 
+
+
+
+
+<script>
+  document.createElement('footer');
+  document.createElement('section');
+  document.createElement('header');
+  document.createElement('figure');
+  document.createElement('figcaption');
+</script>
+
+
+ 
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMC32K3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMC32K3');</script>
+<!-- End Google Tag Manager -->  
+
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body data-shop="{{shop.money_format}}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVNGRQR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) —>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="status">&nbsp;</div>
+  </div>
+
+  <img class="hide" src="{{ "loader_dk.gif" | asset_url }}" alt="loader">
+  {% include 'quick-view' %}
+  {% comment %} <div id="CartObsc"></div> {% endcomment %}
+  <div id="CartDrawer" class="drawer drawer--right">
+    <div class="drawer__header">
+      <div class="drawer__title h3"><span class="ion-ios-cart"></span>{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="ion-close-round"></span>
+          <!-- <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span> -->
+        </button>
+      </div>
+    </div>
+    <div id="CartContainer"></div>
+  </div>
+{% unless template == '404'  or template contains 'landing' %}
+   <!-- begin site-header -->
+   		{% section 'Header' %}
+     <!-- //site-header -->
+  {% endunless %}
+
+  
+  
+
+  <div id="PageContainer">
+    
+    {{ content_for_layout }}
+
+	{% unless template == '404' or template contains 'landing' %}
+    <!-- begin site-footer -->
+    	{% section 'Footer' %}
+    <!-- //site-footer -->
+    {% endunless %}
+  </div>
+  <div id="icon-scrollUp" class="icon-scrollUp scrollUp-off">
+    <span><i class="ion-arrow-up-b"></i></span>
+    <span class="scrollUp-title">top</span>
+  </div>
+  
+  
+	{% include 'newsletter-popup' %}
+  
+ 
+{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  
+{% if template contains 'landing' %}
+	{{ 'jaipur-landing.js' | asset_url | script_tag }}
+{% else %}
+  {{ 'jaipur.js' | asset_url | script_tag }}
+{% endif %}  
+{{ 'jquery.history.js' | asset_url | script_tag  }}
+{{ 'fastclick.min.js' | asset_url | script_tag }}
+{{ 'hulkthemes.js' | asset_url | script_tag }}
+  
+  
+   {% if template == 'page.instructions-template.liquid' %}
+  
+{{ 'instructions.js' | asset_url | script_tag }}
+  
+   {% endif %}
+
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if newHash %}
+      $(function() {
+        hulkthemes.updateHash('{{ newHash }}');
+      });
+    {% endif %}
+    {% if resetPassword %}
+      $(function() {
+        hulkthemes.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/hulkthemes#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_enable %}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajax-cart.js' | asset_url | script_tag }}
+ <script>
+       ajaxCart.init({
+            moneyFormat: {{ shop.money_format | json }}
+          });
+       
+	 jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+          // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+          hulkthemes.RightDrawer.open();        
+        });
+   </script>
+  {% endif %}
+
+
+  <script>
+  // When click on icon-scrollUp, scroll top
+  $(document).ready(function(){
+    $('body .icon-scrollUp').on('click', function(){
+      var _this = $(this);
+
+      $('html, body').animate({scrollTop:0}, 800, function(){
+        _this.addClass('scrollUp-off');
+      });
+        return false;
+    });
+
+    window.addEventListener("scroll", function (event) {
+        var scroll = this.scrollY;
+        if(scroll > 350) $('body .icon-scrollUp').removeClass('scrollUp-off');
+        else $('body .icon-scrollUp').addClass('scrollUp-off');
+    });
+  });
+
+  var selectCallback = function(variant, selector) {
+    
+    // BEGIN SWATCHES
+    if (variant) {
+      var form = jQuery('#' + selector.domIdPrefix).closest('form');
+      for (var i=0,length=variant.options.length; i<length; i++) {
+        var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+        
+    
+      
+        if (radioButton.size()) {
+          radioButton.get(0).checked = true;
+        }
+        
+        if(radioButton.get(0).checked === true){
+          $('#preorders').hide("fast");
+      
+          $('#preorders > .preorder').hide("fast");
+  				$('#preorders > .preorder').each(function () {        
+    				if ($(this).data('id') == variant.id) { 
+              $(this).show("slow");
+              $(this).parent().show("slow");
+            }
+ 				  });
+
+         //On Select, get the variant with javascript and check if it has a preorder metafield.
+              
+        //If it does, use jquery to select the AddToCart button and just change the html to 'preorder'. If it doesn't, change it back to "add to cart".
+          
+         		$('#backOrders> .backOrder').hide();
+  					$('#backOrders > .backOrder').each(function () {
+                     
+    					if ($(this).data('id') == variant.id) { $(this).show() }
+                      	
+ 				 });
+         
+        };
+        
+      }
+    }
+
+    // END SWATCHES
+    
+    hulkthemes.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+   
+  
+
+</script>
+  
+  {% unless template == '404'  or template contains 'landing' %}
+  {{ 'header.js'  | asset_url | script_tag }} 
+  
+  
+   {% endunless %}
+{% include 'currencies' %}
+  
+<div id="messageBox"></div> 
+
+<!-- Delete the Beeketing script below after uninstalling Happy Messenger app to remove it from your theme. For more info, read here: https://bit.ly/hmesscode or contact us at hi@beeketing.com. --><!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->{% include 'social-login' %}
+</body>
+</html>

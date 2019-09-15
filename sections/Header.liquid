@@ -1,0 +1,433 @@
+<style>
+  .password-recovery-content{
+    display: none;
+  }
+  
+  .account__signin::after {
+    content: "";
+    padding-left: 5px;
+}
+
+#account-modal .account-modal__signin {
+  color: {{section.settings.sign-in-header-text-color}};
+}
+#account-modal .account-modal__background {
+  background-image:url('{{section.settings.sign_in_modal_image | img_url: 'large' }}');
+}
+</style>
+
+<script>
+  $('#account-modal').reveal({
+     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+     animationspeed: 300,                       //how fast animtions are
+     closeonbackgroundclick: true,              //if you click background will modal close?
+     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+});
+</script>
+
+
+
+<!-- ======================== Header ========================= -->
+
+
+<header class="header">
+
+<div class="account">  
+  {% if customer %}
+
+  <a href="/account">My Account</a> | 
+  <span class="account__logout" >{{ 'layout.customer.log_out' | t | customer_logout_link }}</span>
+  
+  {% else %}
+
+  <a href="#" data-reveal-id="account-modal" class="account__signin" >{{ 'customer.login.sign_in' | t }}</a>
+  <span>/</span>
+  <a href="/account/register" class="account__register" >{{ 'customer.login.register' | t }}</a>
+
+  {% endif %}
+
+
+
+</div>
+
+  <!-- Sign in Modal -->
+
+
+<div id="account-modal" class="reveal-modal account-info">
+  
+  <div class="account-modal">
+  <div class="account-modal__background">
+    <h3 class="account-modal__signin">
+      Sign In
+    </h3>
+  </div>
+  
+  <div class="account-modal__content">
+    	
+    	<div class="account-modal__form">
+          
+          {% form 'customer_login' %}
+                                    
+          {{ form.errors | default_errors }}
+         
+            <label for="CustomerEmail__Modal" >{{ 'customer.login.email' | t }}
+            <input type="email" name="customer[email]" id="CustomerEmail__Modal" class="input-full{% if form.errors contains 'email' %} error{% endif %}"  >
+              </label>
+          
+
+        
+            {% if form.password_needed %}
+            <label for="CustomerPassword__Modal" >{{ 'customer.login.password' | t }}
+            <input type="password" value="" name="customer[password]" id="CustomerPassword__Modal" class="input-full{% if form.errors contains 'password' %} error{% endif %}" >
+              </label>
+            {% endif %}
+  			
+          <div class="account-buttons">
+            <button type="submit" class="signin btn">Sign in</button>
+          	<a href="/account/register" class="signin btn">Create Account</a>
+          </div>
+       
+
+          
+          {% if form.password_needed %} 
+        
+            <a href="#"  class="account-modal__form--forgot-password" >Forgot Password?</a>
+     
+          {% endif %}
+        
+          {% endform %}
+          
+          
+    </div>
+    	<p class="account-modal__social--heading">Or Connect Using</p>
+     	<div class="one-click-social-login"></div>
+    </div>
+  
+ 
+     
+  </div>
+ 
+     
+  <div class="password-recovery-content animated fadeIn "> 
+    <h3 class="password-recover__heading">Forgot Password</h3>
+    <p class="password-recovery__text">Please enter the email address registered to your account. We will email you a link to change your password.</p>
+
+    <div class="reset_form">
+
+      {% form 'recover_customer_password' %}
+
+      {% if form.posted_successfully? %}
+      {% assign resetPassword = true %}
+      {% endif %}
+      <div class="row">
+        <label for="RecoverEmail" >{{ 'customer.recover_password.email' | t }}</label>
+        <input type="email" value="" name="email" id="RecoverEmail" class="input-full"  >
+
+      </div>
+
+      <div class="reset-password-submit">
+        <button type="submit" class="submit_btn btn reset-password-send">send</button>
+        <button type="button" id="HideRecoverPasswordLink" class="reset-password-cancel submit_btn btn">{{ 'customer.recover_password.cancel' | t }}</button>
+      </div>
+
+      {% endform %}
+
+    </div>
+    <p class="password-recovery-text">Don't have an account? <a href="/account/register">Create one</a></p>
+  </div>
+  
+ 
+          
+  <a class="close-reveal-modal" id="close-modal"> &#215;</a>
+</div>
+  
+  
+  
+
+  
+
+  
+<div class="navigation" id="navigation" >  
+  
+  <div class="logo">  
+    {% if section.settings.logo_use_image %}
+    <a href="/" itemprop="url">
+      {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+      <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name }}"  itemprop="logo">
+    </a>
+    {% else %}
+    <h1><a href="/" itemprop="url">{{ shop.name }}</a></h1>
+    {% endif %} 
+  </div>  
+ 	
+  
+  <nav class="main-nav">
+  {% include 'bottom-nav' %}
+  </nav>  
+  
+  <nav class="main-nav-mobile">
+  {% include 'bottom-nav-mobile' %}
+  </nav>  
+  
+  
+
+  <div class="navigation__right">
+
+  <div class="search" id="search" >
+
+    {% if settings.enable_search_header  %}
+
+    {% include 'search-bar' %}
+
+    {% endif %}
+  </div>
+
+<div class="cart">
+    {% if settings.enable_cart_button %}
+  
+  	
+    <a href="/cart" class="{% if settings.ajax_cart_enable %}site-header__cart-toggle js-drawer-open-right{% endif %} bag_icon" {% if settings.ajax_cart_enable %}aria-controls="CartDrawer" aria-expanded="false"{% endif %}>
+      
+      <img src="{{ 'icon-cart.svg' | asset_url }}" />
+      
+      
+      {% if cart.item_count > 0 %}
+      
+  <span class="cart-count">{{ cart.item_count }}</span>
+      
+      {% endif %}
+  </a>
+    {% endif %}
+    {% if settings.enable_wishlist %}
+    {% if customer %}
+    <a href="/pages/wishlist">My Wishlist</a>
+    {% else %}
+    <a href="/account/login">My Wishlist</a>
+    {% endif %}
+    {% endif %}  
+    {% comment %}
+    {% if settings.show_multiple_currencies %}
+
+    {% include 'currency-picker' %}
+
+    {% endif %}
+    {% endcomment %}
+  </div>
+    
+    
+<div id="menu-button" class="hamburger" >  
+  <div class="line line-1"></div>
+   <div class="line line-2"></div>
+   <div class="line line-3"></div>
+    </div>
+    
+    
+    
+  
+    
+    
+    
+  </div> <!-- end navigation__right div -->
+</div>   <!-- end navigation div -->      
+
+</header>
+
+
+<script>
+ 
+  $(".menu-item a").click(function(){
+  $(this).siblings("#mobile-menu-sub-nav-list").addClass("active");
+  $("#mobile-menu-nav-list").addClass("hidden");
+});
+
+$(".mobile-menu-back-link").click(function(){
+  $(this).parent("#mobile-menu-sub-nav-list").removeClass("active");
+  $("#mobile-menu-nav-list").removeClass("hidden");
+});
+
+$("#menu-button").click(function(){
+  $("#mobile-menu").toggleClass("enabled");
+  $("#mobile-menu-wrapper").toggleClass("enabled");
+  $("#page-overlay").toggleClass("enabled");
+  $("#search__input--mobile").removeClass("search-active");
+});
+
+$("#page-overlay").click(function(){
+  $(this).removeClass("enabled");
+  $("#mobile-menu-wrapper").removeClass("enabled");
+  $("#mobile-menu").removeClass("enabled");
+});
+  
+  
+  
+$( ".account-modal__form--forgot-password" ).click(function() {
+      $('#account-modal').addClass('password-modal');
+      $('.account-modal__content').hide();
+     	$('.account-modal__background').hide();
+      $('.password-recovery-content').show();
+    
+});  
+  $('#close-modal').click(function(){
+    $('#account-modal').removeClass('password-modal');
+      $('.account-modal__content').show();
+     	$('.account-modal__background').show();
+      $('.password-recovery-content').hide();
+  });
+  $('#HideRecoverPasswordLink').click(function(){
+    $('#account-modal').removeClass('password-modal');
+      $('.account-modal__content').show();
+     	$('.account-modal__background').show();
+      $('.password-recovery-content').hide();
+  });
+</script>
+
+
+
+
+{% schema %}
+  {
+    "name": "Header",
+	"max_blocks": 5,
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom Logo"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "450"
+      },
+	 {
+		"type": "image_picker",
+        "id": "shop_menu_banner",
+        "label": "Shop Menu Banner"
+      },
+      {
+		"type": "text",
+        "id": "shop_menu_banner_alt",
+        "label": "Shop Menu Banner Alt Text"
+      },
+	  {
+		"type": "url",
+        "id": "shop_menu_banner_link",
+        "label": "Shop Menu Banner Link"
+      },
+
+ 	  {
+		"type": "image_picker",
+        "id": "mobile_menu_banner",
+        "label": "Mobile Menu Banner"
+      },
+      {
+		"type": "text",
+        "id": "mobile_menu_banner_alt",
+        "label": "Mobile Menu Banner Alt Text"
+      },
+	  {
+		"type": "url",
+        "id": "mobile_menu_banner_link",
+        "label": "Mobile Menu Banner Link"
+      },
+
+ 	  {
+		"type": "image_picker",
+        "id": "sign_in_modal_image",
+        "label": "Image for Sign-in Modal"
+      },
+	 {
+		"type": "color",
+		"id" : "sign-in-header-text-color",
+		"label" : "Color of Sign In text for modal based on background image"
+	 },	
+
+     {
+		"type": "number",
+        "id": "shop_menu_sections",
+        "label": "Number of Shop Menu Sections"
+      }
+
+	],
+    "blocks": [
+      {
+        "type": "select",
+        "name": "Shop Menu",
+		
+        "settings": [
+            {
+                "id": "shop-menu-section-title",
+                "type": "text",
+                "label": "Shop Menu Section Title"
+            },
+			{
+                "id": "shop-menu-section-title-link",
+                "type": "url",
+                "label": "Shop Menu Section Title Link"
+            },
+            {
+                "id": "shop-menu-section-image",
+                "label": "Shop Menu Section Image",
+                  "type": "image_picker"
+            },
+			{
+               "id": "shop-menu-section-image-alt",
+				"label": "Shop Menu Section Image Alt",
+               "type": "text"
+			},
+			{
+                "id": "shop-menu-section-image-link",
+                "label": "Shop Menu Section Image Link",
+                  "type": "url"
+            },
+			{	
+                "id": "shop-menu-link-columns",
+                "label": "Number of columns (1 or 2)",
+                 "type": "number",
+				"default": 2
+            },
+			{	
+                "id": "shop-menu-section-links",
+                "label": "Shop Menu Section Links",
+                 "type": "link_list"
+            }
+			
+        ]
+       }
+    ]
+  }
+  
+
+
+
+
+
+
+
+
+
+
+{% endschema %}
+
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+
+
+

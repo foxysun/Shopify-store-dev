@@ -1,0 +1,300 @@
+<!-- /templates/customers/account.liquid -->
+<!-- <div class="blank_section"></div> -->
+
+<!-- ======================== Header ========================= -->
+<style>
+#shopify-section-account-page:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+  .customer-account, .orders{
+    margin-top: 100px;
+    padding-bottom: 50px;
+  }
+  .customer-account{
+    position: relative;
+    width: 35%;
+  }
+  .customer-account:after{
+    position: absolute;
+    content: '';
+    border: 1px solid #f6f6f6;
+    height: 200px;
+    right: 0;
+    top: 0;
+  }
+  .user-name, 
+  .orders-heading{
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+  }
+  .user-name::after,
+  .orders-heading::after{
+    content:"";
+    border-bottom: 3px solid #E71C39;
+    display:block;
+    width: 79px;
+    margin: 5px 0 0 0;
+  }
+  .orders-heading{
+    margin-bottom: 50px;
+  }
+
+  .logout{
+    font-size: 16px;
+    margin-top: 5px;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 0;
+  }
+  .logout a{
+    text-decoration: underline;
+  }
+  .address{
+    background-color: #F6F6F6;
+    padding: 15px 20px;
+  }
+  .address p{
+    font-size:16px;
+    margin-bottom:0;
+  }
+  .add-new-address.btn{
+    background-color: #E71C39;
+    color: #fff;
+    margin-top: 25px;
+    width: 100%;
+  }
+  .add-new-address.btn:hover{
+    background-color: #fff;
+    color: #E71C39;
+  }
+  .address .address_actions p{
+    margin-bottom: 30px;
+  }
+
+  .account-info{
+    display: flex;
+    width: 65%;
+    height: auto;
+    float: left;
+  }
+  .account-info:after{
+    display: table;
+    content: '';
+    clear: both;
+  }
+  .orders{
+    padding-left:50px;
+    width: 65%;
+
+  }
+  #customer_orders  th{
+    text-transform: uppercase;
+  }
+  td.order-number a{
+    color: #E71C39;
+  }
+  #customer_orders th, #customer_orders td{
+    padding: 10px 50px 10px 0;
+    font-size: 16px;
+
+  }
+
+  footer.account-pages{
+    margin-top: 0;
+  }
+  
+  .account_side-img{
+    width: 35%;
+    background-image: url({{ section.settings.account_page_image | img_url}});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    float: left;
+    height: 100vh;
+  }
+  @media (max-width: 1250px) { 
+     .orders{
+        padding-left:25px;
+        width: 60%;
+
+      }
+    .customer-account{
+        width: 40%;
+        padding-right: 15px;
+      }
+     .account-info{
+        padding-left: 25px;
+
+      }
+  }
+    
+  @media (max-width: 1000px) { 
+     .orders{
+        padding-left:25px;
+        width: 55%;
+
+      }
+    .customer-account{
+        width: 45%;
+        padding-right: 15px;
+      }
+     .account-info{
+        padding-left: 25px;
+
+      }
+     #customer_orders th, #customer_orders td{
+        padding: 10px 25px 10px 0;
+        font-size: 14px;
+
+      }
+
+  }
+    @media (max-width: 900px) { 
+     .orders{
+        padding-left:25px;
+        width: 100%;
+
+      }
+    .customer-account{
+        width: 100%;
+        padding-right: 0;
+      }
+     .account-info{
+       padding-left:25px;;
+       flex-direction: column;
+
+      }
+     #customer_orders th, #customer_orders td{
+        padding: 10px 25px 10px 0;
+        font-size: 14px;
+       overflow: scroll-x;
+
+      }
+  }
+  
+</style>
+
+<div class="account-info">
+  <div id="customer-account" class="customer-account" >
+  
+    <div class="container">
+      <div class="greeting">
+        <p class="user-name">Hi, {{ customer.name }}  </p>
+        <p class="logout"><a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a> of your account.</p>
+      </div>
+
+      <div class="address">            
+        <p class="address_actions">
+          <span class="action_link action_edit">{{ 'customer.addresses.edit_address' | t | edit_customer_address_link: address.id }}</span> |
+          <span class="action_link action_delete">{{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}</span>
+        </p>
+        <p>{{ customer.first_name }}  {{ customer.last_name }}</p>
+
+        {% if customer.default_address != nil %}
+        
+        <p>
+          {{ customer.default_address.address1 }}</p>
+
+        {% if customer.default_address.address2 != "" %}
+        <p>  {{ customer.default_address.address2 }}</p>
+        {% endif %}
+
+        {% if customer.default_address.city != "" %}
+        <p> {{ customer.default_address.city }}</p>
+        {% endif %}
+
+        {% if customer.default_address.province_code != "" %}
+        <p> {{ customer.default_address.province_code | upcase }}</p>
+        {% endif %}
+
+        {% if customer.default_address.zip != "" %}
+        <p> {{ customer.default_address.zip | upcase }}</p>
+        {% endif %}
+
+        {% if customer.default_address.country != "" %}
+        <p> {{ customer.default_address.country }}</p>
+        {% endif %}
+
+        {% if customer.default_address.phone != "" %}
+        <p> {{ customer.default_address.phone }}</p>
+        {% endif %}
+        {% endif %}
+      </div>
+ 			<a href="/account/addresses" id="view_address" class="add-new-address btn">{{ 'customer.account.view_addresses' | t }}  <span><i class="fa fa-angle-right"></i></span></a>
+    </div>
+  </div>
+
+   <div class="orders">
+     <h3 class="orders-heading">Your Orders</h3>
+
+        {% paginate customer.orders by 20 %}      
+        {% if customer.orders.size != 0 %}
+        <div id="customer_orders" >
+          <div class="table-wrap">
+            <table class="full">            
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+               
+              </tr>
+
+              {% for order in customer.orders %}
+              <tr>
+                <td class="order-number">{{ order.name | link_to: order.customer_url }}</td>
+                <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                <td>{{ order.financial_status_label }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+            
+              </tr>
+              {% endfor %}
+
+            </table>
+          </div>
+        </div>
+
+        {% else %}
+
+        <p>{{ 'customer.orders.none' | t }}</p>
+
+        {% endif %}
+
+        {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {% include 'pagination' %}
+        </div>
+        {% endif %}
+        {% endpaginate %}
+  </div>
+  
+
+  
+
+  
+</div>
+
+<div class="account_side-img"></div>
+
+
+{% schema %}
+  {
+    "name": "Account Page Image",
+    "settings": [
+		{
+		"type" : "image_picker",
+		"label" : "Image for Account Page",
+		"id": "account_page_image"
+		}
+	]	
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

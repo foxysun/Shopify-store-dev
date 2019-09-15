@@ -1,0 +1,137 @@
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+  <h1>{{ blog.title }}</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+   {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+<!-- ======================= Blog Listing ==================== -->
+ 
+<div class="blog_section">
+
+  <div class="container">
+    
+      <div class="grid">
+          {% paginate blog.articles by section.settings.blog_pagination_limit %}  
+          <div class="grid__item eight-tenths medium-down--one-whole medium-large--eight-twelfths right">
+                
+                <div class="blog_listing grid">
+                
+                 {% for article in blog.articles %}
+                  <div class="blog_item wow fadeIn grid__item one-half small--one-whole medium--one-whole medium-large--one-whole">
+                    
+                    <div class="blog_img">
+                         <a href="{{ article.url }}">  
+                           {% if article.image.src != blank %}
+                           <img src="{{ article.image.src | img_url: 'master' }}" alt="{{ article.image.alt | escape }}" /> 
+                           {% else %}
+                           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                           {% endif %}
+                      	 </a>
+                     </div>
+                    
+                    <div class="blog_desc">
+                      <h4>{{ article.published_at | date: "%d %B, %Y" }} / by <span>{{ article.author }}</span> Comments<span>({{ article.comments_count }})</span></h4>
+                      <h2> <a href="{{ article.url }}" class="title">{{ article.title }}</a></h2>
+                           {% if article.excerpt.size > 0 %}
+                              
+                              <p> {{ article.excerpt  }}</p>
+                            {% else %}
+                        <p> {{ article.content | strip_html | truncatewords: 30 }}</p>
+                            
+                            {% endif %}
+                        <a href="{{ article.url }}" class="btn">Read More</a>
+                    </div>
+                    
+                  </div>
+                  {% endfor %}
+                  
+                  
+                  
+                </div>
+                {% if paginate.pages > 1 %}
+                <div class="pagination">
+                    {% include 'pagination' %}
+                </div>
+                {% endif %}
+            </div>
+            {% endpaginate %}
+            {% if settings.enable_blog_sidebar %} 
+            <div class="grid__item two-tenths medium-down--one-whole medium-large--four-twelfths left">
+
+              {% include 'blog-sidebar' %}
+
+            </div>
+            {% endif %}
+        </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Blog Page",
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner Image",
+		"info": "Maximum image dimensions are  1920px wide by 278px high. The uploaded file will be resized to fit within those constraints."
+      },	
+	  {
+        "type": "select",
+        "id": "blog_pagination_limit",
+        "label": "Number of Articles Per Page",
+        "options": [
+          {
+            "value": "48",
+            "label": "48"
+          },
+          {
+            "value": "36",
+            "label": "36"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          },
+          {
+            "value": "16",
+            "label": "16"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "6"
+      }
+     
+    ]
+  }
+ 
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

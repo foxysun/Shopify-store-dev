@@ -1,0 +1,99 @@
+<!-- ============= Advertise Section =============== -->
+{% if section.blocks.size > 0 %}     
+
+{% if section.blocks.size == 3 %}
+	{% assign grid_width = 'four-twelfths small--one-whole medium--one-third' %}
+{% endif %}
+{% if section.blocks.size == 2 %}
+	{% assign grid_width = 'small--one-whole medium--one-half' %}
+{% endif %}
+{% if section.blocks.size == 1 %}
+	{% assign grid_width = 'small--one-whole medium--one-whole' %}
+{% endif %}
+
+
+<div id="belowfold" class="banner_section">
+
+  <div class="container">
+    <div class="banner_item_section">
+      <div class="grid">
+
+        {% for block in section.blocks %}
+
+        <div class="grid__item one-half {{grid_width}} wow fadeInUpSmall" data-wow-delay="{{forloop.index |  times:0.3  }}s">
+          <div class="banner_img">
+            <a href="{{ block.settings.url }}">
+              {% if block.settings.image != blank %}  
+              	<img src="{{  block.settings.image | img_url: '1024x' }}" alt="{{ block.settings.image.alt | escape }}">
+              {% else %}
+                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+ 
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  {% endif %}
+
+
+
+
+
+
+{% schema %}
+ {
+  "name": "Promotional Banners",
+  "max_blocks": 3,	
+    "settings": [
+     
+	], 	
+	 "blocks": [
+     {
+      "type": "image",
+      "name": "Banner",
+      "settings": [
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "770 x 570px Recommended"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Image Url"
+      }
+     ]
+    }
+   ],
+   "presets": [
+    {
+      "name": "Promotional Banners",
+      "category": "ADVANCED",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+		{
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

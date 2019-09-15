@@ -1,0 +1,146 @@
+
+
+<!-- /snippets/product-grid-item.liquid -->
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% assign new_tag = true %}
+{% for tag in product.tags %}
+	{% if tag == 'new' %}
+{% assign new_tag = true %}
+	{% endif %}
+
+{% endfor %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+
+  <div class="wow fadeIn product_item  {% if new_tag %}new_tag{% endif %} {% if sold_out %}sold_product{% endif %}{% if on_sale %}sell{% endif %}" id="product-{{ product.id }}" data-wow-delay="{{forloop.index |  times:0.1  }}s" >
+     <div class="product_img">
+        <a href="{{ product.url | within: collection }}">
+          
+          {% if product.first_available_variant.featured_image.src %}
+          <img src="{{ product.first_available_variant.featured_image.src | img_url: '480x' }}" alt="{{ product.featured_image.alt | escape }}">
+          {% else %}
+          <img class="needs-pop" src="{{ variant.image.src | img_url: '480x' }}" alt="{{ product.featured_image.alt | escape }}">
+          {% endif %}
+        </a>
+        <div class="overlay">
+          
+          <div class="overlay_content">
+            {% if settings.enable_wishlist %}
+            {% include 'wishlist-product-related' %}
+            {% endif %}
+
+            {% if settings.enable_quickview %}
+            <button class="overlay_cart" id="quickviewbutton" data-id="{{ product.handle }}"><span class="ion-ios-eye-outline"></span></button>
+            {% endif %}
+          </div>
+       	</div>
+     </div>
+    
+    {% comment%} START THEME EDITS NEW SWATCH REVEAL {% endcomment%}
+              <ul class="swatcher">
+              {% for option in product.options %}
+                {% if option == 'Color' %}
+                  {% assign index = forloop.index0 %}
+                  {% assign colorlist = '' %}
+                  {% assign color = '' %}
+                  {% for variant in product.variants %}
+                    {% capture color %}{{ variant.options[index] }}{% endcapture %}
+                    {% unless colorlist contains color %}
+                              <li class="item var-swatch">
+                                <a href="{{ variant.url }}" class="buyer-{{ variant.id }}" data-relprod="{{ product.id }}" data-looky="{{ variant.image.src  | img_url: '480x480' }}"  style="background: url(//cdn.shopify.com/s/files/1/0068/0152/2753/t/8/assets/{{ color | handleize | append: "-swatch.png" }});"></a>
+                              </li>
+
+                      {% capture tempList %}{{colorlist | append: color | append: ' '}}{% endcapture %}
+                      {% assign colorlist = tempList %}
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+              </ul>
+              {% comment%} END THEME EDITS NEW SWATCH REVEAL {% endcomment%}
+        <div class="product_desc ">
+          <div class="desc_detail desc_detail--landing">
+            <h1><a href="{{ product.url | within: collection }}">
+              {{ product.title | capitalize  }}</a></h1>
+            </div>
+          
+         
+          
+          
+             <div class="price_label price_label--landing">
+              <p>{{ current_variant.price | money }}
+                {% if product.compare_at_price > product.price %}
+                	<span><del>{{ current_variant.compare_at_price | money }}</del></span>
+  
+
+                {% endif %}</p>
+
+              {% if sold_out %}<span class="sold_out">{{ 'products.product.sold_out' | t }}</span>{% endif %}
+
+              {% if on_sale %}
+              	<span class="onsale">{{ 'products.product.on_sale' | t }}</span>
+              {% endif %}
+            </div>
+       
+    		                {% comment%} START THEME EDITS NEW ADD TO CART AND BUY NOW {% endcomment%}
+              
+              {% for variant in product.variants %}
+              
+              {% assign stockStatus = variant.available %}
+              
+              {% if product.first_available_variant.id == variant.id %}
+              <div class="form_module buyer-{{ variant.id }} form-{{ product.id }}" style="display: block;">
+              {% else %}
+              <div class="form_module buyer-{{ variant.id }} form-{{ product.id }}">
+              {% endif %}
+                
+                
+                          
+              {% if stockStatus == true %}
+             <form action="/cart/add" method="post" enctype="multipart/form-data" class="product_form">
+                <div class="add_cart">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="submit" value="Buy Now" id="AddToCart-{{ variant.id }}" class="btn"  />
+                </div>
+              </form> 
+                
+               <!--   <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="product_form">
+                  <div class="add_cart">
+                    <input type="hidden" name="id" value="{{ variant.id }}">
+                    <input type="submit" value="{{ 'products.product.add_to_cart' | t | capitalize }}" id="AddToCart-{{ variant.id }}" class="btn" />
+                  </div>
+                </form>-->
+                
+                {% else %}
+                  <form action="" method="post" enctype="multipart/form-data" class="product_form">
+                    <div class="add_cart">
+                      <input type="hidden" name="id" value="{{ variant.id }}">
+                      <input type="button" value="Sold Out" id="AddToCart-{{ variant.id }}" class="btn disabled" />
+                    </div>
+                  </form>
+                {% endif %}
+                
+              </div>
+              {% endfor %}
+          
+          
+    
+        </div>
+</div>
+
+
+     
+          
+       
+          
+    

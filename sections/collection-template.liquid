@@ -1,0 +1,368 @@
+
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+   {% if collection.handle contains 'all' %}
+  <h1>Shop Now</h1>
+  {% else %}
+  <h1>{{ collection.title }}</h1>
+  {% endif %}
+  <span class="header_overlay"></span>
+  {% if collection.image != blank %}
+     <img src="{{ collection.image | img_url : 'master' }}" class="1" alt="{{ collection.title }}" />
+  {% elsif section.settings.image != blank %}   
+    <img src="{{ section.settings.image | img_url : 'master' }}" class="2" alt="{{ article.title }}" />
+  {% else %}
+  	{{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+{% if collection.description %}
+<div class="container">
+<div class="grid collection_desc">
+  <div class="grid__item one-whole">
+  	{{ collection.description }}
+  </div>
+</div>
+</div>
+{% endif %}
+
+<!-- ======================= Product Listing ==================== -->
+
+<div class="product_section" data-section-id="{{ section.id }}" data-section-type="collection-section" data-review="{{section.settings.enable_review}}" data-filter="{{ section.settings.enble_filter }}">
+  {% paginate collection.products by section.settings.pagination_limit %}      
+  <div class="container">
+
+    <div class="grid">
+      
+       <div class="grid__item {% if section.settings.enble_filter %}eight-tenths{% else %}one-whole{% endif %} small--one-whole right medium--one-whole medium-large--one-whole">
+        <div class="grid filter_fix_section">
+			{% if section.settings.enble_filter %}
+				<div class="grid__item sidebar_toggle hide medium-down--show medium-large--show medium-large--four-twelfths medium--one-half">
+				<a href="#"><span class="ion-navicon-round"></span>Filter</a>
+				</div>
+			{% endif %}
+			
+          {% if section.settings.enable_sorting %}
+          <div class="grid__item one-half small--one-whole medium-large--four-twelfths medium-large--right right">
+            {% include 'collection-sorting' %}
+          </div>
+          {% endif %}
+        </div>
+
+
+        <div class="grid load_section">
+          <div class="product_listing">
+           
+            {% if section.settings.products_per_row == '3' %}
+            	{% assign grid_width = 'four-twelfths small--one-whole medium--one-half medium-large--four-twelfths' %}
+            {% endif %}
+            {% if section.settings.products_per_row == '4' %}
+           		 {% assign grid_width = 'three-twelfths small--one-whole medium--one-half' %}
+            {% endif %}
+
+             {% if section.settings.products_per_row == '5' %}
+            	 {% assign grid_width = 'two-tenths small--one-whole medium--one-half medium-large--three-twelfths' %}
+            {% endif %}
+            
+           {% for product in collection.products %}
+			<div class="grid__item  {{ grid_width }}">
+            {% include 'product-grid-item' %}
+              
+              
+              
+              {% comment%} START THEME EDITS NEW ADD TO CART AND BUY NOW {% endcomment%}
+              
+              {% for variant in product.variants %}
+              
+              {% assign stockStatus = variant.available %}
+              
+              {% if product.first_available_variant.id == variant.id %}
+              <div class="form_module buyer-{{ variant.id }} form-{{ product.id }}" style="display: block;">
+              {% else %}
+              <div class="form_module buyer-{{ variant.id }} form-{{ product.id }}">
+              {% endif %}
+                
+                
+                
+              {% if stockStatus == true %}
+              <!-- <form action="/cart/add" method="post" enctype="multipart/form-data" class="product_form">
+                <div class="add_cart">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="submit" value="Buy Now" id="AddToCart-{{ variant.id }}" class="btn" />
+                </div>
+              </form> -->
+                
+                <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="product_form">
+                  <div class="add_cart">
+                    <input type="hidden" name="id" value="{{ variant.id }}">
+                    <input type="submit" value="{{ 'products.product.add_to_cart' | t | capitalize }}" id="AddToCart" class="btn" />
+                  </div>
+                </form>
+                
+                {% else %}
+                <form action="" method="post" enctype="multipart/form-data" class="product_form">
+                  <div class="add_cart">
+                    <input type="hidden" name="id" value="{{ variant.id }}">
+                    <input type="button" value="Sold Out" id="AddToCart-{{ variant.id }}" class="btn disabled" />
+                  </div>
+                </form>
+                {% endif %}
+                
+              </div>
+              {% endfor %}
+                
+                
+            </div>
+            {% else %}
+              {% if collection.handle == 'all' and current_tags == null %}
+                {% comment %}
+                Add default products to help with onboarding for collections/all only
+                {% endcomment %}
+                {% unless emptyState %}
+                {% assign emptyState = true %}
+                {% endunless %}
+                <div class="grid">
+                  {% include 'onboarding-empty-collection' %}
+                </div>
+              {% else %}
+                {% comment %}
+                If collection exists but is empty, display message
+                {% endcomment %}
+                <div class="grid__item">
+                  <p>{{ 'collections.general.no_matches' | t }}</p>
+                  
+                </div>
+              {% endif %}
+              
+              <script>	
+                   $(document).ready(function(){
+                        $('.pagination').hide();
+                   });  
+                  </script>
+
+            {% endfor %}  
+
+          </div>
+ 		  <div class="loading-modal" data-translate="cart.ajax_cart.loading" style="display: none;"><span>Loading...</span></div>  
+  
+        </div>
+
+        
+        <div class="pagination">
+           <div class="page_count">
+
+            {% assign page_size = paginate.page_size | minus: 1 %}
+            {% assign start_item = paginate.current_offset | plus: 1 %}
+            {% assign item_in_page = start_item | plus: page_size %}
+            {% assign total_item = paginate.items %} 
+            {% if item_in_page > paginate.items %} 
+            {% assign remaine_item = total_item | minus: start_item %}
+            {% assign last_item = start_item | plus: remaine_item %}
+            {% else %}
+            {% assign last_item = start_item | plus: page_size %}
+            {% endif %}
+
+            {% unless total_item == 0 %}  
+            <p class="page-total"><span>Showing</span>: {{start_item}} - {{last_item}} <span>of</span> {{total_item}} items</p> 
+            {% endunless %}
+
+          </div>
+          {% include 'pagination' %}
+        </div>
+      </div>
+
+      {% include 'collection-sidebar' %}   
+    </div>
+
+ </div>
+  {% endpaginate %}           
+</div>
+
+
+
+
+
+{% schema %}
+   {
+    "name": "Collection Page",
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"image",
+      	"label":"Banner Image",
+	    "info": "Only Visible if Collection Image Not Available. 1920 x 278px recommended"
+      },	 
+      {
+        "type": "header",
+        "content": "Collection Page Layout"
+      },
+      {
+        "type": "select",
+        "id": "products_per_row",
+        "label": "Number Of Products Per Row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "5"
+      },
+      {
+        "type": "text",
+        "id": "pagination_limit",
+        "label": "Number Of Products Per Page",
+        "default": "12"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sorting",
+        "label": "Enable Sorting",
+        "default": true
+      },
+	  {
+        "type": "checkbox",
+        "id": "enable_review",
+        "label": "Show Reviews",
+        "default": false
+      },	
+	  {
+        "type": "header",
+        "content": "Collection Filter"
+      },
+      {
+        "type": "checkbox",
+        "id": "enble_filter",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Categories"
+      },
+	  {
+		"type":"text",
+		"id":"categories_menu_title",
+		"label":"Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "enble_categories",
+        "label": "Enable",
+        "info": "It will show different collections based on category.",
+        "default": false
+      },
+      {
+        "type": "link_list",
+        "id": "categories_menu",
+        "label": "Choose Menu"
+      },
+      
+      {
+        "type": "header",
+        "content": "Material"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_material_filter",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "filter_material_title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "filter_material_taglist",
+        "label": "Filter By Material List",
+        "info": "Separate by a comma (Example: \"Flint Glass,Flint Glass,Aluminum\")"
+      },
+      {
+        "type": "header",
+        "content": "Price"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_price_filter",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "filter_price_title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "filter_price_taglist",
+        "label": "Filter By Price List",
+        "info": "Separate by a comma (Example: \"$100-$199,$200-$299\")"
+      },
+      {
+        "type": "header",
+        "content": "Vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "enble_brand_filter",
+        "label": "Show",
+        "info": "It will show all vendors."
+      },
+      {
+        "type": "text",
+        "id": "vendor_title",
+        "label": "Title Name"
+      },
+	  {
+          "type": "header",
+          "content": "Color"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_color",
+          "label": "Enable Color",
+          "info": "Write tag name as color name (Example: black )"
+        },
+		{
+			"type":"text",
+			"id":"color_title",
+			"label":"Title Name"
+		}
+    ],
+	"blocks": [
+    {
+      "type": "image",
+      "name": "color",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Color Tag name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "50 x 50px recommended"
+        }
+      ]
+    }
+   ]
+  }
+ 
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

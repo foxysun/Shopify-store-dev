@@ -1,0 +1,6 @@
+<form action="/search" method="get" role="search"> 
+	                                     <input type="search" id="search-input_blog" name="q"{% if search.performed %} value="{{ search.terms | escape | downcase }}"{% endif %} value="{{ search.terms | escape }}" placeholder="search...">
+
+	   									 <input type="hidden" name="type" value="article" />
+	                                   
+	 </form>

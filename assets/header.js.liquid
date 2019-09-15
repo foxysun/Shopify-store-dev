@@ -1,0 +1,31 @@
+var  searchSection = document.getElementById('search');
+var  searchInputMobile = document.getElementById('search__input--mobile');
+var  searchButton = document.getElementById('search__button');
+var searchInput = document.getElementById('search__input');
+var submmenuLinks = document.querySelectorAll('.submenu__link');
+var navigation = document.getElementById('navigation');
+
+var submenuLinksArray = Array.prototype.slice.call(submmenuLinks,0);
+
+searchButton.addEventListener('click', function(event){
+ event.preventDefault();
+  
+  
+  
+if(!$('#mobile-menu-wrapper').hasClass('enabled')) { 
+ searchInput.classList.toggle('search-active');
+ searchInputMobile.classList.toggle('search-active');
+ navigation.classList.toggle('mobile-search-active');
+}
+
+});
+
+
+document.querySelector(' #menu-button').addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.toggle('change');
+});
+
+
+ 
+
+  

@@ -1,0 +1,79 @@
+  
+  <!-- mobile nav 
+                
+                  {% if settings.enable_cart_button %}
+                <a href="/cart"><span class="ion-bag">
+                   {% if cart.item_count > 0 %}{{ cart.item_count }}{% else %}0{% endif %}
+                    </a></li>
+                  {% endif %}  {% if settings.enable_wishlist %}
+                  <a href="/pages/wishlist"><span class="ion-heart"></span></a>
+                  {% endif %} {% if settings.enable_search_header  %}
+                  <a href="#" class="mob_search"><span class="ion-ios-search-strong"></span></a>
+                  {% endif %}
+                  {% comment %}
+                  {% if settings.show_multiple_currencies %}
+              
+                      {% include 'currency-picker' %}
+                
+                  {% endif %}
+                  {% endcomment %}
+               
+           
+                <form action="/search" method="get" role="search">
+                  <input type="search" name="q" placeholder="Search Products">
+                  <input type="hidden" name="type" value="product">
+                  <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                </form>
+             
+      
+
+   
+       {% if section.settings.logo_use_image %}
+          <a href="/" itemprop="url">
+          	{% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+            <img src="{{ section.settings.logo | img_url: image_size }}"
+                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   itemprop="logo">
+          </a>
+          {% else %}
+            <h1><a href="/" itemprop="url">{{ shop.name }}</a></h1>
+          {% endif %}   
+-->
+   
+ <!-- some other nav
+    
+                 {% if settings.enable_cart_button %}
+              <a href="#" class="site-header__cart-toggle js-drawer-open-right bag_icon" aria-controls="CartDrawer" aria-expanded="false">Cart
+                  (<span class="CartCount">{% if cart.item_count > 0 %}{{ cart.item_count }}{% else %}0{% endif %}</span>)</a>
+				{% endif %}
+                
+                {% if settings.enable_wishlist %}
+                  {% if customer %}
+                  <a href="/pages/wishlist">My Wishlist</a>
+                  {% else %}
+                  <a href="/account/login">My Wishlist</a>
+                  {% endif %}
+                {% endif %}
+                {% comment %}
+                {% if settings.show_multiple_currencies %} 
+             
+                    {% include 'currency-picker' %}
+                
+                {% endif %}
+                {% endcomment %}
+ -->
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

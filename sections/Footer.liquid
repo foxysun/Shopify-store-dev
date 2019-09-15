@@ -1,0 +1,434 @@
+<style>
+footer {
+  width: 100%;
+  margin: 60px auto 0 auto;
+
+  background-color: #000;
+}
+
+.footer__items {
+  width: 90%;
+  margin: 0 auto 0 auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  display: flex;
+
+  color: #fff;
+  justify-content: center;
+}
+.footer__items .newsletter h4 {
+  text-align: center;
+}
+.footer__items .newsletter input[type=email]{
+  border-radius: 7px;
+}
+.footer__items .newsletter input[type=email]::-webkit-input-placeholder{
+  color: #2699fb;
+  size: 20px;
+  letter-spacing: 0;
+}
+{% comment %} .footer__items .newsletter input[type=email]::-webkit-input-placeholder, 
+.footer__items .newsletter input[type=email]::-moz-placeholder,
+.footer__items .newsletter input[type=email]:-ms-input-placeholder,
+.footer__items .newsletter input[type=email]:-moz-placeholder {
+  color: #2699fb;
+  size: 20px;
+  letter-spacing: 0;
+} {% endcomment %}
+footer .footer__items a:link,
+footer .footer__items a:hover,
+footer .footer__items a:focus,
+.footer__items .text-link,
+footer a,
+footer .text-link {
+  color: #fff;
+}
+
+.footer__item {
+  width: 20%;
+}
+.footer__item--logo {
+  width: 80%;
+  height: 100px;
+  background-color: #fff;
+}
+.footer__item--logo img {
+  padding: 15px;
+}
+footer .footer__item--text p {
+  color: #fff;
+  padding: 30px 60px 0 0;
+}
+
+.social_icons ul {
+  display: flex;
+  justify-content: flex-end;
+}
+.social_icons ul li a {
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+footer .container {
+  width: 100%;
+  background-color: #fff;
+}
+
+  
+@media (max-width: 1960px) {
+  .footer__item--logo {
+    width: 90%;
+    height: 85px;
+  }
+  footer .footer__item--text p {
+    color: #fff;
+    padding: 20px 40px 0 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1525px) {
+  .footer__item--logo {
+    width: 95%;
+    height: 75px;
+  }
+  footer .footer__item--text p {
+    color: #fff;
+    padding: 20px 40px 0 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .footer__item--logo {
+    width: 95%;
+    height: 75px;
+  }
+  footer .footer__item--text p {
+    color: #fff;
+    padding: 10px 30px 0 0;
+    font-size: 12px;
+  }
+  footer .footer__items a:link,
+  footer .footer__items a:hover,
+  footer .footer__items a:focus,
+  .footer__items .text-link,
+  footer a,
+  footer .text-link {
+    font-size: 12px;
+  }
+}
+  
+@media (max-width: 1025px) {
+  
+  footer {
+      width: 100%;
+      margin: 30px auto 0 auto;
+
+      background-color: #000;
+    }
+
+    .footer__items {
+      width: 90%;
+      margin: 0 auto 0 auto;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      display: flex;
+	flex-direction: column;
+      color: #fff;
+      justify-content: center;
+      text-align: center;
+    }
+    footer .footer__items a:link,
+    footer .footer__items a:hover,
+    footer .footer__items a:focus,
+    .footer__items .text-link,
+    footer a,
+    footer .text-link {
+      color: #fff;
+    }
+
+    .footer__item {
+      width: 100%;
+      margin-bottom: 60px;
+    }
+    .footer__item--logo {
+      width: 80%;
+      height: 100px;
+      background-color: #fff;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .footer__item--logo img {
+      padding: 15px;
+      max-width: 300px;
+    }
+    footer .footer__item--text p {
+      color: #fff;
+      padding: 30px 0px 0 0;
+    }
+
+    .social_icons ul {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .social_icons ul li a {
+      padding: 15px;
+    }
+
+    footer .container {
+      width: 100%;
+      background-color: #fff;
+    }
+  .social_icons ul{
+    justify-content: center;
+  }
+}
+
+  
+  
+</style>
+
+
+<!-- ======================= Footer ==================== -->
+<footer class="account-pages">
+  <div class="footer__items">
+  
+		<div class="footer__item">
+              {% if section.settings.logo_use_image %}
+          		<div class="footer__item--logo">
+              <a href="/" itemprop="url">
+                {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+                <img src="{{ section.settings.logo | img_url: image_size }}"
+                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     itemprop="logo">
+              </a>
+          		</div>
+             {% endif %}
+              {% if section.settings.logo_below_content != blank %}
+         		 <div class="footer__item--text">
+              <p>{{ section.settings.logo_below_content }}</p>
+          		</div>
+              {% endif %}
+         
+		 </div>
+
+
+  
+  <div class="footer__item">
+          {% if linklists[section.settings.footer_linklist_1].links != blank  %}
+      
+              <h4>{{ linklists[section.settings.footer_linklist_1].title }}</h4>
+              <ul>
+                {% for link in linklists[section.settings.footer_linklist_1].links %}
+                <li class=" wow fadeInUpSmall" data-wow-delay="{{ forloop.index | times : 0.1 }}s"><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul> 
+     
+          {% endif %}
+          
+  </div>
+  
+  
+  <div class="footer__item">
+          
+          {% if linklists[section.settings.footer_linklist_2].links != blank  %}
+      
+              <h4>{{ linklists[section.settings.footer_linklist_2].title }}</h4>
+              <ul>
+                {% for link in linklists[section.settings.footer_linklist_2].links %}
+                <li class=" wow fadeInUpSmall" data-wow-delay="{{ forloop.index | times : 0.1 }}s"> <a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+    </div>
+
+          {% endif %}
+    
+    
+    
+          {% if section.settings.footer_linklist_3 %}  
+    
+    
+     <div class="footer__item">
+ 
+              <h4>{{ section.settings.footer_menu_title }}</h4>
+             
+              <ul>
+                <li class=" wow fadeInUpSmall" data-wow-delay="0.1s"><a href="/account/login">{{ 'customer.login.sign_in' | t }}</a></li>
+                <li class=" wow fadeInUpSmall" data-wow-delay="0.2s"><a href="/account">{{ 'layout.customer.account' | t }}</a></li>
+                {% if customer %}
+                <li class=" wow fadeInUpSmall" data-wow-delay="0.3s">{{ 'layout.customer.log_out' | t | customer_logout_link }}
+                </li>
+                {% endif %}
+			 </ul>
+         
+          {% endif %}
+  </div>  
+          
+       
+  <div class="footer__item">
+              {% if section.settings.footer_newsletter_enable %}
+              <div class="newsletter">
+                <h4>{{ section.settings.title }}</h4>
+  
+                {% if settings.newsletter_form_action != blank %}
+                <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" >
+                  <input type="email" name="mce-Email" placeholder="Enter E-mail" required>
+                  <button type="submit"><span class="ion-paper-airplane"></span></button>
+                </form>
+                {% else %}
+                {% form 'customer' %}
+                  {{ form.errors | default_errors }}
+
+                  {% if form.posted_successfully? %}
+                    <p class="form--success">{{ 'contact.form.post_success' | t }}</p>
+                  {% else %}
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <input type="email" class="input-group-field" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Enter E-mail" name="contact[email]" id="mail" required/> 
+                    <button type="submit"><span class="ion-paper-airplane"></span></button>
+                  {% endif %}
+                {% endform %}
+                {% endif %}
+                
+              </div>
+              {% endif %}
+
+              {% if settings.enable_social_links %}
+              <div class="social_icons">
+                {% include 'social-links' %}
+              </div>
+              {% endif %}
+    
+  </div>
+  </div>   
+  
+    <div class="container">
+    	
+        <div class="mini_footer grid">
+          
+          {% if section.settings.enable_payment_method %}
+            <div class="right_footer grid__item five-twelfths medium-down--one-whole right text-right medium-down--text-center">
+              We accept the following payment methods:<br /><br />
+             <ul>
+             {% for type in shop.enabled_payment_types %}
+               <li> <img src="{{ type | payment_type_img_url }}" alt="{{ type }}"/></li>
+             {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+           {% if section.settings.copyright_enble %}
+            <div class="left_footer grid__item seven-twelfths medium-down--one-whole left">
+              <p>{{ section.settings.copyright_description_left }}</p>
+            </div>
+           {% endif %}
+        </div>
+    </div>
+  <a href="javascript:;" id="scrollToTop" class="ion-chevron-up"></a>
+</footer>
+
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+	  {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use Custom Logo"
+      },
+ 	  {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom Logo"
+      },
+	  {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "450"
+      },
+	  {
+        "type": "textarea",
+        "id": "logo_below_content",
+        "label": "Content",
+        "default": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+      },
+      {
+        "type": "header",
+        "content": "Footer menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_1",
+        "label": "Choose Menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist_2",
+        "label": "Choose Menu"
+      },
+	   {
+        "type": "checkbox",
+        "id": "footer_linklist_3",
+        "label": "Show customer menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_menu_title",
+        "label": "Title Name"
+      },
+	  {
+        "type": "header",
+        "content": "Footer Newsletter"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_newsletter_enable",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Name",
+        "default": "Join our Newsletter"
+      },
+     {
+        "type": "header",
+        "content": "©Copyright"
+      },
+      {
+        "type": "checkbox",
+        "id": "copyright_enble",
+        "label": "Show",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "copyright_description_left",
+        "label": "Content",
+        "default": "©copyright 2016"
+      },
+      {
+        "type": "header",
+        "content": "Payment Method"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_payment_method",
+        "label": "Show",
+        "default": true
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

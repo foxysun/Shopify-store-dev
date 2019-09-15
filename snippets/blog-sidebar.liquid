@@ -1,0 +1,61 @@
+<div class="blog_sidebar">
+
+  <div class="grid">
+    {% if settings.blog_search %}
+    <div class="grid__item one-whole">
+      <div class="filter">
+        <h4>{{ settings.blog_search_title }}</h4>
+          <form action="/search" method="get" role="search"> 
+            <input type="search" id="search-input_blog" placeholder="Search Blog" name="q"{% if search.performed %} value="{{ search.terms | escape | downcase }}"{% endif %} value="{{ search.terms | escape }}" placeholder="search...">
+
+            <input type="hidden" name="type" value="article" />
+          </form>
+      </div>
+    </div>
+    {% endif %}  
+    <div class="grid__item one-whole">
+      {% if settings.blog_category %}
+      <div class="filter">
+        <h4>{{ settings.blog_category_title }}</h4>
+        <ul>
+          {% for link in linklists[settings.blog_choose_menu].links %}
+           <li> 
+              <a href="{{ link.url }}" {% if link.active %}class="active" {% endif %}>{{ link.title }}</a>
+              {% if settings.enable_rss_field  %}
+             	 <a href="{{ link.url }}.atom"  target="_blank" class="active rss_link"><span><i class="ion-social-rss"></i></span></a>
+              {% endif %}
+            </li> 
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+
+ {% if settings.enable_tags %}
+    <div class="grid__item one-whole">
+     
+      <div class="filter tags">
+        <h4>{{ settings.tag_title }}</h4>
+        {% if blog.tags.size > 0 %} 
+        <ul>
+          {% for tag in blog.all_tags %}
+          {% if current_tags contains tag %}
+          <li class="active"><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+          {% else %}
+          <li>	<a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+          {% endif %}
+
+          {% endfor %}
+
+        </ul>
+
+        {% endif %}  
+
+      </div>
+    
+    </div>
+  {% endif %}
+  </div>
+
+</div>

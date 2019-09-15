@@ -1,0 +1,19 @@
+<!-- snippets/onboarding-instagram.liquid -->
+<div class="insta_section">
+  <h1>FOLLOW US ON INSTAGRAM</h1>
+  <div id="instafeed">
+    {% for i in (1..8) %}
+    <div class="insta_list">
+      <a href="/" target="_blank" class="insta_item">
+        <div class="insta_img"><span class="overlay"></span>
+          {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+        </div>
+        <div class="intsta_overlay">
+          <span class="ion-social-instagram-outline"></span>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>

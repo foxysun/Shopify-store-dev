@@ -1,0 +1,122 @@
+{% if section.settings.enble_filter %}
+      <div class="grid__item two-tenths small--one-whole left medium--one-whole medium-large--three-tenths">
+
+        <div class="product_sidebar">
+          {% assign tags_selected = current_tags | handleize %}  
+
+          {% if section.settings.enble_categories %} 
+          <div class="filter category_filter">
+            <h4>{{ section.settings.categories_menu_title }}</h4>
+            <ul class="chk-swatch">
+              {% for link in linklists[section.settings.categories_menu].links %}
+              <li>
+                 <a href="{{ link.url }}" data-image="{% if collections[link.handle].image != blank %}{{ collections[link.handle].image | img_url : 'master' }}{% endif %}"  {% if link.active or parent_link_active %}class="active"{% endif %}>{{ link.title }}</a>
+              </li> 
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <div class="filter_sidebar">          
+            <span class="filter_close hide medium-down--show medium-large--show"><i class="ion-close-circled"></i></span>
+            <a href="javascript:void(0)" class="clear-all">Clear All</a>
+            {% if section.settings.enable_color %}
+            <div class="filter color_filter">
+              <h4>{{ section.settings.color_title }}</h4>
+              <a href="javascript:void(0)" class="clear"><i class="ion-close-circled"></i></a>
+              <ul class="item-swatch">
+                {% for block in section.blocks %}
+                {% if block.settings.image != blank %}
+                {% assign color_name = block.settings.title | downcase %}
+                {% assign color_image = block.settings.image %}
+      
+               <li class="{% if tags_selected contains color_name %}active{% endif %} {% if color_name == 'white' %}white_clr{% endif %}{% if color_name == 'yellow' %}white_clr{% endif %}">
+                
+                  <label style="background:{% if color_name == 'white' %}#ece6e6{% else %}{{color_name}}{% endif %};background: {{color_name}}; background: url({{color_image | img_url: 'small'}}) no-repeat;">
+                    <input type="checkbox"  value="{{ color_name }}">
+                  </label>
+                </li>
+               {% endif %}
+             {% endfor %}
+
+              </ul>
+            </div>
+            {% endif %}
+            
+            {% if section.settings.enable_material_filter %}
+            <div class="filter material_filter">
+              <h4>{{ section.settings.filter_material_title }}</h4>
+              <a href="javascript:void(0)" class="clear"><i class="ion-close-circled"></i></a>
+              <div class="sidebar-tag">
+
+                {% assign  material_tag_lists = section.settings.filter_material_taglist | split: ','  %}
+                {% for tag_name in material_tag_lists %}
+                  {% assign tag_value = tag_name | handleize %}
+                  {% assign flag = false %}
+                    {% for tag in current_tags %}
+                	{% assign tag_small = tag | handleize %}
+                      {% if tag_small == tag_value %}
+                          {% assign flag = true %}
+                      {% endif %}
+                    {% endfor %}
+                  <div class="p_row">
+                    <input type="checkbox" id="{{tag_value}}" value="{{tag_value}}" name="filter_type" class="{{flag}}" {% if flag  %}checked="checked"{% endif %}/>
+                    <label for="{{tag_value}}"><span>{{ tag_name }}</span></label>
+                  </div>
+                {% endfor %} 
+              </div> 
+
+            </div>
+            {% endif %}
+            
+<!--      Price Filter        -->
+            {% if section.settings.enable_price_filter %}
+            <div class="filter price_filter">
+              <h4>{{ section.settings.filter_price_title }}</h4>
+
+              <a href="javascript:void(0)" class="clear"><i class="ion-close-circled"></i></a>
+              <div class="sidebar-tag">
+
+                {% assign  price_tag_lists = section.settings.filter_price_taglist | split: ','  %}
+                {% for tag_name in price_tag_lists %}
+
+                {% assign tag_value = tag_name | handleize %}
+                {% assign flag = false %}
+                  {% for tag in current_tags %}
+                    {% if tag == tag_value %}
+                    	{% assign flag = true %}
+                    {% endif %}
+                  {% endfor %}
+                <div class="p_row">
+                  <input type="checkbox" id="{{tag_value}}" value="{{tag_value}}" name="filter_price" {% if flag %} checked="checked"{% endif %}/>
+                  <label for="{{tag_value}}"><span>{{ tag_name }}</span></label>
+                </div>
+                {% endfor %}  
+              </div> 
+
+            </div>
+            {% endif %}
+
+            {% if section.settings.enble_brand_filter %}
+            <div class="filter vendor_filter">
+              <h4>{{ section.settings.vendor_title }}</h4>
+              <a href="javascript:void(0)" class="clear"><i class="ion-close-circled"></i></a>
+              <div class="sidebar-tag">
+                {% for product_vendor in collection.all_vendors %}
+                {% assign vendor_hand = product_vendor | handleize %}
+                <div class="p_row">
+                  <input type="checkbox" id="{{vendor_hand}}" value="{{vendor_hand}}" name="filter_brand" {% if tags_selected contains vendor_hand %} checked="checked"{% endif %}/>
+                  <label for="{{vendor_hand}}"><span>{{ product_vendor }}</span></label>                   
+                </div> 
+                {% endfor %}  
+              </div>
+            </div>
+            {% endif %}
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+      {% endif %}  

@@ -1,0 +1,42 @@
+<style>
+  .home-page-featured__content{
+margin: 0 auto;
+text-align: center;
+}
+</style>
+
+
+{%if section.settings.partnership-heading-two != '' %}
+<h2 class="secondary-heading home-page-featured__heading">{{ section.settings.home-page-featured }}</h2>
+<p class="paragraph home-page-featured__content">{{ section.settings.home-page-featured-copy }}</p>
+{% endif %}
+  
+
+
+{% schema %}
+  {
+    "name": "Featured Content",
+    "settings": [
+		{
+		"type" : "text",
+		"label" : "Heading",
+		"id": "home-page-featured"
+		},
+		{
+		"type" : "textarea",
+		"label" : "Copy",
+		"id": "home-page-featured-copy"
+		}
+	]	
+  }
+{% endschema %}
+
+
+
+
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

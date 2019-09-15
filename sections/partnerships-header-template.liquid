@@ -1,0 +1,28 @@
+{%if section.settings.partnership-heading != '' %}
+<h2 class="secondary-heading partnerships__header">{{ section.settings.partnership-heading }}</h2>
+{% endif %}
+  
+
+
+{% schema %}
+  {
+    "name": "Partnership Heading",
+    "settings": [
+		{
+		"type" : "text",
+		"label" : "Parternship Heading",
+		"id": "partnership-heading"
+		}
+	]	
+  }
+{% endschema %}
+
+
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

@@ -1,0 +1,171 @@
+<!-- ======================== Header ========================= -->
+
+<div class="header_banner">
+   <h1>Collections</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+<!-- ======================= Collection Listing ==================== -->
+{% if section.blocks.size > 0 %}
+<div class="collection_section">
+
+  <div class="container">
+
+   <div class="grid"  data-section-id="{{ section.id }}" data-section-type="collection-list">
+        
+      <div class="grid__item one-whole maxlarge--ten-twelfths push--maxlarge--one-twelfth">
+       {% assign loop_val = 0  %}
+
+        {% for block in section.blocks %}
+         
+          {% assign col_name = block.settings.collection_list %}
+         
+            {% for collection in collections %}
+
+            {% if collection.handle == col_name %}  
+
+
+            {% assign loop_divided_val = loop_val  | modulo:2 %}
+            {% assign loop_val = loop_val | plus:1 %}
+
+            <div class="collection_item wow fadeInUpSmall" data-wow-delay="500ms">
+              {% if loop_divided_val == 0 %}
+
+              <div class="grid">
+                <div class="grid__item ten-twelfths small--one-whole right medium-down--one-whole medium-large--nine-twelfths">
+                  <div class="collection_img">
+                    <a href="{{ collection.url }}">
+                      {% if block.settings.image != blank %}  
+                      <img src="{{ block.settings.image  | img_url: '1024x' }}" alt="{{ collection.title }}">
+                      {% else %}
+                      {{ 'collection_listing.png' | asset_url | img_tag }}
+                      {% endif %}
+                    </a>
+                  </div>
+                </div>
+                <div class="grid__item two-twelfths small--one-whole left medium-down--one-whole medium-large--three-twelfths">
+                  <div class="collection_title" style="background:{{ block.settings.color }}">
+                    <div class="main_title">
+                      <a href="{{ collection.url }}"> 
+                        {% if block.settings.collection_image_icon != blank %}   
+                        <img src="{{ block.settings.collection_image_icon | img_url: '120x' }}" alt="{{ collection.title }}">
+                      	{% else %}
+                        {{ 'icon_collection.png' | asset_url | img_tag }}
+                        {% endif %}
+                        <h4>{{ collection.title }}</h4>
+                      
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {% else %}
+
+              <div class="grid">
+                <div class="grid__item ten-twelfths small--one-whole medium--one-whole medium-large--nine-twelfths">
+                  <div class="collection_img">
+                    <a href="{{ collection.url }}">
+                       {% if block.settings.image != blank %}  
+                      <img src="{{ block.settings.image  | img_url: '1024x' }}" alt="{{ collection.title }}">
+                      {% else %}
+                      {{ 'collection_listing.png' | asset_url | img_tag }}
+                      {% endif %}
+                    </a>
+                  </div>
+                </div>
+                <div class="grid__item two-twelfths small--one-whole medium--one-whole medium-large--three-twelfths">
+                  <div class="collection_title" style="background:{{ block.settings.color }}">
+                    <div class="main_title">
+                      <a href="{{ collection.url }}"> 
+                        {% if block.settings.collection_image_icon != blank %}   
+                        <img src="{{ block.settings.collection_image_icon | img_url: '120x' }}" alt="{{ collection.title }}">
+                      	{% else %}
+                        {{ 'icon_collection.png' | asset_url | img_tag }}
+                        {% endif %}
+                        <h4>{{ collection.title }}</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% endif %}
+            </div>
+
+            {% endif %}
+            {% endfor %}  
+
+            {% endfor %}   
+            </div>
+        
+        </div>
+    
+    </div>
+
+</div>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Collections Page",
+	"max_blocks":50,
+	"settings": [
+    {
+      "type":"image_picker",
+      "id":"image",
+      "label":"Banner Image",
+	  "info": "Maximum image dimensions are  1920px wide by 278px high. The uploaded file will be resized to fit within those constraints."
+    },	
+	{
+      "type": "header",
+      "content": "Choose Collections"
+    }
+  ],
+      "blocks": [
+      {
+        "type": "collection",
+        "name": "collection",
+        "settings": [
+            {
+              "type": "collection",
+              "id": "collection_list",
+              "label": "Select Collection"
+              },
+              {
+                "type": "image_picker",
+                "id": "collection_image_icon",
+                "label": "Icon Image"
+              },
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Collection Image"
+              },
+			 {
+				"type":"color",
+				"id":"color",
+				"label":"Background Color",
+				"default":"#333"
+			 }
+
+         ]
+      }
+    ]	
+
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

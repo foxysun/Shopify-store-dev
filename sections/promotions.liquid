@@ -1,0 +1,306 @@
+ <style>
+.promotions__heading{
+  font-size: 40px;
+  margin-top: 60px;
+}
+.promotions__heading::after{
+  content: '';
+  border-bottom: none;
+}
+.promotion img{
+  width: 100%;
+}
+.promotions{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.promotion{
+  position: relative;
+  width: calc(33.33333% - 20px);
+  margin: 0 10px;
+}
+.promotion__title{
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  bottom: 17%;
+  z-index: 999;
+}
+.promotion__link{
+  position: absolute;
+  width: 164px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  font-size: 21px;
+  background-color: #fff;
+  border: 2px solid #E71C39;
+  padding: 5px 30px;
+  margin: 0 auto;
+  line-height: 46px;
+  letter-spacing: 1px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color: #E71C39;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-transition: 0.4s all ease-in-out;
+  -moz-transition: 0.4s all ease-in-out;
+  -o-transition: 0.4s all ease-in-out;
+  -ms-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+}
+.promotion__link:hover{
+  background-color: #e71c39;
+  color: #fff;
+}
+.promotion__link::after{
+  content: "+";
+  padding-left: 15px;
+  font-size: 36px;
+}
+   
+@media (max-width: 1024px) {
+  .promotions-section{
+    background-color: #efefef;
+  }
+  
+  .promotions{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 30px auto;
+    flex-direction: column;
+  }
+  .promotion{
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .promotions__heading{
+    padding-top: 30px;
+    font-size: 30px;
+  }
+  .promotion img{
+    width: 100%;
+  }
+  
+  .promotion__link{
+    position: absolute;
+    width: 70%;
+    bottom: 50px;
+    right: 0;
+    left: 0;
+    height: 60px;
+    border: 3px solid #E71C39;
+    background-color: #fff;
+    font-size: 21px;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-transform: uppercase;
+    color:#E71C39;
+    padding: 15px 0;
+    font-weight: 700;
+    
+  }
+  .promotion__link::after{
+    content: "+";
+    margin-left: 15px;
+    color:#E71C39;
+    
+  }
+
+  .promotion__title {
+    bottom: 10%;
+  }
+}
+@media (max-width: 1350px) {
+  .promotion__title {
+    bottom: 20%;
+  }
+}
+</style>
+
+<div class="promotions-section">
+<h2 class="secondary-heading promotions__heading">
+
+  {% if  section.settings.trending-products-heading-first != '' %}
+    <span  style="color:{{ section.settings.promotions_heading-c1 }}">{{ section.settings.promotions_heading-first }}</span> 
+  {% endif %}
+  
+  {% if  section.settings.trending-products-heading-second != '' %}
+    <span  style="color:{{ section.settings.promotions_heading-c2 }}">{{ section.settings.promotions_heading-second }}</span> 
+  {% endif %}
+  
+  {% if  section.settings.trending-products-heading-third != '' %}
+    <span  style="color:{{ section.settings.promotions_heading-c3 }}">{{ section.settings.promotions_heading-third }}</span> 
+  {% endif %}
+  
+  {% if  section.settings.trending-products-heading-fourth != '' %}
+    <span  style="color:{{ section.settings.promotions_heading-c4 }}">{{ section.settings.promotions_heading-fourth }}</span> 
+  {% endif %}
+  
+  {% if  section.settings.trending-products-heading-fifth != '' %}
+    <span  style="color:{{ section.settings.promotions_heading-c5 }}">{{ section.settings.promotions_heading-fifth }}</span> 
+  {% endif %}
+    
+</h2>
+  
+  
+<div class="promotions">
+
+
+{% for block in section.blocks %}
+  
+
+
+<div class="promotion">
+    <img src="{{ block.settings.promotion_image |  img_url: '1000x' }}" alt="{{ block.settings.promotion_image_alt }}" />
+    {% if block.settings.promotion_title != blank %}
+    <span class="promotion__title">{{ block.settings.promotion_title }}</span>
+    {% endif %}
+    
+    {% if block.settings.promotion_btn_txt != blank %}
+    <a href="{{ block.settings.promotion_link | url  }}" class="promotion__link">
+    {{ block.settings.promotion_btn_txt }}
+    </a>
+    {% endif %}
+    
+</div>
+
+ 
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Promotions",
+	"settings" : [
+		{
+			"type":"text",
+			"id" : "promotions_heading-first",
+			"label" : "Promotions Section Heading (First Word)"
+		},
+		{
+			"type":"color",
+			"id" : "promotions_heading-c1",
+			"label" : "Promotions Section Heading Color (First Word)"
+		},
+		{
+			"type":"text",
+			"id" : "promotions_heading-second",
+			"label" : "Promotions Section Heading (Second Word)"
+		},
+		{
+			"type":"color",
+			"id" : "promotions_heading-c2",
+			"label" : "Promotions Section Heading Color (Second Word)"
+		},
+		{
+			"type":"text",
+			"id" : "promotions_heading-third",
+			"label" : "Promotions Section Heading (Third Word)"
+		},
+		{
+			"type":"color",
+			"id" : "promotions_heading-c3",
+			"label" : "Promotions Section Heading Color (Third Word)"
+		},
+		{
+			"type":"text",
+			"id" : "promotions_heading-fourth",
+			"label" : "Promotions Section Heading (Fourth Word)"
+		},
+		{
+			"type":"color",
+			"id" : "promotions_heading-c4",
+			"label" : "Promotions Section Heading Color (Fourth Word)"
+		},
+		{
+			"type":"text",
+			"id" : "promotions_heading-fifth",
+			"label" : "Promotions Section Heading (Fifth Word)"
+		},
+		{
+			"type":"color",
+			"id" : "promotions_heading-c5",
+			"label" : "Promotions Section Heading Color (Fifth Word)"
+		}
+
+	],
+	"blocks":[
+	{
+		"type": "select",
+		"name" : "Add Promotion",
+
+    	"settings": [
+          {
+              "id": "promotion_image",
+              "type": "image_picker",
+              "label": "Promotion Image"
+          },
+          {
+              "id": "promotion_image_alt",
+              "type": "text",
+              "label": "Promotion Image Alt Text"
+          },
+          {	
+              "id": "promotion_title",
+              "type": "text",
+              "label": "Promotion Title",
+              "default": "Title"
+          },
+          {	
+              "id": "promotion_btn_txt",
+              "type": "text",
+              "label": "Promotion Button Text",
+              "default": "details"
+          },
+          {	
+              "id": "promotion_link",
+              "type": "url",
+              "label": "Promotion Link"
+          }
+
+		]
+	 }
+  
+	]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+
+ 

@@ -1,0 +1,242 @@
+<style>
+  #shopify-section-best-sellers .owl-carousel {
+    width: calc(100% - 200px);
+    margin: 0 auto;
+    {% comment %} padding-right: 100px;
+    padding-left: 100px; {% endcomment %}
+  }
+  .best-sellers-see-more-button{
+    display: block;
+    margin: 15px auto 0 auto;
+    width: 150px;
+    text-align: center;
+  }
+  .best-sellers-see-more-button .btn{
+    background-color: #c3e5ff;
+    color: #2698f9;
+    border: 2px solid #c3e5ff;
+    border-radius: 3px;
+    height: initial;
+    line-height: 36px;
+  }
+  .best-sellers-see-more-button .btn:hover{
+    background-color: #2698f9;
+    border: 2px solid #2698f9;
+    color: #fff;
+  }
+  .featured-products .form_module .btn-buy {
+    background-color: #c3e5ff;
+    color: #2698f9;
+    border: 2px solid #c3e5ff;
+    border-radius: 3px;
+    height: initial;
+    line-height: 36px;
+    padding: 0 38px;
+  }
+  .featured-products .form_module .btn-buy:hover {
+    background-color: #2698f9;
+    border: 2px solid #2698f9;
+    color: #fff;
+  }
+  .featured-collection__heading{
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 30px;
+  }
+  
+  .featured-products__controls{
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 750px) {
+      .featured-collection__heading{
+        font-size: 48px;
+      }
+    
+    .featured-products .form_module {
+      padding-bottom: 10px;
+    }
+  }
+  
+  
+  
+  
+  
+</style>
+
+<!-- ======================= New Arrival ==================== -->
+{% assign limit_no = section.settings.limit %}
+{% assign page_handle = page.handle %}
+
+
+
+
+{% if section.blocks.size > 0 %}
+{% for block in section.blocks %}
+
+
+
+{% if block.settings.page_handle == page_handle %}
+
+
+<div class="arrival_section">
+
+  <div class="container">
+    
+      <div class="featured-products">
+        
+       
+          <div class="featured-products__heading">
+            <div class="arrival_title">
+              {% if  collections[block.settings.bestseller_collection].title != blank %} 
+              <h4 class="featured-collection__heading">{{ collections[block.settings.bestseller_collection].title }}</h4>
+              {% else %}
+              <h4 class="featured-collection__heading">Featured Collections</h4>
+              {% endif %}
+        
+            </div>
+          </div>
+	
+        <div class="featured-products__items">
+			
+            <div class="owl-carousel owl-theme arrival_slider" data-section-id="{{ section.id }}" data-section-type="slideshow-featured-collection">
+              {% for product in collections[block.settings.bestseller_collection].products limit: limit_no %}
+
+              {% include 'product-grid-item-landing' %}
+
+              {% else %}
+                {% for i in (1..limit_no) %}
+                            
+                <div class="wow fadeIn product_item">
+                    
+                      <div class="product_img">
+                          <a href="/admin/products">
+                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                        </a>
+                      </div>
+                        <div class="product_desc">
+      
+                        <div class="desc_detail">
+                          <p class="grid-link__title">{{ 'homepage.onboarding.product_title' | t }}</p>
+                          <p class="grid-link__meta">
+                            <strong>$19.99</strong>
+                          </p>
+                          </div>
+                      </div>
+                      </div>
+                {% endfor %}
+			        {% endfor %}   
+
+            </div>
+          </div>    
+     
+        
+        </div>
+       <div class="best-sellers-see-more-button"><a class="btn" href="{{ 'see-more-button' }}">See More</a></div>
+    </div>
+
+</div>
+
+
+<script>
+$(document).ready(function(){
+  var settings = {
+    loop: true,
+    margin: 0,
+    nav: false,
+    items: 4,
+    autoplay: false,
+    autoplayHoverPause: true,
+    center: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 0,
+        nav: false,
+        loop: false,
+      },
+      600: {
+        items: 1,
+        stagePadding: 0,
+        nav: false,
+        loop: false,
+      },
+      750: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      },
+      1400: {
+        items: 4,
+        stagePadding:0
+      }
+    }
+  };
+
+  $('#shopify-section-best-sellers .owl-carousel').owlCarousel(settings);
+
+  $(window).on('resize', function(){
+    if($(window).width() < 751) {
+      $('#shopify-section-best-sellers .owl-carousel').owlCarousel('destroy');
+    } else {
+      $('#shopify-section-best-sellers .owl-carousel').owlCarousel(settings);
+    }
+  });
+});
+</script>
+
+{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Best Sellers",
+  "blocks": [
+    {
+    "type": "text_block",
+    "name": "Page Management",
+    "settings": [
+        {
+          "type": "page",
+          "id": "page_handle",
+          "label": "Select a page"
+        },
+        {
+          "type": "header",
+          "content": "Featured Products"
+        },
+        {
+          "type": "collection",
+          "id": "bestseller_collection",
+          "label": "Select Collection"
+        },
+        {
+          "type":"text",
+          "id":"limit",
+          "label":"No. of products display",
+          "default":"8"
+        },
+        {
+          "type":"url",
+          "id":"see-more-button",
+          "label":"Link to See More Best Sellers"
+        }
+      ]
+    }
+  ]	
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

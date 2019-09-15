@@ -1,0 +1,1676 @@
+{
+  "current": {
+    "color_primary": "#e71c39",
+    "color_secondary": "#747474",
+    "color_third": "#000000",
+    "nav_text_color": "#b9b9b9",
+    "color_text_body": "#000000",
+    "color_text_secondary": "#b9b9b9",
+    "page_heading_color": "#ffffff",
+    "color_body_bg": "#fff",
+    "nav_color": "#f2f2f2",
+    "footer_bg_color": "#f9f9f9",
+    "btn_border_color": "#ff0000",
+    "border_color_darken": "#ffffff",
+    "disable_color": "#f6f6f6",
+    "error_color": "#d02e2e",
+    "success_color": "#56ad6a",
+    "body_font": "Open Sans, sans-serif",
+    "body_custom_font": "Open Sans",
+    "font_size_body": "14",
+    "heading_font": "Oswald, sans-serif",
+    "heading_custom_font": "Oswald, sans-serif",
+    "customer_banner": "shopify:\/\/shop_images\/sign-in-header.jpg",
+    "page_banner": "shopify:\/\/shop_images\/menu_-_page_heading__collections__1920x278_62571e93-5897-465a-850b-6244a33b6a8f.jpg",
+    "favicon": "",
+    "newsletter_form_action": "https:\/\/respawnproducts.us12.list-manage.com\/subscribe\/post?u=8dac3c160b45a300988bfd96d&amp;id=e2603dc2dc",
+    "botton_header_menu": "main-menu",
+    "megadropdown_link": "SHOP",
+    "nav_promo_image": true,
+    "nav_promo": "shopify:\/\/shop_images\/megamenu_1500x1500_3f4c2e51-6c24-4072-8368-0fdcc9817e43.jpg",
+    "nav_promo_link": "shopify:\/\/collections\/chairs",
+    "mega_1_show": true,
+    "mega_1_links": "chairs",
+    "mega_2_show": true,
+    "mega_2_links": "desks",
+    "mega_3_show": false,
+    "mega_3_links": "100-series-chairs",
+    "mega_4_show": false,
+    "mega_4_links": "",
+    "mega_5_show": false,
+    "mega_5_links": "",
+    "shop_megadropdown_link": "SERIES",
+    "mega_shop_1_image": "shopify:\/\/shop_images\/chairs-megamenu-dropdown.jpg",
+    "mega_shop_1_show": "100-series-chairs",
+    "mega_shop_2_image": "shopify:\/\/shop_images\/200-series-chairs-megamenu.jpg",
+    "mega_shop_2_show": "200-series-chairs",
+    "mega_shop_3_image": "shopify:\/\/shop_images\/300-series-chair-megamenu.jpg",
+    "mega_shop_3_show": "300-series-chairs",
+    "mega_shop_4_image": "shopify:\/\/shop_images\/400-series-chair-megamenu.jpg",
+    "mega_shop_4_show": "400-series-chairs",
+    "mega_shop_5_image": "shopify:\/\/shop_images\/400-series-chair-megamenu.jpg",
+    "mega_shop_5_show": "",
+    "enable_social_links": true,
+    "facebook_link": "https:\/\/www.facebook.com\/Respawn-Products-400756303674476\/",
+    "twitter_link": "https:\/\/twitter.com\/RespawnProducts",
+    "google_link": "",
+    "youtube_link": "https:\/\/www.youtube.com\/channel\/UCCBVRevg1GijQAuvxzO58fA\/featured",
+    "pinterest_link": "",
+    "instagram_link": "https:\/\/www.instagram.com\/respawnproducts\/",
+    "image": "",
+    "enable_cart_button": true,
+    "enable_search_header": true,
+    "enable_quickview": true,
+    "enable_wishlist": false,
+    "enable_product_image_zoom": true,
+    "cart_notes_enable": true,
+    "ajax_cart_enable": true,
+    "enable_blog_sidebar": true,
+    "blog_search": true,
+    "blog_search_title": "Search",
+    "blog_category": true,
+    "blog_category_title": "Category",
+    "blog_choose_menu": "categories",
+    "enable_rss_field": false,
+    "enable_tags": true,
+    "tag_title": "Tags",
+    "newsletter_enable": false,
+    "popup_newsletter_title": "<font color=\"white\">Join our Newsletter<\/font>",
+    "popup_descrition": "<font color=\"white\">Subscribe to our Newsletter and get exclusive discounts and information about new product releases.<\/font>",
+    "newsletter_popup": "",
+    "enable_share": true,
+    "social_sharing_products": true,
+    "social_sharing_blog": true,
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "share_google": false,
+    "show_multiple_currencies": true,
+    "currency_format": "money_format",
+    "supported_currencies": "USD",
+    "default_currency": "USD",
+    "checkout_header_image": "shopify:\/\/shop_images\/sign-in-header.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/RSP_Logo_450x_ed8ec974-6d4a-40b9-9f37-d682a2b7fa63.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#f9f9f9",
+    "checkout_heading_font": "Oswald, sans-serif",
+    "checkout_body_font": "Open Sans",
+    "checkout_accent_color": "#56ad6a",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#ff0000",
+    "customer_banner_enble": true,
+    "page_enble": true,
+    "wishlist_banner_enble": true,
+    "cart_vendor_enable": true,
+    "collection_banner": true,
+    "page_contact_enble": true,
+    "blog_banner_enble": true,
+    "search_banner_enble": true,
+    "cart_banner_enble": true,
+    "checkout_use_header_image": false,
+    "checkout_logo": "checkout_logo.png",
+    "checkout_use_body_background_image": false,
+    "checkout_use_sidebar_background_image": false,
+    "enable_password_sociallink": true,
+    "enable_review": true,
+    "login_title": "Already have an account?",
+    "login_content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "register_title": "New here?",
+    "register_content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "search_pagination_limit": "12",
+    "enable_share_404": true,
+    "enable_google_map": "1",
+    "google_map_address": "150 Elgin Street, 8th Floor. Ottawa, ON, Canada. K2P 1L4",
+    "map_zoom_level": "17",
+    "social_sharing_blog_title": "Share on",
+    "blog_pagination_limit": "6",
+    "no_of_comment": "5",
+    "you_may_like_enable": true,
+    "featured_title": "you may also like",
+    "you_may_like_collection": "frontpage",
+    "enable_review_note": true,
+    "enable_compare_price": true,
+    "display_vendor": false,
+    "show_quantity": true,
+    "enable_tabify": true,
+    "enable_related_product": true,
+    "related_product_title": "Related Products",
+    "enble_filter": true,
+    "enble_categories": true,
+    "categories_menu": "category",
+    "enable_color_filter": true,
+    "color_title": "Color",
+    "color_1": "gray",
+    "color_2": "orange",
+    "color_3": "green",
+    "color_4": "red",
+    "color_5": "yellow",
+    "color_6": "blue",
+    "color_7": "purple",
+    "color_8": "white",
+    "color_9": "black",
+    "color_10": "",
+    "color_11": "",
+    "color_12": "",
+    "color_13": "",
+    "color_14": "",
+    "color_15": "",
+    "enable_material_filter": true,
+    "filter_material_title": "Material",
+    "filter_material_taglist": "flint-glass,cane,cast iron,stainless steel,aluminum,stumptown,henckels",
+    "enable_price_filter": true,
+    "filter_price_title": "Price",
+    "filter_price_taglist": "$0-$199,$200-$399,$400-$599,$600-$799,$800-$999,$1000",
+    "enble_brand_filter": true,
+    "vendor_title": "Vendor",
+    "home_section_1": "slideshow",
+    "home_section_2": "advertisement-banner",
+    "home_section_3": "home-content",
+    "home_section_4": "featured-collections",
+    "home_section_5": "featured-products",
+    "home_section_6": "instagram",
+    "slideshow_animation": "slide",
+    "slideshow_auto": false,
+    "slideshow_speed": "1",
+    "display_slide_1": true,
+    "position_1": "center",
+    "slide_title_1": "Lorem ipsum dolor sit",
+    "slider_detail_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text_1": "Shop Now",
+    "button1_link": "\/collections",
+    "display_slide_2": true,
+    "position_2": "right",
+    "slide_title_2": "Lorem ipsum dolor sit",
+    "slider_detail_2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text_2": "Shop Now",
+    "button2_link": "\/collections",
+    "display_slide_3": true,
+    "position_3": "left",
+    "slide_title_3": "Lorem ipsum dolor sit",
+    "slider_detail_3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text_3": "Shop Now",
+    "button3_link": "\/collections",
+    "display_slide_4": false,
+    "position_4": "left",
+    "slide_title_4": "",
+    "slider_detail_4": "",
+    "button_text_4": "",
+    "button4_link": "",
+    "display_slide_5": false,
+    "position_5": "left",
+    "slide_title_5": "Lorem ipsum dolor sit",
+    "slider_detail_5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text_5": "Shop Now",
+    "button5_link": "\/collections",
+    "products_per_row": "4",
+    "pagination_limit": "12",
+    "enable_sorting": true,
+    "collection_list_1": "appliances",
+    "collection_list_2": "bakeware",
+    "collection_list_3": "coffee-tea-tools",
+    "collection_list_4": "cookware",
+    "collection_list_5": "cooking-utensils",
+    "instagram_title": "Follow us on Instagram @hulkthemes",
+    "insta_client_id": "6b1a051df10845cabe6a843d4b557dec",
+    "insta_access_Token": "3765186637.6b1a051.9519c93bf2af406396cd912f7a42976b",
+    "insta_userid": "3765186637",
+    "insta_limit": "8",
+    "bestseller_collection": "frontpage",
+    "enable_category_1": true,
+    "categories_title_1": "Bowl Collection",
+    "categories_button_1": "Shop Now",
+    "categories_shop_1": "\/collections\/bakeware",
+    "enable_category_2": true,
+    "categories_title_2": "Kitchen Accessories",
+    "categories_button_2": "Shop Now",
+    "categories_shop_2": "\/collections\/appliances",
+    "enable_category_3": true,
+    "categories_title_3": "Other Best Collection",
+    "categories_button_3": "Shop Now",
+    "categories_shop_3": "\/collections\/all",
+    "home_page_content": "frontpage",
+    "enable_advertise_1": true,
+    "link_1": "",
+    "enable_advertise_2": true,
+    "link_2": "",
+    "enable_advertise_3": false,
+    "link_3": "",
+    "display_slideshow": true,
+    "copyright_enble": true,
+    "copyright_description_left": "<span>©Copyright 2016 <\/span><span>|<\/span> Designed with <i class=\"ion-ios-heart\"><\/i>  by <a href=\"https:\/\/www.hulkthemes.com\/\" target=\"_blank\" >Hulk Themes<\/a>",
+    "enable_payment_method": true,
+    "footer_linklist_1": "footer",
+    "footer_linklist_2": true,
+    "footer_menu_title": "Account",
+    "footer_linklist_3": "help",
+    "footer_logo_enable": true,
+    "logo_below_content_enble": true,
+    "logo_below_content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+    "footer_newsletter_enable": true,
+    "newsletter_title": "Join our Newsletter",
+    "favicon_enable": true,
+    "logo_use_image": true,
+    "logo_max_width": "450",
+    "blog_sidebar_enable": true,
+    "slide_sub_title_1": "",
+    "slide_sub_title_2": "",
+    "slide_sub_title_3": "",
+    "slide_sub_title_4": "",
+    "slide_sub_title_5": "",
+    "categories_menu_title": "Categories",
+    "top_header_menu": "main-menu",
+    "categories_desc_1": "",
+    "categories_desc_2": "",
+    "categories_desc_3": "",
+    "twittercard_handle": "@",
+    "social_sharing_count": false,
+    "social_sharing_style": "",
+    "product_list_banner": true,
+    "material_menu": "materials",
+    "price_menu": "price",
+    "color_menu": "color",
+    "collection_button_name": "",
+    "slide_4_link": "",
+    "slide_5_link": "",
+    "share_instagram": true,
+    "enable_filter": false,
+    "enble_price_filter": true,
+    "enble_material_filter": false,
+    "enble_type_filter": false,
+    "type_menu": "",
+    "enble_color_filter": true,
+    "enble_materials_filter": true,
+    "newslatter_footer_desc": "",
+    "copyright_description_right": "",
+    "categories_enable": true,
+    "new_arrivals_enable": true,
+    "new_arrivals_title": "New Arrivals",
+    "enable_instagram": true,
+    "newslatter_footer_title": "JOIN US FOR NEWSLETTER",
+    "mailing_list_form_action": "\/\/planetx.us8.list-manage.com\/subscribe\/post?u=3833ce08f165fe81039e703ff&amp;id=bf7eef9782",
+    "instagram_client_id": "",
+    "instagram_client_accesstoken": "",
+    "instagram_username_id": "",
+    "instagram_count": "5",
+    "enble_size_filter": true,
+    "enble_vendor_filter": true,
+    "btn_banner_font": "Helvetica, Arial, sans-serif",
+    "btn_banner_custom_font": "",
+    "font_footer": "Helvetica, Arial, sans-serif",
+    "footer_custom_font": "",
+    "footer_size": "",
+    "color_borders": "#e5e5e5",
+    "color_body_text": "#333333",
+    "color_footer_bg": "#f2f2f2",
+    "color_footer_text": "#636363",
+    "color_footer_social_link": "#bbbbbb",
+    "vimeo_link": "",
+    "tumblr_link": "",
+    "atom_link": "",
+    "footer_social_enable": true,
+    "social_twitter_link": "https:\/\/twitter.com\/shopify",
+    "social_facebook_link": "https:\/\/www.facebook.com\/shopify",
+    "best_seller_enable": false,
+    "best_seller_title": "",
+    "logo_enble_1": false,
+    "brand_link_1": "",
+    "logo_enble_2": false,
+    "brand_link_2": "",
+    "logo_enble_3": false,
+    "brand_link_3": "",
+    "logo_enble_4": false,
+    "brand_link_4": "",
+    "logo_enble_5": false,
+    "brand_link_5": "",
+    "enable_blog": false,
+    "blog_title": "",
+    "blog_1": "",
+    "sections": {
+      "Header": {
+        "type": "Header",
+        "blocks": {
+          "1561655638387": {
+            "type": "select",
+            "settings": {
+              "shop-menu-section-title": "Racing Chairs",
+              "shop-menu-section-title-link": "shopify:\/\/pages\/faqs",
+              "shop-menu-section-image": "shopify:\/\/shop_images\/placeimg_200_200_animals_1.jpg",
+              "shop-menu-section-image-alt": "racing chair",
+              "shop-menu-section-image-link": "",
+              "shop-menu-link-columns": 2,
+              "shop-menu-section-links": "racing-chairs"
+            }
+          },
+          "1561659369295": {
+            "type": "select",
+            "settings": {
+              "shop-menu-section-title": "Recliners & Rockers",
+              "shop-menu-section-title-link": "",
+              "shop-menu-section-image": "shopify:\/\/shop_images\/placeimg_200_200_animals.jpg",
+              "shop-menu-section-image-alt": "cat",
+              "shop-menu-section-image-link": "",
+              "shop-menu-link-columns": 2,
+              "shop-menu-section-links": "recliners-rockers"
+            }
+          },
+          "1561659414911": {
+            "type": "select",
+            "settings": {
+              "shop-menu-section-title": "Tables",
+              "shop-menu-section-title-link": "",
+              "shop-menu-section-image": "shopify:\/\/shop_images\/placeimg_200_200_nature_1.jpg",
+              "shop-menu-section-image-alt": "tables",
+              "shop-menu-section-image-link": "",
+              "shop-menu-link-columns": 2,
+              "shop-menu-section-links": "tables"
+            }
+          },
+          "1562857244009": {
+            "type": "select",
+            "settings": {
+              "shop-menu-section-title": "five column",
+              "shop-menu-section-title-link": "",
+              "shop-menu-section-image": "shopify:\/\/shop_images\/leagues-nac_e.jpg",
+              "shop-menu-section-image-alt": "test",
+              "shop-menu-section-image-link": "shopify:\/\/pages\/gamer-chairs",
+              "shop-menu-link-columns": 1,
+              "shop-menu-section-links": "clearance"
+            }
+          },
+          "1561659456396": {
+            "type": "select",
+            "settings": {
+              "shop-menu-section-title": "Clearance",
+              "shop-menu-section-title-link": "",
+              "shop-menu-section-image": "shopify:\/\/shop_images\/placeimg_200_200_nature.jpg",
+              "shop-menu-section-image-alt": "clearance",
+              "shop-menu-section-image-link": "",
+              "shop-menu-link-columns": 2,
+              "shop-menu-section-links": "clearance"
+            }
+          }
+        },
+        "block_order": [
+          "1561655638387",
+          "1561659369295",
+          "1561659414911",
+          "1562857244009",
+          "1561659456396"
+        ],
+        "settings": {
+          "logo_use_image": true,
+          "logo": "shopify:\/\/shop_images\/SM-RESPAWNbyOFM_Logo_grey.png",
+          "logo_max_width": "450",
+          "shop_menu_banner": "shopify:\/\/shop_images\/nature.jpeg",
+          "shop_menu_banner_alt": "",
+          "shop_menu_banner_link": "",
+          "mobile_menu_banner": "shopify:\/\/shop_images\/placeimg_450_150_nature.jpg",
+          "mobile_menu_banner_alt": "fsaf",
+          "mobile_menu_banner_link": "shopify:\/\/pages\/faqs",
+          "sign_in_modal_image": "shopify:\/\/shop_images\/promotion3.jpg",
+          "sign-in-header-text-color": "#23ae1b",
+          "shop_menu_sections": 5
+        }
+      },
+      "Footer": {
+        "type": "Footer",
+        "settings": {
+          "logo_use_image": true,
+          "logo": "shopify:\/\/shop_images\/RESPAWNbyOFM_LogowTagline_black-01.png",
+          "logo_max_width": "450",
+          "logo_below_content": "RESPAWN by OFM’s gaming chairs are designed to match every gamer’s needs – whether it’s an extended playing session, a quick match, or using their rig for work.",
+          "footer_linklist_1": "footer",
+          "footer_linklist_2": "help",
+          "footer_linklist_3": true,
+          "footer_menu_title": "Account",
+          "footer_newsletter_enable": true,
+          "title": "Join our Newsletter",
+          "copyright_enble": true,
+          "copyright_description_left": "<span>©Copyright 2019 <\/span><span>|<\/span> <span>RESPAWN  a brand by  <a href=\"https:\/\/ofminc.com\/\" target=\"_blank\">OFM<\/a><\/span><br><span>161 Tradition Trail, Holly Springs, NC 27540<\/span> <span>|<\/span> <span>P: 800-520-7471<\/span>",
+          "enable_payment_method": true
+        }
+      },
+      "1478679075942": {
+        "type": "Slideshow",
+        "blocks": {
+          "1478679075942-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/2000sLaunch_HomepageHeaderNOcopy_2000x1333_52ca37b8-0d37-4cbf-99f4-18226b90478b.jpg",
+              "position": "center",
+              "title": "THINGS JUST GOT<br>SPACIOUS",
+              "title_color": "#ffffff",
+              "content": "INTRODUCING THE NEW RSP-2000 & RSP-2010<br>L-SHAPED GAMING DESKS",
+              "text_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "#ff0000",
+              "title_color_btn": "#ffffff",
+              "link": "shopify:\/\/collections\/desks"
+            }
+          },
+          "1478679075942-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/homepage-carousel-four.jpg",
+              "position": "center",
+              "title": "INTRODUCING<br>THE RSP-900 RECLINER",
+              "title_color": "#ffffff",
+              "content": "COMFORT JUST GOT AN UPGRADE!",
+              "text_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "#ff0000",
+              "title_color_btn": "#ffffff",
+              "link": "shopify:\/\/products\/respawn-900-gaming-recliner"
+            }
+          },
+          "1552327111778": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/homepage-carousel-three.jpg",
+              "position": "center",
+              "title": "IT JUST KEEPS GETTING BETTER<br>THE 3000 SERIES",
+              "title_color": "#ffffff",
+              "content": "HEIGHT ADJUSTABLE GAMING DESKS",
+              "text_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "#ff0000",
+              "title_color_btn": "#ffffff",
+              "link": "shopify:\/\/products\/respawn-3000-gaming-computer-desk"
+            }
+          },
+          "1531187635246": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/homepage-carousel-two.jpg",
+              "position": "center",
+              "title": "BACK IN BLACK",
+              "title_color": "#ffffff",
+              "content": "GET STEALTHY WITH<br>THE NEW RSP-100 BLACK",
+              "text_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "#ff0000",
+              "title_color_btn": "#ffffff",
+              "link": "shopify:\/\/pages\/racing-style-gaming-chairs"
+            }
+          }
+        },
+        "block_order": [
+          "1478679075942-1",
+          "1478679075942-0",
+          "1552327111778",
+          "1531187635246"
+        ],
+        "settings": {
+          "slider_home_transition": "horizontal",
+          "slideshow_auto": true,
+          "slider_home_rate": "7000"
+        }
+      },
+      "collections-template": {
+        "type": "collections-template",
+        "blocks": {
+          "1478750861542": {
+            "type": "collection",
+            "settings": {
+              "collection_list": "",
+              "collection_image_icon": "",
+              "image": "",
+              "color": "#333"
+            }
+          },
+          "1478750749469": {
+            "type": "collection",
+            "settings": {
+              "collection_list": "",
+              "collection_image_icon": "",
+              "image": "",
+              "color": "#333"
+            }
+          },
+          "1478751949758": {
+            "type": "collection",
+            "settings": {
+              "collection_list": "",
+              "collection_image_icon": "",
+              "image": "",
+              "color": "#333"
+            }
+          },
+          "1478751973965": {
+            "type": "collection",
+            "settings": {
+              "collection_list": "",
+              "collection_image_icon": "",
+              "image": "",
+              "color": "#333"
+            }
+          },
+          "1478752010221": {
+            "type": "collection",
+            "settings": {
+              "collection_list": "",
+              "collection_image_icon": "",
+              "image": "",
+              "color": "#333"
+            }
+          }
+        },
+        "block_order": [
+          "1478750861542",
+          "1478750749469",
+          "1478751949758",
+          "1478751973965",
+          "1478752010221"
+        ],
+        "settings": {
+          "image": ""
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "blocks": {
+          "1479795930117": {
+            "type": "image",
+            "settings": {
+              "title": "Black",
+              "image": ""
+            }
+          },
+          "1479796225011": {
+            "type": "image",
+            "settings": {
+              "title": "White",
+              "image": ""
+            }
+          },
+          "1479796194546": {
+            "type": "image",
+            "settings": {
+              "title": "Red",
+              "image": ""
+            }
+          },
+          "1479796163378": {
+            "type": "image",
+            "settings": {
+              "title": "Blue",
+              "image": ""
+            }
+          },
+          "1528985431126": {
+            "type": "image",
+            "settings": {
+              "title": "Gray",
+              "image": ""
+            }
+          },
+          "1528985527358": {
+            "type": "image",
+            "settings": {
+              "title": "Green",
+              "image": ""
+            }
+          },
+          "1528986056247": {
+            "type": "image",
+            "settings": {
+              "title": "Multicolor",
+              "image": ""
+            }
+          }
+        },
+        "block_order": [
+          "1479795930117",
+          "1479796225011",
+          "1479796194546",
+          "1479796163378",
+          "1528985431126",
+          "1528985527358",
+          "1528986056247"
+        ],
+        "settings": {
+          "image": "shopify:\/\/shop_images\/chairs.jpg",
+          "products_per_row": "4",
+          "pagination_limit": "12",
+          "enable_sorting": true,
+          "enable_review": true,
+          "enble_filter": true,
+          "categories_menu_title": "Collection",
+          "enble_categories": true,
+          "categories_menu": "categories",
+          "enable_material_filter": true,
+          "filter_material_title": "Material",
+          "filter_material_taglist": "Mesh, Bonded Leather",
+          "enable_price_filter": false,
+          "filter_price_title": "Price",
+          "filter_price_taglist": "",
+          "enble_brand_filter": false,
+          "vendor_title": "",
+          "enable_color": false,
+          "color_title": "Color"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "enable_compare_price": true,
+          "display_vendor": false,
+          "show_quantity": true,
+          "enable_tabify": true,
+          "shipping_returns_enable": true,
+          "shipping_note_title": "Shipping & Returns",
+          "shipping_note": "Free same day shipping on all orders to the contiguous United States (48 states).\nSame day shipping applies to orders processed by noon ET, Mon - Fri excluding holidays.\nValid for standard ground delivery only. <strong><a href=\"https:\/\/respawnproducts.myshopify.com\/pages\/support\">READ MORE<\/a><\/strong>.",
+          "enable_review": true,
+          "enable_wishlist": true,
+          "enable_related_product": true,
+          "related_product_title": "Related Products",
+          "limit": "8"
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "image": "",
+          "cart_vendor_enable": false,
+          "show_multiple_currencies_note": true,
+          "you_may_like_enable": false,
+          "featured_title": "you may also like",
+          "you_may_like_collection": ""
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "image": "",
+          "blog_pagination_limit": "6"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "image": "",
+          "show_article_nav": true,
+          "blog_author_enable": true,
+          "no_of_comment": "6"
+        }
+      },
+      "contact-template": {
+        "type": "contact-template",
+        "settings": {
+          "image": "",
+          "enable_google_map": true,
+          "google_map_address": "150 Elgin Street, 8th Floor. Ottawa, ON, Canada. K2P 1L4",
+          "map_zoom_level": "17",
+          "enable_google_zoom": false,
+          "enable_phone": true,
+          "phone_title": "PHONE NO:",
+          "phone_no_1": "+015566775544",
+          "phone_no_2": "+012684578562",
+          "enable_email_address": true,
+          "email_address_title": "EMAIL ADDRESS:",
+          "email_address_1": "info@test.com",
+          "email_address_2": "info@example.com",
+          "enable_address": true,
+          "address_title": "ADDRESS:",
+          "address_content": "Lorem ipsum dolor sit amet,\r\n<br>\r\nconsectetur adipiscing elit"
+        }
+      },
+      "404-template": {
+        "type": "404-template",
+        "settings": {
+          "logo_use_image": true,
+          "logo": "",
+          "logo_max_width": "450",
+          "image": "",
+          "enable_share_404": true
+        }
+      },
+      "1478840771532": {
+        "type": "Collection-list",
+        "blocks": {
+          "1478840877378": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/chairs-collections.jpg",
+              "title": "CHAIRS",
+              "title_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "",
+              "title_color_btn": "",
+              "link": "shopify:\/\/collections\/chairs"
+            }
+          },
+          "1478840823464": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/free-shipping-collections.jpg",
+              "title": "FREE SHIPPING",
+              "title_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "",
+              "title_color_btn": "",
+              "link": "shopify:\/\/collections\/all"
+            }
+          },
+          "1478840778473": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/desks-collections.jpg",
+              "title": "DESKS",
+              "title_color": "#ffffff",
+              "button_name": "SHOP NOW",
+              "button_bkg_color": "",
+              "title_color_btn": "",
+              "link": "shopify:\/\/collections\/desks"
+            }
+          }
+        },
+        "block_order": [
+          "1478840877378",
+          "1478840823464",
+          "1478840778473"
+        ],
+        "settings": {}
+      },
+      "search-template": {
+        "type": "search-template",
+        "settings": {
+          "image": "",
+          "search_pagination_limit": "12",
+          "search_aticle_pagination_limit": "6"
+        }
+      },
+      "login-template": {
+        "type": "login-template",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/sign-in-header.jpg",
+          "register_title": "New Here?",
+          "register_content": "Want access to order the coolest gaming furniture available? All you need to get started is a name and an email address. Click \"CREATE AN ACCOUNT\" below to build and order your dream battlestation."
+        }
+      },
+      "register-template": {
+        "type": "register-template",
+        "settings": {
+          "login_title": "Already have an account? <a href=\"\/account\/login\"><\/a>",
+          "register-image": "shopify:\/\/shop_images\/footer-table.jpg",
+          "register-image-alt": "",
+          "login_content": "Have an existing RESPAWN account? Just click \"LOG IN\" below to access your account."
+        }
+      },
+      "password-template": {
+        "type": "password-template",
+        "settings": {
+          "logo_use_image": true,
+          "logo": "",
+          "logo_max_width": "200",
+          "title": "Will be opening soon...",
+          "password-page-background": "",
+          "enable_sharing": true
+        }
+      },
+      "1478853962723": {
+        "type": "Promotional-Banners",
+        "blocks": {
+          "1481002847459": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/homepage_catagory_chairs_770x470_fea92349-24eb-4bcf-935e-65d0b9026ebc.jpg",
+              "url": "shopify:\/\/collections\/chairs"
+            }
+          },
+          "1528899668820": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/homepage_catagory_desks_770x470_1.jpg",
+              "url": "shopify:\/\/collections\/chairs"
+            }
+          }
+        },
+        "block_order": [
+          "1481002847459",
+          "1528899668820"
+        ],
+        "settings": {}
+      },
+      "1528982538185": {
+        "type": "Featured-Content",
+        "settings": {
+          "home-page-featured": "PROVEN TRACK RECORD",
+          "home-page-featured-copy": "Launched in 1995, OFM is an industry leader in commercial furniture manufacturing and distribution. OFM understands that their skills could be addressed to fit a key consumer need – ergonomic furniture designed specifically with a gamer in mind. RESPAWN by OFM was born, a fully dedicated gaming division. Powered by OFM’s expertise and vast R&D program, RESPAWN is committed to developing accessible gaming furniture with no compromise on quality or features."
+        }
+      },
+      "PDPHeader": {
+        "type": "PDPHeader",
+        "settings": {
+          "logo_use_image": true,
+          "logo": "shopify:\/\/shop_images\/header-logo_450x_mark_450x_b291faff-4d81-43ca-93d7-837e5c368ee2.png",
+          "logo_max_width": "450"
+        }
+      },
+      "1552324394024": {
+        "type": "Featured-Collections",
+        "settings": {
+          "bestseller_collection": "specials",
+          "limit": "8"
+        }
+      },
+      "partnership-slider": {
+        "type": "partnership-slider",
+        "blocks": {
+          "1553624595830": {
+            "type": "image",
+            "settings": {
+              "partner_logo": "shopify:\/\/shop_images\/NAC.png",
+              "partner_logo_alt": "",
+              "partner_description": "The National Association of Collegiate Esports (NACE) is a nonprofit membership association organized by and on behalf of our member institutions."
+            }
+          },
+          "1553624606767": {
+            "type": "image",
+            "settings": {
+              "partner_logo": "shopify:\/\/shop_images\/hsel-logo.PNG",
+              "partner_logo_alt": "",
+              "partner_description": "The High school Esports League (HSEL) is a high school league that provides high school level competition across 13 different games and has over 5,800 students participating."
+            }
+          }
+        },
+        "block_order": [
+          "1553624595830",
+          "1553624606767"
+        ],
+        "settings": {
+          "slider_home_transition": "fade",
+          "slideshow_auto": true,
+          "slider_home_rate": "3000"
+        }
+      },
+      "product-new-template": {
+        "type": "product-new-template",
+        "settings": {
+          "enable_compare_price": true,
+          "display_vendor": false,
+          "show_quantity": true,
+          "enable_tabify": true,
+          "shipping_returns_enable": true,
+          "shipping_note_title": "Shipping & Reviews",
+          "shipping_note": "Free same day shipping on all orders to the contiguous United States (48 states).\nSame day shipping applies to orders processed by noon ET, Mon - Fri excluding holidays.\nValid for standard ground delivery only. <strong><a href=\"https:\/\/respawnproducts.myshopify.com\/pages\/support\">READ MORE<\/a><\/strong>.",
+          "enable_review": true,
+          "enable_wishlist": true,
+          "enable_related_product": true,
+          "related_product_title": "Related Prouducts",
+          "limit": "8"
+        }
+      },
+      "instructions-template": {
+        "type": "instructions-template",
+        "settings": {}
+      },
+      "landing-page-header": {
+        "type": "landing-page-header",
+        "settings": {}
+      },
+      "landing-page-feature": {
+        "type": "landing-page-feature",
+        "settings": {}
+      },
+      "Featured-Collections": {
+        "type": "Featured-Collections",
+        "settings": {
+          "bestseller_collection": "specials",
+          "limit": "8"
+        }
+      },
+      "best-sellers": {
+        "type": "best-sellers",
+        "blocks": {
+          "1562874394725": {
+            "type": "text_block",
+            "settings": {
+              "page_handle": "ppc-chairs",
+              "bestseller_collection": "specials",
+              "limit": "8",
+              "see-more-button": ""
+            }
+          },
+          "1562874534021": {
+            "type": "text_block",
+            "settings": {
+              "page_handle": "fds",
+              "bestseller_collection": "gaming-desks",
+              "limit": "8",
+              "see-more-button": ""
+            }
+          },
+          "1562939339028": {
+            "type": "text_block",
+            "settings": {
+              "page_handle": "ppc-desks",
+              "bestseller_collection": "gaming-desks",
+              "limit": "8",
+              "see-more-button": ""
+            }
+          }
+        },
+        "block_order": [
+          "1562874394725",
+          "1562874534021",
+          "1562939339028"
+        ],
+        "settings": {}
+      },
+      "landing-page-video": {
+        "type": "landing-page-video",
+        "settings": {}
+      },
+      "landing-page-reviews": {
+        "type": "landing-page-reviews",
+        "blocks": {
+          "1556292751161": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "Joshua",
+              "page_handle": "ppc-chairs",
+              "date-of-review": "01\/01\/2016",
+              "review-stars": "5",
+              "review-model": "RSP-110",
+              "title-of-review": "cadillac of gaming chairs",
+              "review-content-teaser": "I'll start by saying that for the price, there isn't a better chair on the market. Their sales staff even answered several questions I had before I purchased and they did so quickly and with a live human!",
+              "review-content-all": "Not too many companies do that anymore. The chair itself is soft enough to be comfortable, yet firm enough to provide support where needed. The contours along the back are perfect and the butt is super supple to prevent fatigue. I am IN LOVE with the wheels on this chair. They are rubberized and proved excellent grip and control when scooting around without wanting to slide like plastic wheels. The assembly was super quick and concise with great instructions. The hardware is all coated with anti-corrosive oil and blue lock tight. Honestly, it's these small details that show just how dedicated this company is. I would highly recommend this chair!"
+            }
+          },
+          "1556296463127": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "Alex W",
+              "page_handle": "gaming-desks",
+              "date-of-review": "",
+              "review-stars": "5",
+              "review-model": "RSP-900",
+              "title-of-review": "Great Product!",
+              "review-content-teaser": "Arrived much faster than I anticipated! I got the blue and it looks fantastic. Very comfortable. Fairly easy to assemble though have someone assist in holding things in place is helpful. Instructions could be a bit clearer.",
+              "review-content-all": ""
+            }
+          },
+          "1556298633683": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "Christina Vaughn",
+              "page_handle": "ppc-chairs",
+              "date-of-review": "",
+              "review-stars": "4",
+              "review-model": "RSP-110",
+              "title-of-review": "STYLISH AND SUPPORTIVE",
+              "review-content-teaser": "I recently bought this chair and have been very happy. It is comfortable for my back, legs, and arms. My butt not as much but that can easily be fixed with an extra butt cushion. I was worried at first about the footrest...",
+              "review-content-all": "<br>...since it does seem like it could easily just break off, I was worried at first about the footrest since it does seem like it could easily just break off, but even using it as a means to move forward without putting feet on the ground is easy. Overall for the price and great looks I am very pleased. The one suggestion I would make would be to make an optional seat cushion addon for extra comfort."
+            }
+          },
+          "1556296518472": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "LostSoulBrand",
+              "page_handle": "ppc-chairs",
+              "date-of-review": "",
+              "review-stars": "5",
+              "review-model": "RSP-205",
+              "title-of-review": "COOL UNDER FIRE",
+              "review-content-teaser": "I put many hours in my chairs and i expect performance in every area of a chair. We run a partnered live streaming channel on mixer and when i need to stay cool under long shows on hot days this mesh back...",
+              "review-content-all": "<br> \n...is absolutely pivotal to staying in the game! My height is 5'12 at 155 pounds this chair for my body build was perfect out of the gate. Besides the awesome mesh back the adjustable locking arm height has proven helpful as i can help to adjust my posture. Built in lower (adjustable) lumbar is key! Thanks to Respawn Products ive been able to up the value and aesthetics of our live content. If you do value your posture at work and in game....this is the model id recommend for similar body types 🤜🤛"
+            }
+          },
+          "1556296835657": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "Eli",
+              "page_handle": "ppc-chairs",
+              "date-of-review": "",
+              "review-stars": "5",
+              "review-model": "RSP-200",
+              "title-of-review": "SUPER COMFY",
+              "review-content-teaser": "I suffer from back issues so finding a good chair isn’t easy, I got my respawn at the local staples store after trying a few other chairs for Black Friday. I’ve already put about 30-40 hours of use into it and have had no back pain.",
+              "review-content-all": "<br>Easy to put together and clear instructions. The lumbar support and adjustable recliner makes for a comfortable gaming experience and the head rest is the perfect height for anyone around 6’ y’all. 10\/10 would recommend to any friends and am even looking at possibly getting a second one for my other gaming area."
+            }
+          },
+          "1564688355775": {
+            "type": "select",
+            "settings": {
+              "reviewer-name": "rtyrte",
+              "page_handle": "gamers-chair",
+              "date-of-review": "",
+              "review-stars": "",
+              "review-model": "",
+              "title-of-review": "",
+              "review-content-teaser": "",
+              "review-content-all": ""
+            }
+          }
+        },
+        "block_order": [
+          "1556292751161",
+          "1556296463127",
+          "1556298633683",
+          "1556296518472",
+          "1556296835657",
+          "1564688355775"
+        ],
+        "settings": {}
+      },
+      "landing-page-press": {
+        "type": "landing-page-press",
+        "blocks": {
+          "1556901511767": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/pcgamer.png",
+              "press-logo-alt": "PC Gamer",
+              "press-link": "http:\/\/www.pcgamer.com\/furniture-company-unveils-a-line-of-ergonomic-chairs-for-gamers"
+            }
+          },
+          "1556901607162": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/windows-central.png",
+              "press-logo-alt": "Windows Central",
+              "press-link": "https:\/\/www.windowscentral.com\/respawn-1010-gaming-computer-desk-review-spacious-stylish-and-sturdy?amp"
+            }
+          },
+          "1556901620801": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/techradar2.png",
+              "press-logo-alt": "Tech Radar",
+              "press-link": "https:\/\/www.techradar.com\/news\/best-pc-gaming-chair-5-best-chairs-to-game-in-comfort"
+            }
+          },
+          "1556901633682": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/toms-hardware.png",
+              "press-logo-alt": "Tom's Hardware",
+              "press-link": "http:\/\/www.tomshardware.com\/news\/ofm-respawn-205-gaming-chair-hands-on,35792.html"
+            }
+          },
+          "1556901651762": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/shacknews.png",
+              "press-logo-alt": "Shack News",
+              "press-link": "https:\/\/www.shacknews.com\/article\/110120\/respawn-unveils-new-48-and-63-inch-gaming-mouse-pad-tables"
+            }
+          }
+        },
+        "block_order": [
+          "1556901511767",
+          "1556901607162",
+          "1556901620801",
+          "1556901633682",
+          "1556901651762"
+        ],
+        "settings": {
+          "press_mentions_title": "Press Section"
+        }
+      },
+      "landing-page-footer": {
+        "type": "landing-page-footer",
+        "settings": {
+          "footer-background-image": "shopify:\/\/shop_images\/footer-chair-up.jpg"
+        }
+      },
+      "partnerships-header-template": {
+        "type": "partnerships-header-template",
+        "settings": {
+          "partnership-heading": ""
+        }
+      },
+      "partnership-logos-template": {
+        "type": "partnership-logos-template",
+        "blocks": {
+          "1557933203301": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-trifecta.jpg",
+              "logo-graphic-alt": "Trifecta",
+              "partner-name": "Trifecta",
+              "partner-description": "Trifecta Gaming LLC is a veteran owned and operated multi-platform professional gaming organization that was started in August 2015. Based out of the United States, Jonathan Ross (ShooK), Kyle Rankin (KRanK), restarted Trifecta with a goal of growing and supporting individual gaming personalities and brands to utilize the growing fan-bases for advertisement.",
+              "partner-category": "team",
+              "partner-product-one": "respawn-115-racing-style-gaming-chair",
+              "partner-product-two": "respawn-3000-gaming-computer-desk",
+              "partner-product-three": "respawn-3010-gaming-computer-desk"
+            }
+          },
+          "1557938046849": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-fortnite-worldcup.jpg",
+              "logo-graphic-alt": "Fortnite",
+              "partner-name": "Fortnite world cup",
+              "partner-description": "<p style=\"font-size: 16px;\">TBA<\/p>",
+              "partner-category": "league",
+              "partner-product-one": "respawn-200-racing-style-gaming-chair",
+              "partner-product-two": "respawn-1010-gaming-computer-desk",
+              "partner-product-three": "respawn-300-racing-style-gaming-chair"
+            }
+          },
+          "1559154526610": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-nac_e.jpg",
+              "logo-graphic-alt": "NACE",
+              "partner-name": "NACE",
+              "partner-description": "The National Association of Collegiate Esports (NACE) is a nonprofit membership association organized by and on behalf of our member institutions.",
+              "partner-category": "league",
+              "partner-product-one": "respawn-205-racing-style-gaming-chair",
+              "partner-product-two": "respawn-200-racing-style-gaming-chair",
+              "partner-product-three": "respawn-1048-gaming-mouse-pad-table"
+            }
+          },
+          "1558640442580": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-dareRising.jpg",
+              "logo-graphic-alt": "DR",
+              "partner-name": "Dare Rising",
+              "partner-description": "Founded in November of 2012, Dare Rising is a leading Multi-Media Gaming Organization \n striving to become a leader in entertainment. Based in North America, Dare Rising's mission is to support more game title varieties as well as branch our own network beyond YouTubeGaming into other areas including Twitch and eSports. Our goal is to provide effective marketing to companies through our videos, social media, and our eSports presence while we continue to explore and foster player talent.",
+              "partner-category": "team",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1558639631963": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-paladins-premier-league.jpg",
+              "logo-graphic-alt": "Paladins",
+              "partner-name": "Paladins Premier League",
+              "partner-description": "he Paladins Premier League features our top PC players from around the world. Season 3 is divided into two phases, with each phase lasting 13 weeks. Phase 1 will culminate in a Mid-Season Invitational event this summer, and Phase 2 will lead into HRX 2019 -- where the top teams in the league will fight for the Paladins World Championship title!",
+              "partner-category": "league",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1557937835526": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-parisEternal-2.jpg",
+              "logo-graphic-alt": "Paris Eternal",
+              "partner-name": "Paris Eternal",
+              "partner-description": "Trifecta Gaming LLC is a veteran owned and operated multi-platform professional gaming organization that was started in August 2015. Based out of the United States, Jonathan Ross(ShooK), Kyle Rankin (KRanK), restarted Trifecta with a goal of growing and supporting individual gaming personalities and brands to utilize the growing fan-bases for advertisement and sales.",
+              "partner-category": "team",
+              "partner-product-one": "respawn-104-racing-style-gaming-chair",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1558640308669": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-motiv8.jpg",
+              "logo-graphic-alt": "Motiv8",
+              "partner-name": "Motiv8",
+              "partner-description": "Motiv8 Gaming strives to build a community of positive individuals working together to improve the gaming industry. Honesty, integrity, and persistence are all core values Motiv8 Gaming stand by.",
+              "partner-category": "team",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1557938094362": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-smite-world-championship.jpg",
+              "logo-graphic-alt": "Smite",
+              "partner-name": "Smite World Championship",
+              "partner-description": "The SMITE Pro League features our top PC players from all over the world. Season 6 is divided into two phases, with each phase lasting 13 weeks. Phase 1 will culminate in a Mid-Season Invitational event this summer, and Phase 2 will lead into HRX 2019 -- where the top teams in the league will fight for the SMITE World Championship title!",
+              "partner-category": "league",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1558640492284": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-cyclones.jpg",
+              "logo-graphic-alt": "Cyclones",
+              "partner-name": "Cyclones",
+              "partner-description": "Cylone is an international professional esports organization that currently competes in Smite,Paladins, Gears of War, Counter-Strike: Global Offensive, Clash Royale, and more. CycloneGG is owned by Cody Elsen, the Head Coach of the Northwood University Esports Program.",
+              "partner-category": "team",
+              "partner-product-one": "respawn-300-racing-style-gaming-chair",
+              "partner-product-two": "respawn-1063-gaming-mouse-pad-table",
+              "partner-product-three": "respawn-200-racing-style-gaming-chair"
+            }
+          },
+          "1559154340749": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-HSEL.jpg",
+              "logo-graphic-alt": "HSEL",
+              "partner-name": "HSEL",
+              "partner-description": "The High school Esports League (HSEL) is a high school league that provides high school level competition across 13 different games and has over 5,800 students participating.",
+              "partner-category": "league",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          }
+        },
+        "block_order": [
+          "1557933203301",
+          "1557938046849",
+          "1559154526610",
+          "1558640442580",
+          "1558639631963",
+          "1557937835526",
+          "1558640308669",
+          "1557938094362",
+          "1558640492284",
+          "1559154340749"
+        ],
+        "settings": {}
+      },
+      "partnerships-template": {
+        "type": "partnerships-template",
+        "blocks": {
+          "1559048232375": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-renegades.jpg",
+              "logo-graphic-alt": "test",
+              "partner-name": "test",
+              "partner-description": "test",
+              "partner-category": "team",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1559048249631": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-karnage.jpg",
+              "logo-graphic-alt": "test",
+              "partner-name": "test",
+              "partner-description": "test",
+              "partner-category": "school",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1559048264513": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/teams-motiv8.jpg",
+              "logo-graphic-alt": "test",
+              "partner-name": "test",
+              "partner-description": "test",
+              "partner-category": "team",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1559048277400": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-smite-world-championship.jpg",
+              "logo-graphic-alt": "test",
+              "partner-name": "test",
+              "partner-description": "test",
+              "partner-category": "team",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          },
+          "1559049015096": {
+            "type": "select",
+            "settings": {
+              "logo-graphic": "shopify:\/\/shop_images\/leagues-brawlhalla-esports.jpg",
+              "logo-graphic-alt": "test",
+              "partner-name": "this is a longer name that might wrap",
+              "partner-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan mollis purus, in posuere mauris semper vel. Donec efficitur sagittis ante sagittis auctor. Maecenas lobortis volutpat tellus nec malesuada. Aliquam ultricies placerat mollis. Aliquam interdum a lectus nec tempus. Sed tempus lorem vel augue aliquam, consequat pharetra mauris ultricies. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus a accumsan urna. Sed ornare nibh ligula. Nulla dapibus augue ac condimentum ultrices. In posuere venenatis dignissim.",
+              "partner-category": "school",
+              "partner-product-one": "",
+              "partner-product-two": "",
+              "partner-product-three": ""
+            }
+          }
+        },
+        "block_order": [
+          "1559048232375",
+          "1559048249631",
+          "1559048264513",
+          "1559048277400",
+          "1559049015096"
+        ],
+        "settings": {}
+      },
+      "Slideshow": {
+        "type": "Slideshow",
+        "blocks": {
+          "1563366296937": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeimg_1000_950_any_1.jpg",
+              "position": "center",
+              "title": "Hero Heading",
+              "title_color": "",
+              "content": "Sed convallis. Eleifend neque dolor scelerisque feugiat nullam. {Hero Subheading 2}",
+              "text_color": "",
+              "button_name": "BUY NOW",
+              "button_bkg_color": "#f21010",
+              "title_color_btn": "#fcfafa",
+              "link": ""
+            }
+          },
+          "1563366435603": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeimg_1000_950_any_2.jpg",
+              "position": "center",
+              "title": "HERO HEADING",
+              "title_color": "",
+              "content": "Sed convallis. Eleifend neque dolor scesenectus dolor per feugiat nullam. {Hero Subheading 2}",
+              "text_color": "",
+              "button_name": "BUY NOW",
+              "button_bkg_color": "#f22323",
+              "title_color_btn": "#f3e5e5",
+              "link": ""
+            }
+          },
+          "1563366481203": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeimg_1000_950_any.jpg",
+              "position": "center",
+              "title": "HERO HEADING",
+              "title_color": "",
+              "content": "Sed convallis. Eleifend neque dolom senectus dolor per feugiat nullam. {Hero Subheading 2}",
+              "text_color": "",
+              "button_name": "BUY NOW",
+              "button_bkg_color": "#d21919",
+              "title_color_btn": "#eddddd",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1563366296937",
+          "1563366435603",
+          "1563366481203"
+        ],
+        "settings": {
+          "slider_home_transition": "fade",
+          "slideshow_auto": true,
+          "slider_home_rate": "10000"
+        }
+      },
+      "featured-content-tabs": {
+        "type": "featured-content-tabs",
+        "blocks": {
+          "1563458069157": {
+            "type": "select",
+            "settings": {
+              "tab-name": "testing",
+              "tab-content-heading-black": "test",
+              "tab-content-heading-red": "tsting",
+              "tab-content-image": "shopify:\/\/shop_images\/tab-image-four.jpg",
+              "tab-content-image-alt": "test",
+              "tab-content-description-heading": "tet",
+              "tab-content-description-copy": "dsfsafds afdsaf dsafds afdsfsa dfsafdsafsaf",
+              "tab-button-text": "see more",
+              "tab-button-link": "shopify:\/\/pages\/faqs"
+            }
+          },
+          "1563458102194": {
+            "type": "select",
+            "settings": {
+              "tab-name": "fssdf",
+              "tab-content-heading-black": "fasfdsaf",
+              "tab-content-heading-red": "dafsafdsa",
+              "tab-content-image": "shopify:\/\/shop_images\/tab-image-one_af948ac6-079f-4737-8a05-eb9720492b18.jpg",
+              "tab-content-image-alt": "fd",
+              "tab-content-description-heading": "fasfas",
+              "tab-content-description-copy": "sfdafdafdsafdsaf",
+              "tab-button-text": "more",
+              "tab-button-link": "shopify:\/\/pages\/gamer-chairs"
+            }
+          },
+          "1563807415492": {
+            "type": "select",
+            "settings": {
+              "tab-name": "fdsfdsfdsfsdfds",
+              "tab-content-heading-black": "fdsfdsf",
+              "tab-content-heading-red": "sdfdsfs",
+              "tab-content-image": "shopify:\/\/shop_images\/feature-product.jpg",
+              "tab-content-image-alt": "sdfs",
+              "tab-content-description-heading": "fdsfdsfsdfds",
+              "tab-content-description-copy": "sdfdsfsfdsds",
+              "tab-button-text": "see more",
+              "tab-button-link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1563458069157",
+          "1563458102194",
+          "1563807415492"
+        ],
+        "settings": {}
+      },
+      "product-feature": {
+        "type": "product-feature",
+        "settings": {
+          "product-feature-heading-first": "Fortnite",
+          "product-feature-heading-c1": "#000000",
+          "product-feature-heading-second": "Edition",
+          "product-feature-heading-c2": "#e71c39",
+          "product-feature-heading-third": "",
+          "product-feature-heading-c3": "",
+          "product-feature-heading-fourth": "",
+          "product-feature-heading-c4": "",
+          "product-feature-heading-fifth": "",
+          "product-feature-heading-c5": "",
+          "product-feature-image": "shopify:\/\/shop_images\/featurimage.jpg",
+          "product-feature-image-alt": "bird",
+          "product-feature-copy-heading": "Lorem Ipsum",
+          "product-feature-copy-text": "Velit euismod tellus commodo aliquet hendrerit pede magna interdum cras mi dictum magna tempus malesuada.",
+          "product-feature-button-text": "See More",
+          "product-feature-button-link": "shopify:\/\/products\/respawn-100-racing-style-gaming-chair"
+        }
+      },
+      "trending-products": {
+        "type": "trending-products",
+        "blocks": {
+          "1563467034422": {
+            "type": "select",
+            "settings": {
+              "trending-tab-product": "respawn-1000-gaming-computer-desk",
+              "trending-tab-button-text": "View Details",
+              "trending-tab-button-text-mobile": "Details",
+              "trending-tab-product-video-image": "shopify:\/\/shop_images\/footer-table.jpg",
+              "trending-tab-product-video-image-alt": "dsad",
+              "trending-tab-product-video-button-text": "play",
+              "trending-tab-product-video-button-text-mobile": "Video"
+            }
+          },
+          "1563467998124": {
+            "type": "select",
+            "settings": {
+              "trending-tab-product": "respawn-105-racing-style-gaming-chair",
+              "trending-tab-button-text": "View Details",
+              "trending-tab-button-text-mobile": "",
+              "trending-tab-product-video-image": "shopify:\/\/shop_images\/placeimg_1000_950_any.jpg",
+              "trending-tab-product-video-image-alt": "fdads",
+              "trending-tab-product-video-button-text": "Play",
+              "trending-tab-product-video-button-text-mobile": ""
+            }
+          }
+        },
+        "block_order": [
+          "1563467034422",
+          "1563467998124"
+        ],
+        "settings": {
+          "trending-products-heading-first": "Trending",
+          "trending-products-heading-c1": "#000000",
+          "trending-products-heading-second": "Products",
+          "trending-products-heading-c2": "#e71c39",
+          "trending-products-heading-third": "",
+          "trending-products-heading-c3": "",
+          "trending-products-heading-fourth": "",
+          "trending-products-heading-c4": "",
+          "trending-products-heading-fifth": "",
+          "trending-products-heading-c5": ""
+        }
+      },
+      "promotions": {
+        "type": "promotions",
+        "blocks": {
+          "1563546815405": {
+            "type": "select",
+            "settings": {
+              "promotion_image": "shopify:\/\/shop_images\/promotion.jpg",
+              "promotion_image_alt": "er",
+              "promotion_link": "shopify:\/\/pages\/faqs"
+            }
+          },
+          "1563547057649": {
+            "type": "select",
+            "settings": {
+              "promotion_image": "shopify:\/\/shop_images\/promotion3.jpg",
+              "promotion_image_alt": "fewfe",
+              "promotion_link": "shopify:\/\/pages\/fds"
+            }
+          },
+          "1563547078289": {
+            "type": "select",
+            "settings": {
+              "promotion_image": "shopify:\/\/shop_images\/promtion2.jpg",
+              "promotion_image_alt": "fdsfs",
+              "promotion_link": "shopify:\/\/pages\/affiliate-program"
+            }
+          }
+        },
+        "block_order": [
+          "1563546815405",
+          "1563547057649",
+          "1563547078289"
+        ],
+        "settings": {
+          "promotions_heading-first": "Promotional",
+          "promotions_heading-c1": "#000000",
+          "promotions_heading-second": "News",
+          "promotions_heading-c2": "#e71c39",
+          "promotions_heading-third": "",
+          "promotions_heading-c3": "",
+          "promotions_heading-fourth": "",
+          "promotions_heading-c4": "",
+          "promotions_heading-fifth": "",
+          "promotions_heading-c5": ""
+        }
+      },
+      "press_homepage": {
+        "type": "press_homepage",
+        "blocks": {
+          "1563799791389": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/logo1.jpg",
+              "press-logo-alt": "",
+              "press-link": ""
+            }
+          },
+          "1563799950434": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/logo2.jpg",
+              "press-logo-alt": "",
+              "press-link": ""
+            }
+          },
+          "1563799962666": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/logo3.jpg",
+              "press-logo-alt": "",
+              "press-link": ""
+            }
+          },
+          "1563799979337": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/logo4.jpg",
+              "press-logo-alt": "",
+              "press-link": ""
+            }
+          },
+          "1563799991043": {
+            "type": "select",
+            "settings": {
+              "press-logo": "shopify:\/\/shop_images\/logo5.jpg",
+              "press-logo-alt": "",
+              "press-link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1563799791389",
+          "1563799950434",
+          "1563799962666",
+          "1563799979337",
+          "1563799991043"
+        ],
+        "settings": {
+          "press_mentions_title": "homepage Press Mentions"
+        }
+      },
+      "account-page": {
+        "type": "account-page",
+        "settings": {
+          "account_page_image": "shopify:\/\/shop_images\/featurimage.jpg"
+        }
+      },
+      "addresses": {
+        "type": "addresses",
+        "settings": {
+          "address_page_image": "shopify:\/\/shop_images\/feature-product.jpg"
+        }
+      }
+    },
+    "content_for_index": [
+      "1478679075942",
+      "1478853962723",
+      "1528982538185",
+      "1478840771532",
+      "1552324394024"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "ajax_cart_enable": true,
+      "cart_notes_enable": true,
+      "color_body_bg": "#fff",
+      "color_body_text": "#333333",
+      "color_borders": "#e5e5e5",
+      "color_footer_bg": "#f2f2f2",
+      "color_footer_social_link": "#bbbbbb",
+      "color_footer_text": "#636363",
+      "color_primary": "#747474",
+      "color_secondary": "#bbb",
+      "favicon_enable": false,
+      "footer_newsletter_enable": true,
+      "footer_social_enable": true,
+      "logo_use_image": false,
+      "social_facebook_link": "https:\/\/www.facebook.com\/shopify",
+      "social_twitter_link": "https:\/\/twitter.com\/shopify"
+    }
+  }
+}

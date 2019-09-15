@@ -1,0 +1,212 @@
+
+
+
+
+
+{% for link in linklists[settings.top_header_menu].links %}
+  {% assign has_sub_menu = false %}
+  {% assign has_sub_categories = false %}
+  {% assign parent_link_active = false %}
+  {% assign child_list_handle = link.title | handle %}
+  {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+    {% assign has_sub_menu = true %}
+    {% for l in linklists[child_list_handle].links %}
+      {% if handle != blank and handle == l.object.handle %}
+        {% assign parent_link_active = true %}
+      {% elsif page_title == l.title %}
+        {% assign parent_link_active = true %}
+      {% endif %}
+    {% endfor %}
+  {% elsif settings.display_collection_dropdown and link.type == 'collection_link' and link.object.all_tags.size > 0 %}
+    {% assign has_sub_categories = true %}
+  {% endif %}
+
+
+ <div class="nav-container">    
+		<nav id="nav">
+			<ul>
+	<!-- Simple menu item without sub menu -->
+              
+                         
+         
+              
+              
+				<li {% if link.active or parent_link_active %} class="active{% endif %} {% if link.title == 'SHOP' %} shop-menu {% endif %}">{{ link.title | link_to: link.url | capitalize }}
+
+                  {% if has_sub_menu %}
+
+					<ul class="submenu animated fadeIn .2s">
+                      
+        					{% for l in linklists[child_list_handle].links %}
+								<li>{{ l.title | link_to: l.url | capitalize  }}</li>
+                       {% endfor %}
+					
+					</ul>
+                  {% endif %}
+                  
+                  
+       {% if link.title == 'SHOP' %} 
+                  <ul class="submenu animated fadeIn .2s shop-menu-dropdown {% if section.settings.shop_menu_sections == 5 %} shop-menu--five {% endif %}">
+                    
+                   
+                    
+                    	
+                      	<div class="shop-banner">
+                          <a href="{{ section.settings.shop_menu_banner_link }}">
+                          <img class="shop-banner__image" src="{{  section.settings.shop_menu_banner  |  img_url: '1000x' }}" alt="{{  section.settings.shop_menu_banner_alt }}"   />
+                            </a>
+                 
+                      </div>
+                      <div class="shop-menu-sections">
+                          {% for block in section.blocks %}
+                          		<div class="shop-menu-section {% if section.settings.shop_menu_sections == 5 %} shop-menu-section--five {% endif %} {% if section.settings.shop_menu_sections == 3 %} shop-menu-section--three {% endif %} {% if section.settings.shop_menu_sections == 4 %} shop-menu-section--four {% endif %} ">
+                            <a href="{{ block.settings.shop-menu-section-image-link }}">
+									<img class="shop-menu-section__image" src="{{ block.settings.shop-menu-section-image |  img_url: '400x' }}"  alt="{{ block.settings.shop-menu-section-image-alt }}"  />
+                                  </a>
+                                  
+                                  <a href="{{ block.settings.shop-menu-section-title-link }}">
+                                    <h3 class="shop-menu-section__header">{{ block.settings.shop-menu-section-title }} </h3>
+                                  </a>
+                                  
+                                 {% if block.settings.shop-menu-link-columns == 2 %} 
+                                   <div class="shop-menu-section__links two-column">
+                                  {% for link in linklists[block.settings.shop-menu-section-links ].links %}
+  										<a href="{{ link.url }}">{{ link.title }}</a>
+                                 
+								  {% endfor %}
+                                     </div>
+                                  {% endif %}
+                                  
+                                  {% if block.settings.shop-menu-link-columns == 1 %} 
+                                   <div class="shop-menu-section__links one-column">
+                                  {% for link in linklists[block.settings.shop-menu-section-links ].links %}
+  										<a href="{{ link.url }}">{{ link.title }}</a>
+                                 
+								  {% endfor %}
+                                     </div>
+                                  {% endif %}
+                                  
+                                  
+								</div>
+					      {% endfor %}
+                        </div>
+                   
+              
+                  
+                  </ul>
+                  {% endif %}
+                  
+			
+				</li>
+
+
+			</ul>
+		</nav>
+</div><!-- .nav-container -->
+
+{% endfor %}
+
+
+
+
+
+<script>
+  
+  $(document).ready(function() {
+
+
+    // Remove no-js class
+    $('html').removeClass('no-js');
+
+	$('#toggleMenu').on('click', function() {
+
+        if ( $(this).hasClass('js-open') ) {
+
+            $('#nav > ul > li:not(#toggleMenu)').removeClass('js-showElement');
+            $(this).removeClass('js-open');
+
+            $(this).attr('aria-expanded', false);
+
+        } else {
+
+            $('#nav > ul > li:not(#toggleMenu)').addClass('js-showElement');
+            $(this).addClass('js-open');
+
+            $(this).attr('aria-expanded', true);
+
+        }
+
+		return false; 
+	})
+
+    // Add plus mark to li that have a sub menu
+    $('li:has("ul") > a').append('<span class="menuArrow"></span>');
+
+
+
+
+    // sub menu
+	// ------------------------
+
+    // When interacting with a li that has a sub menu
+    $('li:has("ul")').on('mouseover keyup click mouseleave', function(e) {
+
+    	// If either -
+    		// tabbing into the li that has a sub menu
+    		// hovering over the li that has a sub menu
+    	if ( e.keyCode === 9 | e.type === 'mouseover' ) {
+
+    		// Show sub menu
+    		$(this).children('ul').removeClass('js-hideElement');
+            $(this).children('ul').addClass('js-showElement');
+    	}
+
+		// If mouse leaves li that has sub menu
+		if ( e.type === 'mouseleave' ) {
+
+			// hide sub menu
+			$(this).children('ul').removeClass('js-showElement');
+            $(this).children('ul').addClass('js-hideElement');
+		}
+
+
+		
+
+    });
+
+
+    // Tabbing through Levels of sub menu
+	// ------------------------
+
+    // If key is pressed while on the last link in a sub menu
+    $('li > ul > li:last-child > a').on('keydown', function(e) {
+
+
+    	// If tabbing out of the last link in a sub menu AND not tabbing into another sub menu
+    	if ( (e.keyCode == 9) && $(this).parent('li').children('ul').length == 0 ) {
+
+				// Close this sub menu
+        		$(this).parent('li').parent('ul').removeClass('js-showElement');
+                $(this).parent('li').parent('ul').addClass('js-hideElement');
+
+
+    		// If tabbing out of a third level sub menu and there are no other links in the parent (level 2) sub menu
+    		if ( $(this).parent('li').parent('ul').parent('li').parent('ul').parent('li').children('ul').length > 0 
+    			 && $(this).parent('li').parent('ul').parent('li').is(':last-child') ) {
+
+    				// Close the parent sub menu (level 2) as well
+    				$(this).parent('li').parent('ul').parent('li').parent('ul').removeClass('js-showElement');
+                    $(this).parent('li').parent('ul').parent('li').parent('ul').addClass('js-hideElement');
+    		}
+
+    	}
+
+    })
+
+
+
+
+})
+
+</script>
+

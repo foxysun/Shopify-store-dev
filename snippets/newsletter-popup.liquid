@@ -1,0 +1,48 @@
+  {% if settings.newsletter_enable %}
+  <div class="newsletter_overlay" >
+
+    <div class="newsletter_popup" style="background:url({% if settings.newsletter_popup != blank %}{{ settings.newsletter_popup | img_url:'original' }}{% else %}{{ 'placeholder_newsletter_popup.png' | asset_url }}{% endif %}) no-repeat center center;">
+
+      <span class="close ion-ios-close-empty"></span>
+
+      <h1>{{ settings.popup_newsletter_title }}</h1>
+      <div class="offer_zone">
+        {{ settings.popup_descrition }}
+      </div>
+      {% if settings.newsletter_form_action != blank %}
+        {% assign form_action = settings.newsletter_form_action %}
+        <form action="{{ form_action}}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" >
+          <div class="row">
+            <input type="email" placeholder="Enter your E-mail" required>
+          </div>
+          <div class="submit_row">
+            <input type="submit" class="btn" value="Subscribe" />
+          </div>
+        </form>
+      {% else %}
+        {% form 'customer' %}
+        {{ form.errors | default_errors }}
+
+        {% if form.posted_successfully? %}
+          <p class="form--success">{{ 'contact.form.post_success' | t }}</p>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="row">
+            <input type="email" class="input-group-field" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Enter your E-mail" name="contact[email]" id="mail" required/> 
+          </div>
+          <div class="submit_row">
+            <input type="submit" class="btn" value="Subscribe" />
+          </div>
+        {% endif %}
+        {% endform %}
+      {% endif %}
+
+      {% if settings.enable_share %}
+      <div class="social_icons">
+        {% include 'social-links' %}
+      </div>
+   {% endif %}
+    </div>
+
+  </div>
+  {% endif %}

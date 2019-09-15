@@ -1,0 +1,316 @@
+<style>
+#shopify-section-landing-page-press {
+  background-color: #e0e0e0;
+}
+.landing-page__press{
+  display: block;
+  max-width: calc(100% - 300px);
+  width: 100%;
+  margin: -15px auto 0;
+  padding: 30px 0;
+}
+  
+.landing-page__press .owl--prev {
+  position: absolute;
+  top: 50%;
+  left: -70px;
+  font-size: 100px;
+  line-height: 0;
+  color: #797979;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.landing-page__press .owl--next {
+  position: absolute;
+  top: 50%;
+  right: -70px;
+  font-size: 100px;
+  line-height: 0;
+  color: #797979;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.landing-page__press .owl--prev:hover, .landing-page__press .owl--nexthover {
+  color: #484848;
+}
+  
+.partnerships__logo.item{
+  padding: 10px 20px;
+}
+.partnerships__logo.item a {
+  {% comment %} width: 100%;
+  height: 100%;
+  z-index: 9;
+  display: block;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-wrap: wrap; {% endcomment %}
+}
+.partnerships__logo.item img{
+  width: 100%;
+}
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
+.owl-carousel .owl-nav button.owl-next{
+  background-image: url({{'media-play-symbol.svg' | asset_url }});
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+  
+.owl-dots{
+  margin: 30px auto 0 auto;
+  width: 90%;
+  text-align: center;
+}
+.owl-carousel button.owl-dot{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 6px;
+}
+.owl-carousel button.owl-dot.active {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #666;
+  margin: 0 6px;
+}
+.owl-carousel .owl-nav button.owl-prev{
+  background-image: url({{'media-play-symbol.svg' | asset_url }});
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: rotate(180deg);
+}
+.press__logos.owl-carousel.owl-loaded.owl-drag{
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.press__heading{
+  text-transform: uppercase;
+  padding-top: 30px;
+  font-size: 30px;
+  margin-bottom:15px;
+  font-weight: 600;
+  line-height: 30px;
+}
+.press__heading::after{
+  content: "";
+  border-bottom: 4px solid #E71C39;
+  display: block;
+  width: 175px;
+  margin: 15px auto 0;
+}
+  
+.owl-carousel .owl-stage-outer{
+  {% comment %} width: 95%;
+  margin:0 auto; {% endcomment %}
+  width: 100%;
+  display: block;
+}
+@media only screen and (max-width: 1400px){
+  .landing-page__press {
+    max-width: calc(100% - 100px);
+  }
+}
+@media only screen and (max-width: 750px){
+  .landing-page__press {
+    max-width: calc(100% - 60px);
+  }
+  #shopify-section-landing-page-press {
+    margin-top: 120px;
+  }
+}
+@media only screen and (min-width: 401px) and (max-width: 750px){ 
+  .press__heading{
+    text-transform: uppercase;
+    margin-top:60px;
+    margin-bottom:10px;
+    font-size: 30px;
+  }
+  .press__heading::after {
+    width: 175px;
+  }
+  
+  .landing-page__press{
+    display: block;
+    padding: 15px 15px;
+    margin-top:30px;
+  }
+
+  .partnerships__logo.item{
+    margin: 15px;
+    padding: 0 0;
+  }
+
+  .press__logos.owl-carousel.owl-loaded.owl-drag{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 0;
+  }
+  .landing-page-feature__graphic.graphic__empty svg {
+    position: relative;
+    top: initial;
+    transform: translateY(-9%);
+  }
+}
+@media only screen and (max-width: 520px){
+  .landing-page__press {
+    max-width: calc(100% - 20px);
+  }
+}
+  
+  @media only screen and (max-width: 400px){ 
+    .landing-page__press{
+      margin-top:160px;
+    }
+    
+  }
+@media only screen and (min-width: 1400px){
+  .landing-page__press .owl-nav {
+    display: block !important; 
+  }
+  
+}
+</style>
+
+
+
+
+
+<div class="landing-page__press">
+<h2 class="secondary-heading press__heading"> {{ section.settings.press_mentions_title }} </h2>
+<div class="press__logos owl-carousel"  >
+
+
+{% for block in section.blocks %}
+  
+
+
+<div class="partnerships__logo item">
+	<a href="{{ block.settings.press-link | url  }}" ><img src="{{ block.settings.press-logo |  img_url: '500x' }}" alt="{{ block.settings.press-logo-alt }}" /></a>
+</div>
+
+ 
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+
+
+<script>
+  
+$(document).ready(function(){
+  $('.landing-page__press .owl-carousel').owlCarousel({
+    loop: true,
+    margin: 0,
+    nav: true,
+    items: 6,
+    autoplay: false,
+    autoplayHoverPause: true,
+    center: false,
+    dots: false,
+    responsiveClass:true,
+    navClass: ['owl--prev', 'owl--next'],
+    navText : ["<i class='ion-android-arrow-dropleft'></i>","<i class='ion-android-arrow-dropright'></i>"],
+    responsive: {
+      0: {
+        items: 1,
+        stagePadding: 0,
+        nav: false,
+        dots: true,
+      },
+      600: {
+        items: 2,
+        stagePadding:0,
+        nav: false,
+        dots: true,
+      },
+      1000: {
+        items: 4,
+        stagePadding:0,
+        nav: false,
+        dots: true,
+      },
+      1400: {
+        items: 5,
+        stagePadding:0,
+        dots: false,
+        nav: true,
+      }
+    }
+  })
+});
+
+</script>
+
+
+{% schema %}
+  {
+    "name": "Press Mentions",
+	"settings" : [
+		{
+			"type":"text",
+			"id" : "press_mentions_title",
+			"label" : "Title for Press Mentions Section"
+		}
+	],
+	"blocks":[
+	{
+		"type": "select",
+		"name" : "Add Press Logo",
+
+    	"settings": [
+          {
+              "id": "press-logo",
+              "type": "image_picker",
+              "label": "Press Logo"
+          },
+          {
+              "id": "press-logo-alt",
+              "type": "text",
+              "label": "Press Logo Alt Text"
+          },
+          {	
+              "id": "press-link",
+              "type": "url",
+              "label": "Link to article"
+          }
+
+		]
+	 }
+  
+	]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+
+ 

@@ -1,0 +1,286 @@
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+  <h1>{{ 'cart.general.title' | t }}</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+
+<!-- ======================= Cart Content ==================== -->
+
+<div class="container"  data-section-id="{{ section.id }}" data-section-type="cart-section" data-featuredproducts="{{ section.settings.you_may_like_enable }}">
+ 
+    <div class="cart_section">      <!-- Cart Section Start -->
+        
+      <div class="grid">
+        {% if cart.item_count > 0 %}      
+        <div class="grid__item {% if section.settings.you_may_like_enable %}nine-twelfths{% else %}one-whole{% endif %} medium-down--one-whole medium-large--one-whole">
+          <form action="/cart" novalidate method="post" id="cartform">
+
+            <div class="cart-layout">
+
+              <div class="grid">
+
+                <div class="grid__item">
+                  <div class="cart-header">
+
+                    <div class="grid">
+
+                      <div class="grid__item two-twelfths small--three-twelfths medium--two-twelfths"></div>
+
+                      <div class="grid__item four-twelfths small--seven-twelfths medium--six-twelfths maxlarge--three-twelfths">
+                        <div class="th cart-des">
+                          <h3>{{ 'cart.label.product' | t }}</h3>
+                        </div>
+                      </div>
+
+                      <div class="grid__item two-twelfths medium--hide maxlarge--three-twelfths">
+                        <div class="th cart-qty">
+                          <h3>{{ 'cart.label.quantity' | t }}</h3>
+                        </div>
+                      </div>
+
+                      <div class="grid__item two-twelfths medium--two-twelfths small--two-twelfths small--hide medium--three-twelfths">
+                        <div class="th cart-total">
+                          <h3>{{ 'cart.label.price' | t }}</h3>
+                        </div>
+                      </div>
+
+                      <div class="grid__item two-twelfths medium--two-twelfths small--hide medium--hide">
+                        <div class="th cart-total">
+                          <h3>Delete</h3>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div class="grid__item cartItemWrapper">                    
+                  <div class="cart-items">
+
+                    {% for item in cart.items %} 
+                    <div class="cart-item">
+
+                      <div class="grid">
+
+                        <div class="grid__item two-twelfths small--three-twelfths medium--two-twelfths">
+                          <div class="tr cart-item-name">
+                            <a href="{{ item.url | within : collection.all }}"> <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}"> 
+                            </a> 
+                          </div>
+                        </div>
+
+                        <div class="grid__item four-twelfths small--nine-twelfths medium--six-twelfths maxlarge--three-twelfths">
+                          <div class="tr cart-des"> 
+
+                            <h2> <a href="{{ item.url }}">  {{ item.product.title }}</a> </h2>
+                            {% unless item.variant.title contains 'Default' %}
+                            <a href="{{ item.variant.url }}">{{ item.variant.title }}</a>
+                            {% endunless %}
+                            {% if section.settings.cart_vendor_enable %}
+                            <p>{{ item.vendor }}</p>
+                            {% endif %}
+                            <p>{{ item.price | money }}</p>
+                           
+                            {% comment %}
+                            Optional, loop through custom product line items if available
+
+                            For more info on line item properties, visit:
+                            - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                            {% endcomment %}
+                            {% assign property_size = item.properties | size %}
+                            {% if property_size > 0 %}
+                            {% for p in item.properties %}
+                            {% unless p.last == blank %}
+                            {{ p.first }}:
+
+                            {% comment %}
+                            Check if there was an uploaded file associated
+                            {% endcomment %}
+                            {% if p.last contains '/uploads/' %}
+                            <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                            {% else %}
+                            {{ p.last }}
+                            {% endif %}
+
+                            <br>
+                            {% endunless %}
+                            {% endfor %}
+                            {% endif %}
+
+                          </div>
+                        </div>
+
+                        <div class="grid__item two-twelfths small--six-twelfths medium--three-twelfths maxlarge--three-twelfths">
+                          <div class="qty_box">
+                            <button type="button" class="minus"><span class="ion-ios-minus-empty"></span></button>
+                            <input type="text" size="4" name="updates[]" class="product-quantity" id="quantity" value="{{ item.quantity }}" onfocus="this.select();">
+
+                            <button type="button" class="plus"><span class="ion-ios-plus-empty"></span></button>
+                          </div>
+                        </div>
+
+                        <div class="grid__item two-twelfths small--four-twelfths medium--hide">
+                          <div class="tr cart-total">
+                            <p><span class="money"> {{ item.line_price | money }}</span></p>
+                          </div>
+                        </div>
+
+                        <div class="grid__item two-twelfths medium--one-twelfth">
+                          <div class="tr cart-cancel">
+                            <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
+                              <span class="ion-close-round"></span></a>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    {% endfor %}
+                    <input type="submit" name="update" id="update-cart"  class="btn" value="{{ 'cart.general.update' | t }}">
+
+                  </div>                  
+                </div>
+
+                <div class="grid__item one-whole">
+                  
+                  {% if settings.cart_notes_enable %}
+                  <div class="cart_note">
+                  <h6><label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label></h6>
+                  <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+                  </div>
+                  {% endif %} 
+                  
+                  {% if section.settings.show_multiple_currencies_note %}
+                  <p class="currency_note">
+                    {{ shop.name }} process all orders in {{ shop.currency }}.
+                    While the content of your cart is currently displayed in
+                    <span class="selected-currency"></span>,
+                    you will checkout using {{ shop.currency }} at the most current exchange rate.
+                  </p>
+
+                  {% endif %}
+                  
+                  <div class="checkout_section clearfix">
+
+                    <div class="sub_total">
+
+                      <h3>{{ 'cart.general.subtotal' | t }}<span><span id="bk-cart-subtotal-price">{{ cart.total_price | money }}</span></span></h3>
+
+                      <div class="btn_row">
+                        <a href="/collections/all" class="btn">back to shopping</a>
+                        <button type="submit" name="checkout" class="btn" >proceed to checkout</button>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+       
+        
+          
+       
+         </div>
+        {% else %}
+		 <div class="grid__item {% if section.settings.you_may_like_enable %}nine-twelfths{% else %}one-whole{% endif %} small--one-whole medium--one-whole medium-large--one-whole">
+
+          <div class="empty_cart">
+		    <span><i class="ion-ios-cart"></i></span>
+            <h2>{{ 'cart.general.empty' | t }}</h2>
+            <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+		 </div>
+
+        </div>
+        {% endif %}
+
+        {% if section.settings.you_may_like_enable %} 
+        <div class="grid__item three-twelfths small--one-whole medium--one-whole medium-large--one-whole">
+          <div class="related_product">
+
+            <h1>{{ section.settings.featured_title }}</h1>
+            <div class="product-carousel owl-theme related_slider">   
+
+              {% for product in collections[section.settings.you_may_like_collection].products %}
+              {% include 'product-grid-item' %}
+              {% endfor %}
+            </div>
+          </div>
+		 </div>
+		{% endif %}
+      </div>
+	</div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Cart Page",
+    "settings": [
+     {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner Image",
+	    "info": "Maximum image dimensions are  1920px wide by 278px high. The uploaded file will be resized to fit within those constraints."
+   
+      },		
+      {
+        "type": "checkbox",
+        "id": "cart_vendor_enable",
+        "label": "Show Product Vendor",
+        "default": false
+     },
+	 {
+		"type":"checkbox",
+		"id":"show_multiple_currencies_note",
+		"label":"Show multiple currencies note",
+		"default":true
+	 },	
+      {
+        "type": "header",
+        "content": "Featured Products"
+      },
+      {
+        "type": "checkbox",
+        "id": "you_may_like_enable",
+        "label": "Show",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "featured_title",
+        "label": "Title"
+      },
+      {
+        "type": "collection",
+        "id": "you_may_like_collection",
+        "label": "Select Collection"
+      }
+    ]
+  }
+ 
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

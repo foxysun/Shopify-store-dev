@@ -1,0 +1,139 @@
+{% if section.blocks.size > 0 %}
+<!-- ======================= Collection ==================== -->
+
+<div class="home_collection">
+
+  <div class="container">
+    
+      <div class="grid">
+        
+        {% for block in section.blocks %}
+       
+         {% if block.settings.image != blank %}
+
+            <div class="grid__item four-twelfths small--one-whole">
+                <div class="collection_item wow fadeInLeftSmall" data-wow-delay="{{ forloop.rindex | times : 300  }}ms">
+                  <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+                  <div class="home_collection_desc">
+                    {% if block.settings.title != blank %}
+                     <h2 style="color:{{ block.settings.title_color }};">{{ block.settings.title }}</h2>
+                    {% endif %}
+                    {% if block.settings.link != blank %}
+                      <a href="{{ block.settings.link }}" class="btn" style="background-color:{{ block.settings.button_bkg_color }};color:{{ block.settings.title_color_btn }};">{{ block.settings.button_name }}</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          
+        {% else %}
+        
+         <div class="grid__item four-twelfths small--one-whole">
+                <div class="collection_item wow fadeInLeftSmall" data-wow-delay="{{ forloop.rindex | times : 300  }}ms">
+                 {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+				 {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                   
+                  <div class="home_collection_desc">
+                 	  <h2>Collection Name</h2>
+                      <a href="/collections/all" class="btn">Shop Now</a>
+                  </div>
+                </div>
+              </div>
+        {% endif %}
+      {% endfor %}
+      
+        </div>
+    
+    </div>
+
+</div>
+
+
+{% endif %}
+
+
+
+
+{% schema %}
+  {
+    "name": "Collection List",
+	 "max_blocks": 3,
+    "settings": [
+	],
+
+    "blocks": [
+    {
+      "type": "image",
+      "name": "Collection",
+    "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+		  "info": "600 x 600px Recommended"	
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+       		"type":"color",
+			"id":"title_color",
+			"label":"Title Color"
+        },
+        {
+          "type": "text",
+          "id": "button_name",
+           "label": "Button Name"
+        },
+        {
+    		"type":"color",
+			"id":"button_bkg_color",
+			"label":"Button Background color"
+	
+        },
+        {
+			"type":"color",
+			"id":"title_color_btn",	
+			"label":"Button Text Color"
+
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection List",
+      "category": "COLLECTION",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+		{
+          "type": "image"
+        },
+		{
+          "type": "image"
+        }
+	
+      ]
+    }
+  ]
+}
+
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

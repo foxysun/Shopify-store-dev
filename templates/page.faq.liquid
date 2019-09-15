@@ -1,0 +1,45 @@
+
+<!-- /templates/page.liquid -->
+
+<!-- ======================== Header ========================= -->
+
+     
+<div class="header_banner blog_banner">
+    	<h1>{{ page.title }}</h1>
+    	<span class="header_overlay"></span>
+        {% if settings.page_banner != blank %} 	
+        	<img src="{{ settings.page_banner | img_url : 'master' }}" alt="{{ page.title }}" />
+        {% else %}
+        {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+       {% endif %} 
+</div>   
+
+
+
+<!-- ======================= About Content ==================== -->
+
+
+<div class="container faq-page">
+  <h2 class="secondary-heading">FREQUENTLY ASKED QUESTIONS</h2>
+  <p class="paragraph">We've got you covered below with the most frequently asked questions about our RESPAWN Gaming Furntiure. If you have a question, please fill out our Contact Us form and let us get your questions answered. We know you want to get back to the game.</p>
+        {{ page.content }}
+</div>
+
+
+<script>
+  
+  var accItem = document.getElementsByClassName('accordionItem');
+    var accHD = document.getElementsByClassName('accordionItemHeading');
+    for (i = 0; i < accHD.length; i++) {
+        accHD[i].addEventListener('click', toggleItem, false);
+    }
+    function toggleItem() {
+        var itemClass = this.parentNode.className;
+        for (i = 0; i < accItem.length; i++) {
+            accItem[i].className = 'accordionItem close';
+        }
+        if (itemClass == 'accordionItem close') {
+            this.parentNode.className = 'accordionItem open';
+        }
+    }
+</script>

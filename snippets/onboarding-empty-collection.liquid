@@ -1,0 +1,53 @@
+<!-- snippets/onboarding-empty-collection.liquid -->
+{% if section.settings.products_per_row == '3' %}
+	{% assign grid_width = 'four-twelfths small--one-whole medium--one-half medium-large--four-twelfths' %}
+{% endif %}
+
+{% if section.settings.products_per_row == '4' %}
+	{% assign grid_width = 'three-twelfths small--one-whole medium--one-half' %}
+{% endif %}
+
+{% if section.settings.products_per_row == '5' %}
+	{% assign grid_width = 'two-tenths small--one-whole medium--one-half medium-large--three-twelfths' %}
+{% endif %}
+
+<div class="grid__item">
+  <div class="helper-section">
+    
+    <div class="grid-uniform helper-content product_listing">
+      {% assign index = 1 %}
+      {% for i in (1..10) %}
+        {% case i %}
+          {% when 7 %}
+            {% assign index = 1 %}
+          {% when 8 %}
+            {% assign index = 2 %}
+        {% endcase %}
+        
+      
+      <div class="grid__item  {{ grid_width }}">
+        <div class="wow fadeIn product_item">
+                        
+          <div class="product_img">
+            <a href="/admin/products">
+              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+            </a>
+
+          </div>
+          <div class="product_desc">
+
+            <div class="desc_detail">
+              <p class="grid-link__title">{{ 'homepage.onboarding.product_title' | t }}</p>
+              <p class="grid-link__meta">
+                <strong>$19.99</strong>
+              </p>
+            </div>
+          </div>
+      </div>
+      </div>
+        {% assign index = index | plus: 1 %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

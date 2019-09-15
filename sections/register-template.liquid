@@ -1,0 +1,224 @@
+<style>
+  .register_content{
+    margin-top: 100px;
+    width: 65%;
+    height: auto;
+
+  }
+  .register_form{
+    position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+  .register_form:after{
+    position: absolute;
+    content: '';
+    border: 1px solid #bdbdbd;
+    display: block;
+    width: 166px;
+    bottom: -6px;
+  }
+  .register_section{
+     margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+  }
+  .account-title {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    color: #222222;
+    width: 100%;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-family: "Oswald", sans;
+    text-align: left;
+    
+}
+  .account-title::after {
+    content: "";
+    border-top: 2px solid #E71C39;
+    display: block;
+    width: 60px;
+    margin: 10px 0 0 0;
+}
+  
+label {
+    margin: 30px 0 5px 0;
+}
+  
+.btn.register {
+  	display: block;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+.already-registered{
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 0;
+}
+  
+.signin--button.btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0 30px 0;
+}
+  
+.register_content .already_register_section a{
+  margin: 10px 0 10px 0;
+}
+
+.register_content .register_section .register_form,
+.register_content .already_register_section{
+    width: 100%;
+}
+.account-page{
+  display: flex;
+}
+.register-image{
+  width: 35%;
+  background-image: url('{{ section.settings.register-image|  img_url: '2000x' }}');
+   background-repeat: no-repeat;
+    background-size: cover;
+}
+.container.account-page{
+  padding: 0 0 0 0;
+  height: 100%;
+}
+  
+footer.account-pages {
+
+    margin: 0 auto 0 auto;
+
+}
+@media (max-width: 1025px) {
+  .account-page{
+  		display: block;
+	}
+  .register_content{
+    width: 100%;
+    margin-top: 0;
+    padding-top: 100px;
+  }
+    .register_section{
+     margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+  }
+  .container.account-page .already_register_section {
+    border-bottom: none;
+    width: 100%;
+    margin: 0 auto;
+	}
+  
+}
+</style>
+
+
+
+<!-- ======================== Header ========================= -->
+
+
+
+
+<div class="container account-page">
+  <div class="register_content">
+
+        <div class="register_section">
+
+          <h3 class="account-title">{{ 'customer.register.title' | t }}</h3>
+
+          <div class="register_form">
+
+            {% form 'create_customer' %}
+
+            {{ form.errors | default_errors }}
+
+           
+              <label for="FirstName" >{{ 'customer.register.first_name' | t }}</label>
+              <input type="text" name="customer[first_name]" id="FirstName" class="input-full"{% if form.first_name %} value="{{ form.first_name }}"{% endif %} >
+            
+              <label for="Email" >{{ 'customer.register.email' | t }}</label>
+              <input type="email" name="customer[email]" id="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" required>
+           
+              <label for="CreatePassword">{{ 'customer.register.password' | t }}</label>
+              <input type="password" name="customer[password]" id="CreatePassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" >
+
+            
+
+              <button type="submit" id="register" class="btn register">{{ 'customer.register.submit' | t }}</button>
+          
+
+            {% endform %}
+            
+
+          </div>
+
+     
+    
+    
+    
+
+        <div class="already_register_section">
+
+          <p class="already-registered">{{ section.settings.login_title }}</p>
+   			<a href="#" data-reveal-id="account-modal"  class="signin--button btn" >Sign In</a>
+    	<div class="one-click-social-login"></div>
+
+        </div>
+
+      </div>
+     </div>
+  
+  
+  <div class="register-image">
+  </div>
+      
+
+      </div>
+
+
+
+{% schema %}
+  {
+    "name": "Register Page",
+    "settings": [
+	
+	{
+        "type": "header",
+        "content": "Login"
+      },
+      {
+        "type": "html",
+        "id": "login_title",
+        "label": "Title Name",
+        "default": "Already have an account? Sign In."
+	  },
+      
+	  {
+        "type": "image_picker",
+        "id": "register-image",
+        "label": "Image for Registration page"
+      },
+ 	{
+        "type": "text",
+        "id": "register-image-alt",
+        "label": "Image for Registration page Alt Text"
+      },
+      {
+        "type": "textarea",
+        "id": "login_content",
+        "label": "Description",
+        "default": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+      }
+     
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

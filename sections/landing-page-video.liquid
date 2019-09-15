@@ -1,0 +1,232 @@
+{% comment %} MetaField data {% endcomment %}
+{% assign Landing-Page-Video = page.metafields["global"]["Landing-Page-Video"] %}
+{% assign Landing-Page-Video-Text = page.metafields["global"]["Landing-Page-Video-Text"] %}
+
+{% assign Landing-Page-Video-Background = page.metafields["global"]["Landing-Page-Video-Background"] %}
+{% assign Landing-Page-Video-Bg-Color = page.metafields["global"]["Landing-Page-Video-Bg-Color"] %}
+
+
+{% comment %} {% assign modal_gloss_png = 'modal-gloss.png' | asset_url %} {% endcomment %}
+{% assign modal_gloss_png = '' %}
+<style>
+.landing-page-video {
+  *height: 800px;
+  height: 920px;
+  width: 100%;
+  position: relative;
+  padding: 0 0 0 0;
+  background-color: #f6f6f6;
+}
+
+.landing-page-video__background {
+  *height: 800px;
+  height: 900px;
+  width: 100%;
+  *margin: 30px auto;
+  margin: 85px auto;
+
+  -webkit-clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 90%);
+  *clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 90%);
+  clip-path: polygon(0 100px, 100% 0, 100% 100%, 0 90%);
+  {% if Landing-Page-Video-Background != blank %}
+  background-image: url("{{ Landing-Page-Video-Background }}");
+  {% endif %}
+  background-repeat: no-repeat;
+  background-size: cover;
+  *filter: brightness(35%);
+  {% if Landing-Page-Video-Bg-Color != blank %}
+  background-color: {{ Landing-Page-Video-Bg-Color }};
+  {% endif %}
+}
+
+.landing-page-video__text {
+  display: block;
+  width: 800px;
+  color: #fff;
+  text-transform: uppercase;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+.landing-page-video__text::after {
+  content: "  ";
+  background-image: url("{{ 'icon-play.svg' | asset_url  }}");
+  background-repeat: no-repeat;
+  display: block;
+  margin: 10px auto;
+  height: 75px;
+  width: 75px;
+}
+
+.reveal-modal {
+  visibility: hidden;
+  top: 100px;
+  left: 12.5%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  {% if modal_gloss_png != blank %}
+  background: #000 url({{ modal_gloss_png }}) no-repeat -200px -80px;
+  {% endif %}
+  position: absolute;
+  z-index: 101;
+  padding: 30px 40px 34px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+  
+ .landing-page__video{
+   
+    height: auto;
+    width: 100%%;
+
+  }
+  
+  .landing-page__video iframe{
+     width: 100%;
+    height: 100%;
+  }
+  
+#videoModal.reveal-modal .close-reveal-modal {
+    font-size: 50px;
+    font-weight: 300;
+    top: 0;
+    right: 0;
+    color: red;
+    display: block;
+    background-color: transparent;
+    padding: 10px 10px 25px 10px;
+  cursor: pointer;
+  }
+
+@media only screen and (max-width: 750px) {
+  .landing-page-video {
+    height: 450px;
+    margin-top: 0;
+    background-color: #efefef;
+  }
+
+  .landing-page-video__background {
+    height: 450px;
+    margin: 15px auto;
+    -webkit-clip-path: polygon(0 98px, 100% 0, 100% 100%, 0% 360px);
+    clip-path: polygon(0 98px, 100% 0, 100% 100%, 0% 360px);
+  }
+
+  .landing-page-video__text {
+    width: 200px;
+    color: #fff;
+    line-height: 1.21;
+    font-size: 48px;
+  }
+
+  .landing-page-video__text::after {
+    content: "  ";
+
+    margin: 20px auto;
+    height: 50px;
+    width: 50px;
+  }
+
+  .reveal-modal {
+    visibility: hidden;
+    top: 5%;
+    left: 0;
+    margin-left: 0;
+    width: 100%;
+    {% if modal_gloss_png != blank %}
+    background: #000 url({{ modal_gloss_png }}) no-repeat -200px -80px;
+    {% endif %}
+    position: absolute;
+    z-index: 101;
+    padding: 5px 10px 7px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
+  
+   
+ #videoModal.reveal-modal .close-reveal-modal {
+    font-size: 50px;
+    font-weight: 300;
+    top: 0;
+    right: 0;
+    color: red;
+    display: block;
+    background-color: transparent;
+    padding: 10px 10px 25px 10px;
+    cursor: pointer;
+  }
+}
+</style>
+
+
+
+<script>
+  
+  $('#videoModal').reveal({
+     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+     animationspeed: 300,                       //how fast animtions are
+     closeonbackgroundclick: true,              //if you click background will modal close?
+     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+});
+  
+  
+</script>
+  
+
+
+
+ 
+<!-- Modal -->
+<a href="#" class="big-link" data-reveal-id="videoModal">
+  <div class="landing-page-video">
+    <div class="landing-page-video__background"></div>
+    {% if Landing-Page-Video-Text != blank %}
+    <div class="landing-page-video__text">
+     {{ Landing-Page-Video-Text }}
+    </div>
+    {% endif %}
+  </div>
+</a>
+
+<div id="videoModal" class="reveal-modal">
+{% if Landing-Page-Video != blank %}
+<div class="landing-page__video">
+    <iframe
+      src="https://www.youtube.com/embed/{{ Landing-Page-Video }}"
+      frameborder="0"
+      rel="0"
+      modestbranding="1"
+      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+ {% endif %}
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

@@ -1,0 +1,713 @@
+{% comment %} {% assign modal_gloss_png = 'modal-gloss.png' | asset_url %} {% endcomment %}
+{% assign modal_gloss_png = '' %}
+<style>
+  
+.trending-products-mobile{
+    display: none;
+  }  
+.reveal-modal {
+  visibility: hidden;
+  top: 100px;
+  left: 12.5%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  {% if modal_gloss_png != blank %}
+  background: #000 url({{ modal_gloss_png }}) no-repeat -200px -80px;
+  {% endif %}
+  position: absolute;
+  z-index: 101;
+  padding: 30px 40px 34px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.trending__video {
+  height: auto;
+  width: 100%%;
+}
+
+.trending__video iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#videoModal.reveal-modal .close-reveal-modal {
+  font-size: 50px;
+  font-weight: 300;
+  top: 0;
+  right: 0;
+  color: red;
+  display: block;
+  background-color: transparent;
+  padding: 10px 10px 25px 10px;
+  cursor: pointer;
+}
+
+.trending-products-heading {
+  font-size: 40px;
+  margin-top: 60px;
+}
+.trending-products-heading::after {
+  content: "";
+  border-bottom: none;
+}
+
+.product-feature__content {
+  display: flex;
+  justify-content: center;
+  background-color: #eaeaea;
+  align-items: center;
+}
+
+.product-feature__content--image {
+  width: 67%;
+  margin-right: 0;
+}
+
+.product-feature__content--image img {
+  width: 100%;
+}
+
+/* Tabs Nav styles*/
+
+.trending-tabs-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  background-color: #f7f7f7;
+}
+
+#trending-tabsContainer {
+  width: 100%;
+}
+.trending-tabs-nav {
+  width: 30%;
+}
+
+.trending-tabs-nav ol {
+  padding: 0;
+  width: auto;
+  text-align: left;
+  list-style-type: decimal-leading-zero;
+  padding-left: 25%;
+  font-family: "Oswald", sans-serif;
+}
+
+.trending-tabs-nav li {
+  border-width: 0 0 0 0;
+  text-align: left;
+  font-size: 24px;
+  margin-bottom: 45px;
+}
+
+.trending-tabs-nav li a {
+  padding: 0;
+  font-weight: bold;
+  color: #999999;
+  text-transform: uppercase;
+  font-size: 24px;
+  text-align: left;
+  font-family: "Oswald", sans-serif;
+}
+/* Tabs Active state styles*/
+
+
+.trending-tabs-nav li.active a {
+  color: #333;
+  border-bottom: 3px solid #e71c39;
+}
+
+/*Tabs Content styles*/
+
+.trending-tabs-content {
+  {% comment %} padding: 10px; {% endcomment %}
+  background: #fff;
+  margin-top: -1px;
+  overflow: hidden;
+}
+
+.trending-tabs-content img {
+  {% comment %} margin-right: 10px; {% endcomment %}
+  visibility: hidden;
+}
+/* Hide All the content divs EXCEPT the first one */
+
+.trending-tabs-content div:not(:first-child) {
+  display: none;
+}
+
+.trending-tab-content span {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.trending-tab-content {
+  display: flex;
+  align-items: center;
+}
+.trending-tabs-content {
+  width: 70%;
+}
+
+.trending-tab-content-image img {
+  width: 100%;
+}
+
+.trending-tab-content {
+  display: flex;
+  align-items: stretch;
+}
+
+.trending-tab-content-image {
+  width: 50%;
+  position: relative;
+}
+
+.trending-tab-content-video {
+  width: 50%;
+  position: relative;
+}
+
+.trending-tab-content-button.btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 21px;
+  background-color: #fff;
+  border: none;
+  padding: 5px 30px;
+  font-family: "Oswald", sans-serif;
+  margin: 0 0 0 0;
+  display: flex;
+  align-items: center;
+  border: 2px solid #E71C39;
+}
+.trending-tab-content-button.btn:hover {
+  background-color: #e71c39;
+  color: #fff;
+}
+
+.trending-tab-content-button::after {
+  content: "+";
+  display: inline-block;
+  padding-left: 15px;
+  font-size: 36px;
+}
+
+.trending-tab-content-video-button.btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 21px;
+  background-color: #e71c39;
+  color: #fff;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  padding: 0 40px 0 40px;
+  line-height: 50px;
+  {% comment %} margin: 0 0 0 0;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  height: 60px;
+  padding: 0 0 0 0;
+  text-indent: 70px; {% endcomment %}
+}
+
+.trending-tab-content-video-button.btn i {
+  padding-left: 25px;
+}
+{% comment %} .trending-tab-content-video-button.btn::after {
+  content: " ";
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-color: #e71c39;
+  width: 60px;
+  height: 60px;
+  background-image: url("{{ 'icon-triangle-red.svg' | asset_url  }}");
+  background-size: 30px 30px;
+  background-position: center;
+} {% endcomment %}
+
+.trending-tab-content-video-button.btn:hover {
+  text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+}
+  
+.product-price{
+  font-weight: 300;
+  font-size: 18px;
+  display: inline-block;
+  padding-left: 10px;
+  color: #666;
+}
+
+  
+@media (max-width: 2000px) {
+  .trending-tabs-nav li {
+      text-align: left;
+      font-size: 20px;
+      margin-bottom: 35px;
+	}
+
+.trending-tabs-nav li a {
+      font-size: 20px;
+	}
+}
+
+  
+  
+  
+  
+  
+  
+  
+@media (max-width: 1024px) {  
+  .trending-products-desktop{
+    display: none;
+  }
+  
+  .trending-products-heading {
+  font-size: 30px;
+  margin-top: 60px;
+}
+  .trending-item.item {
+    margin-left: -45px;
+    padding-left: 45px;
+  }
+  .trending-products-mobile{
+    display: block;
+  }
+  .trending-item__title{
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 15px auto;
+  }
+  .trending-item__price{
+    font-size: 20px;
+    text-align: center;
+    margin: 15px auto;
+  }
+  .trending-product__buttons{
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .trending-product__button--details,
+  .trending-product__button--video{
+    width: 45%;
+    max-width: 250px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    font-family: "Oswald", sans-serif;
+    justify-content: center;
+    align-content: center;
+
+  }
+  .trending-product__button--details{
+    background-color: #fff;
+    color: #e71c39;
+    
+    
+  }
+  .trending-product__button--details::after{
+    content:"+";
+    font-size: 32px;
+    padding-left: 5px;
+    
+  }
+  .trending-product__button--video{
+     color: #fff;
+    background-color: #e71c39;
+  }
+   .trending-product__button--video::after{
+      content: " ";
+      background-repeat: no-repeat;
+      display: inline-block;
+      background-color: #e71c39;
+ 	width: 40px;
+     height: 40px;
+      background-image: url("{{ 'icon-triangle-red.svg' | asset_url  }}");
+      background-size: 30px 30px;
+        background-position: bottom;
+    
+  }
+}
+
+</style>
+
+
+
+
+<script>
+  
+  $('#videoModal').reveal({
+     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
+     animationspeed: 300,                       //how fast animtions are
+     closeonbackgroundclick: true,              //if you click background will modal close?
+     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
+});
+  
+  
+</script>
+
+
+
+
+ {% if  section.settings.trending-products-heading != '' %}
+
+<div class="trending-products">
+  <h2 class="secondary-heading trending-products-heading">
+    
+           {% if  section.settings.trending-products-heading-first != '' %}
+        	<span  style="color:{{ section.settings.trending-products-heading-c1 }}">{{ section.settings.trending-products-heading-first }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.trending-products-heading-second != '' %}
+        	<span  style="color:{{ section.settings.trending-products-heading-c2 }}">{{ section.settings.trending-products-heading-second }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.trending-products-heading-third != '' %}
+        	<span  style="color:{{ section.settings.trending-products-heading-c3 }}">{{ section.settings.trending-products-heading-third }}</span> 
+       {% endif %}
+        
+          {% if  section.settings.trending-products-heading-fourth != '' %}
+        	<span  style="color:{{ section.settings.trending-products-heading-c4 }}">{{ section.settings.trending-products-heading-fourth }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.trending-products-heading-fifth != '' %}
+        	<span  style="color:{{ section.settings.trending-products-heading-c5 }}">{{ section.settings.trending-products-heading-fifth }}</span> 
+       {% endif %}
+          
+  </h2>
+  
+  <div id="trending-tabsContainer" class="trending-products-desktop" >
+    
+    <div class="trending-tabs-container">
+
+  <div class="trending-tabs-nav">
+    <ol>
+      
+{% if section.blocks.size > 0 %}
+{% assign trending-tab_count = 0 %}
+{% for block in section.blocks %}
+      {% assign product_item = all_products[block.settings.trending-tab-product] %}
+      <li><a href="#trending-tab{{trending-tab_count}}"> {{ product_item.metafields["global"]["Parent"] }}<span class="product-price">{{ product_item.price | money }}</span></a></li>
+      
+{% assign trending-tab_count = trending-tab_count | plus: 1 %}
+{% endfor %}
+{% endif %}
+      
+    </ol>
+  </div>
+
+  <section class="trending-tabs-content">
+    
+    
+{% if section.blocks.size > 0 %}
+{% assign trending-tab_content_count = 0 %}
+{% assign video_modal = 0 %}
+
+  {% for block in section.blocks %}
+      
+      {% assign product_item = all_products[block.settings.trending-tab-product] %}
+      
+      <div id="trending-tab{{trending-tab_content_count}}" class="animated fadeIn 2s" >
+        <article class="trending-tab-content">
+          <span class="trending-tab-content-image" style="background-image:url({{ product_item |  img_url:'1000x' }})">
+          <img src="{{ product_item |  img_url:'1000x' }}" alt="{{ product_item.title  }}" />  
+
+            <a href="{{ product_item.url }}" class="trending-tab-content-button btn">{{ block.settings.trending-tab-button-text }}</a>
+            
+          </span>
+          <span class="trending-tab-content-video" style="background-image: url({{ block.settings.trending-tab-product-video-image |  img_url:'1000x' }})">
+            <img src="  {{ block.settings.trending-tab-product-video-image |  img_url:'1000x' }}" alt="{{ block.settings.trending-tab-product-video-image-alt  }}" />  
+            <a href="#"  data-reveal-id="videoModal{{video_modal}}" class="trending-tab-content-video-button btn big-link">{{ block.settings.trending-tab-product-video-button-text }}<i class="ion-arrow-right-b"></i></a>
+          </span>
+        </article>
+      </div>
+      
+      {% assign trending-tab_content_count = trending-tab_content_count | plus: 1 %}
+      {% assign video_modal = video_modal | plus: 1 %} 
+  {% endfor %}
+
+{% endif %}
+
+  </section>  
+</div>
+ </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <div  class="trending-products-mobile" >
+     {% if section.blocks.size > 0 %}
+
+{% assign video_modal = 0 %}    
+    
+ <div class="trending-items owl-carousel"  >
+   {% for block in section.blocks %}
+     <div class="trending-item item">
+       <div class="trending-item__image">
+      		<img src="{{ block.settings.trending-tab-product-video-image |  img_url:'1000x' }}" alt="{{ block.settings.trending-tab-product-video-image-alt  }}" /> 
+       </div>
+       <div class="trending-item__title">  {{ product_item.metafields["global"]["Parent"] }}</div>
+       <div class="trending-item__price">{{ product_item.price | money }}</div>
+       
+       
+       
+       <div class="trending-product__buttons">
+          <a href="{{ product_item.url }}" class="trending-product__button--details btn">{{ block.settings.trending-tab-button-text-mobile }}</a>
+           <a href="#"  data-reveal-id="videoModal{{video_modal}}" class="trending-product__button--video btn big-link">{{ block.settings.trending-tab-product-video-button-text-mobile }}</a>
+       </div>
+
+   </div>
+
+ 
+{% endfor %}
+
+     </div>
+        
+  </div>
+{% endif %}
+
+
+  
+ 
+  
+  
+  {% assign video_modal_active = 0 %}    
+    
+{% for block in section.blocks %}
+    
+    
+    {% assign product_item = all_products[block.settings.trending-tab-product] %}
+  
+  
+
+      <div id="videoModal{{video_modal_active}}" class="reveal-modal">
+		<div class="trending__video">
+        <iframe
+          src="https://www.youtube.com/embed/{{ product_item.metafields["global"]["Product-video-Url"] }}"
+          frameborder="0"
+          rel="0"
+          modestbranding="1"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+  </div>
+ 
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+{% assign video_modal_active = video_modal_active | plus: 1 %}
+  {% endfor %}
+
+</div>
+{% endif %}
+
+<script>
+ 
+  $(function() {
+  
+    $('.trending-tabs-nav ol li:first-child').addClass('active');  
+    
+  $('.trending-tabs-nav a').click(function() {
+
+    //Check if the tabs menu has active class
+    $('.trending-tabs-nav li').removeClass('active');
+    $(this).parent().addClass('active');
+
+    // Display active tab
+    var currentTrendingTab = $(this).attr('href');
+    $('.trending-tabs-content div').hide();
+    $(currentTrendingTab).show();
+
+    return false;
+  });
+});
+        
+</script>
+
+
+
+
+
+
+<script>
+  
+
+$('#shopify-section-trending-products .owl-carousel').owlCarousel({
+  loop: false,
+  margin: 0,
+  nav: false,
+  items: 4,
+  autoplay: false,
+  autoplayHoverPause: true,
+  center: false,
+   dots: true,
+  responsive: {
+    0: {
+      items: 1,
+      stagePadding: 0,
+      nav: false,
+      dots: true,
+    },
+    600: {
+      items: 1,
+      stagePadding:0,
+      nav: false,
+      dots: true,
+    },
+    1000: {
+      items: 1,
+      stagePadding:0,
+      nav: false,
+      dots: true,
+    },
+  }
+})
+
+</script>
+
+  
+{% schema %}
+  {
+    "name": "Trending Products",
+    "settings": [
+		{
+		"type" : "text",
+		"label" : "Trending Products Heading (First word)",
+		"id": "trending-products-heading-first"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (First word)",
+		"id": "trending-products-heading-c1"
+		},
+		{
+		"type" : "text",
+		"label" : "Trending Products Heading (Second word)",
+		"id": "trending-products-heading-second"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Second word)",
+		"id": "trending-products-heading-c2"
+		},
+		{
+		"type" : "text",
+		"label" : "Trending Products Heading (Third word)",
+		"id": "trending-products-heading-third"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Third word)",
+		"id": "trending-products-heading-c3"
+		},
+		{
+		"type" : "text",
+		"label" : "Trending Products Heading (Fourth word)",
+		"id": "trending-products-heading-fourth"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Fourth word)",
+		"id": "trending-products-heading-c4"
+		},
+		{
+		"type" : "text",
+		"label" : "Trending Products Heading (Fifth word)",
+		"id": "trending-products-heading-fifth"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Fifth word)",
+		"id": "trending-products-heading-c5"
+		}
+		
+	],
+	"blocks":[
+		{
+			"type":"select",
+			"name": "Add Tab",
+			"settings":[
+				{	
+                  "id": "trending-tab-product",
+                  "type":"product",
+                  "label": "Product for tab"
+				},
+				{
+					"id": "trending-tab-button-text",
+					"type": "text",
+					"label": "Button Text Desktop"
+				},
+     			{
+					"id": "trending-tab-button-text-mobile",
+					"type": "text",
+					"label": "Button Text Mobile"
+				},
+				{
+				  "id": "trending-tab-product-video-image",
+				  "type": "image_picker",
+				  "label": "Image for product video"
+				},
+				{
+				  "id": "trending-tab-product-video-image-alt",
+				  "type": "text",
+				  "label": "Video Image Alt Text"
+				},
+				
+				{
+					"id": "trending-tab-product-video-button-text",
+					"type": "text",
+					"label": "Button Text Desktop"
+				},
+     		{
+					"id": "trending-tab-product-video-button-text-mobile",
+					"type": "text",
+					"label": "Button Text Mobile"
+				}
+     
+
+			]
+		}
+  
+	]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

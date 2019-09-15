@@ -1,0 +1,279 @@
+{% comment %} MetaField data {% endcomment %}
+{% assign Landing-page-heading = page.metafields["global"]["Landing-page-heading"] %}
+{% assign Landing-page-sub-header = page.metafields["global"]["Landing-page-sub-header"] %}
+{% assign Landing-page-form-heading = page.metafields["global"]["Landing-page-form-heading"] %}
+{% assign Landing-page-form-submit = 'submit' %}
+
+{% assign Landing-page-header-image = page.metafields["global"]["Landing-page-header-image"] %}
+{% assign Heading-Text-Color = page.metafields["global"]["Heading-Text-Color"] %}
+{% assign Sub-Heading-Text-Color = page.metafields["global"]["Sub-Heading-Text-Color"] %}
+{% assign Heading-Text-Color = page.metafields["global"]["Heading-Text-Color"] %}
+
+
+<style>
+  header{
+    padding-top: 0;
+    margin-top: 0;
+  }
+  .header--landing-page{
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .landing-page__header{
+    {% if Landing-page-header-image != blank %}
+    background-image: url('{{ Landing-page-header-image }}');
+    {% endif %}
+  	background-repeat:no-repeat; 
+  	background-size: cover;
+  	height: 600px;
+    background-position: top center;
+  }
+  .landing-page__header--text{
+    top: 10%;
+    left: 10%;
+    position: absolute;
+    text-align: left;
+  }
+  .landing-page__heading{
+    {% if Heading-Text-Color != blank %}
+    color: {{ Heading-Text-Color }};
+    {% endif %}
+    text-align: left;
+    border-bottom: none;
+    font-size: 60px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+  }
+  .landing-page__sub-heading{
+    {% if Sub-Heading-Text-Color != blank %}
+    color: {{ Sub-Heading-Text-Color }};
+    {% endif %}
+    text-align: left;
+    border-bottom: none;
+    font-size: 30px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    text-transform: uppercase;
+    font-family: 'MyriadPro-Regular';
+    font-weight: 100;
+  }
+  
+  .landing-page__sub-heading:after, 
+  .landing-page__heading:after {
+    content: '';
+    background: none;
+    height: 0;
+    width:auto;
+    margin: 0 auto;
+    display: none;
+  }
+  .landing-page-form{
+    position: absolute;
+    width: 100%;
+    max-width: 450px;
+    background: #E0e0e0; 
+    top: 0;
+    right: 10%;
+    padding: 55px;
+  }
+  .landing-page-form__heading{
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+  }
+   .landing-page-form__label{
+    margin-top: 20px;
+    text-align: left;
+    color: #696969;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .landing-page-form__submit{
+    font-size: 14px;
+    margin: 30px auto 0;
+    display: block;
+    background-color:#fff;
+    color:#2698f9;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    height: initial;
+    line-height: 34px;
+    padding: 0 38px;
+  }
+  .btn.landing-page-form__submit:hover{
+    background-color: #2698f9;
+    border: 2px solid #2698f9;
+    color: #fff;
+  }
+  
+.respawn-logo{
+  width: 200px;
+  margin-bottom: 150px;
+}
+  
+@media only screen and (min-width: 751px) and (max-width: 1200px) {
+
+  .landing-page__header--text{
+    top: 5%;
+    left: 5%;
+  }
+
+  .landing-page-form{
+    width: 300px;
+    right: 3%;
+    padding: 20px 10px;
+  }
+  .landing-page-form__heading{
+    font-size: 24px;
+  }
+
+  .landing-page__sub-heading{
+    font-size: 24px;
+  }
+  
+}
+  
+  @media only screen and (max-width: 800px){
+    .landing-page__heading{
+      font-size: 32px;
+    }
+    
+  .landing-page__sub-heading{
+      font-size: 20px;
+    }
+  }
+  
+@media only screen and (max-width: 750px){
+  .respawn-logo{
+    width: 150px;
+    margin: 10px auto 50px auto;
+  }
+
+  .landing-page__header{
+    height: 800px;
+    background-size: cover;
+  }
+  .header--landing-page{
+    
+  }
+  .landing-page__header--text{
+    position: relative;
+    text-align: center;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+  }
+  .landing-page__heading{
+    {% if Heading-Text-Color != blank %}
+    color: {{ Heading-Text-Color }};
+    {% endif %}
+    text-align: center;
+    font-size: 60px;
+  }
+  .landing-page__sub-heading{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+
+  .landing-page-form{
+    width: 100%;
+    max-width: 100%;
+    margin-top:235px;
+    background: #E3E7ED; 
+    right: 0;
+    padding: 30px 15px;
+    box-shadow: none;
+    position: relative;
+  }
+  .landing-page-form__heading{
+    font-size: 28px;
+    margin-top: 10px;
+  }
+   .landing-page-form__label{
+    font-size: 14px;
+    margin-top: 10px;
+  }
+    .landing-page-form__submit{
+    font-size: 14px;
+    margin: 30px auto 15px auto;
+  }
+
+  .landing-page-form input[type=text], .landing-page-form input[type=email] {
+    height: 55px;
+  }
+  .landing-page-form input[type="submit"] {
+    line-height: 45px;
+    padding: 0 45px;
+    background-color: #f1f9ff;
+  }
+}
+  
+</style>
+
+<div class="landing-page__header">
+  
+  <div class="landing-page__header--text">
+    <div class="respawn-logo">
+      <a href="/">
+        <img src="{{ 'RESPAWN_logo_white.svg' | asset_url }}" alt="RESPAWN logo" />  
+      </a>
+  </div>
+    {% if Landing-page-heading != blank %}
+    <h1 class="heading landing-page__heading">{{ Landing-page-heading }}</h1>
+    {% endif %}
+    {% if Landing-page-sub-header != blank %}
+    <h2 class="secondary-heading landing-page__sub-heading">{{ Landing-page-sub-header }}</h2>
+    {% endif %}
+  </div>
+  
+  <div class="landing-page-form">
+    {% if Landing-page-form-heading != blank %}
+    <h4 class="landing-page-form__heading">{{ Landing-page-form-heading }}</h4>
+    {% endif %}
+    <form action="https://respawnproducts.us12.list-manage.com/subscribe/post?u=8dac3c160b45a300988bfd96d&amp;id=bcd5e7fcec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+      {{ form.errors | default_errors }}
+
+      <label class="landing-page-form__label" for="mce-FNAME" >First Name</label>
+      <input type="text" name="FNAME" id="mce-FNAME" class="input-full"{% if form.first_name %} value="{{ form.first_name }}"{% endif %} >
+      <label class="landing-page-form__label" for="mce-LNAME" >Last Name</label>
+      <input type="text" name="LNAME" id="mce-LNAME" class="input-full"{% if form.last_name %} value="{{ form.last_name }}"{% endif %} >
+
+      <label  for="mce-EMAIL" class="landing-page-form__label" >{{ 'customer.register.email' | t }}</label>
+      <input type="email" name="EMAIL" id="mce-EMAIL" class="required email input-full{% if form.errors contains 'email' %} error{% endif %}" required>
+
+      <div id="mce-responses" class="clear">
+      <div class="response" id="mce-error-response" style="display:none"></div>
+      <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8dac3c160b45a300988bfd96d_bcd5e7fcec" tabindex="-1" value=""></div>
+      <input type="submit" value="{{ Landing-page-form-submit }}" name="subscribe" id="mc-embedded-subscribe" class="btn landing-page-form__submit"/>
+    
+    </form>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Landing Page Header",
+  "settings" : [
+    
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

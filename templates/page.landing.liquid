@@ -1,0 +1,63 @@
+
+
+
+<style>
+  header.second_nav{
+    display: none;
+  }
+  
+  #PageContainer{
+    background-color: #f6f6f6;
+    margin-top: 0;
+  }
+  @media (max-width: 1450px) { 
+     .landing-page-feature{
+       padding-bottom: 100px;
+    }
+  }
+  @media (max-width: 1205px) { 
+    .arrival_section{
+      padding-bottom: 100px;
+  	}
+   
+  }
+</style>
+<!-- /templates/page.liquid -->
+
+<!-- ======================== Header ========================= -->
+<header class="header header--landing-page">
+  {% section 'landing-page-header' %}
+</header>
+
+
+
+<!-- ======================= About Content ==================== -->
+
+
+<main class="container landing-page__content {{ handle }}" id="landing-page" data-template="{{ template }}">
+  {% section 'landing-page-press' %} 
+  {% section 'landing-page-feature' %} 
+
+  {% unless handle contains 'landing-page-no-reviews' %}
+
+  {% section 'best-sellers' %}
+  {% section 'landing-page-video' %}
+  {% section 'landing-page-reviews' %}
+
+  {% else %}
+
+  {% section 'landing-page-video' %}
+  {% section 'best-sellers' %}
+
+  {% endunless %}
+
+</main>
+
+<footer class="footer landing-page__footer">
+  
+  {% section 'landing-page-footer' %}
+  
+</footer>
+           
+
+

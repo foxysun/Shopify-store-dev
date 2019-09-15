@@ -1,0 +1,230 @@
+<style>
+  
+
+.product-feature-heading{
+  font-size: 40px;
+}
+.product-feature-heading::after{
+  content: '';
+  border-bottom: none;
+}
+  
+.product-feature__content{
+  display: flex;
+  justify-content: center;
+  background-color: #EAEAEA;
+  align-items: center;
+}
+  
+.product-feature__content--image{
+  width: 67%;
+  margin-right: 0;
+}
+  
+.product-feature__content--image img{
+  width: 100%;
+}
+  
+.product-feature__content--copy{
+  width: 33%;
+  margin-left: 0;
+  padding-left: 60px;
+  font-size: 24px;
+}
+.product-feature__content--heading{
+  font-size: 34px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+}
+
+.product-feature__content--button{
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  background-color: #fff;
+  font-size: 20px;
+  padding: 0 30px;
+}
+  .product-feature__content--text {
+	font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  
+  
+@media  (max-width: 1024px) { 
+  .product-feature__content{
+    flex-direction: column;
+  }
+  .product-feature{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #EAEAEA;
+  }
+  .product-feature__content .product-feature__content--image{
+    width: 100%;
+    margin-right: 0;
+  }
+  .product-feature__content--copy{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left:0;
+    text-align:center;
+    padding-top: 15px;
+    padding-bottom: 30px;
+  }
+.product-feature-heading{
+  font-size: 30px;
+}
+  .product-feature__content--button{
+  width: 180px;
+  
+}
+
+}
+
+</style>
+
+ {% if  section.settings.product-feature-heading != '' %}
+
+<div class="product-feature">
+  <h2 class="secondary-heading product-feature-heading">
+    
+           {% if  section.settings.product-feature-heading-first != '' %}
+        	<span class="product-feature__content--heading-word" style="color:{{ section.settings.product-feature-heading-c1 }}">{{ section.settings.product-feature-heading-first }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.product-feature-heading-second != '' %}
+        	<span class="product-feature__content--heading-word" style="color:{{ section.settings.product-feature-heading-c2 }}">{{ section.settings.product-feature-heading-second }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.product-feature-heading-third != '' %}
+        	<span class="product-feature__content--heading-word" style="color:{{ section.settings.product-feature-heading-c3 }}">{{ section.settings.product-feature-heading-third }}</span> 
+       {% endif %}
+        
+          {% if  section.settings.product-feature-heading-fourth != '' %}
+        	<span class="product-feature__content--heading-word" style="color:{{ section.settings.product-feature-heading-c4 }}">{{ section.settings.product-feature-heading-fourth }}</span> 
+       {% endif %}
+        
+           {% if  section.settings.product-feature-heading-fifth != '' %}
+        	<span class="product-feature__content--heading-word" style="color:{{ section.settings.product-feature-heading-c5 }}">{{ section.settings.product-feature-heading-fifth }}</span> 
+       {% endif %}
+      
+    
+  </h2>
+  
+  <div class="product-feature__content">
+    <div class="product-feature__content--image">
+    	<img src="  {{ section.settings.product-feature-image |  img_url:'1000x' }}" alt="{{ section.settings.product-feature-image-alt }}" />
+    </div>
+    <div class="product-feature__content--copy">
+      <h4 class="product-feature__content--heading">
+        {{ section.settings.product-feature-copy-heading }}
+		</h4>
+      <p class="product-feature__content--text">{{ section.settings.product-feature-copy-text }}</p> 
+      <a href="{{ section.settings.product-feature-button-link }}" class="btn product-feature__content--button">{{ section.settings.product-feature-button-text }}</a>
+    </div>
+  </div>
+
+</div>
+{% endif %}
+
+
+  
+{% schema %}
+  {
+    "name": "Feature Product Section",
+    "settings": [
+		{
+		"type" : "text",
+		"label" : "Product Feature Heading (First word)",
+		"id": "product-feature-heading-first"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (First word)",
+		"id": "product-feature-heading-c1"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Heading (Second word)",
+		"id": "product-feature-heading-second"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Second word)",
+		"id": "product-feature-heading-c2"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Heading (Third word)",
+		"id": "product-feature-heading-third"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Third word)",
+		"id": "product-feature-heading-c3"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Heading (Fourth word)",
+		"id": "product-feature-heading-fourth"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Fourth word)",
+		"id": "product-feature-heading-c4"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Heading (Fifth word)",
+		"id": "product-feature-heading-fifth"
+		},
+		{
+		"type" : "color",
+		"label" : "Product Feature Heading Color (Fifth word)",
+		"id": "product-feature-heading-c5"
+		},
+		{
+		"type" : "image_picker",
+		"label" : "Product Feature Image",
+		"id": "product-feature-image"
+		},
+        {
+		"type" : "text",
+		"label" : "Product Feature Image Alt Text",
+		"id": "product-feature-image-alt"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Content Heading",
+		"id": "product-feature-copy-heading"
+		},
+		
+		{
+		"type" : "textarea",
+		"label" : "Product Feature Content Copy",
+		"id": "product-feature-copy-text"
+		},
+		{
+		"type" : "text",
+		"label" : "Product Feature Button Text",
+		"id": "product-feature-button-text"
+		},
+		{
+		"type" : "url",
+		"label" : "Product Feature Button Link",
+		"id": "product-feature-button-link"
+		}
+	]	
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

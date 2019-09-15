@@ -1,0 +1,89 @@
+
+
+<script>
+  (function(s3d) {
+    if (!s3d) {
+      console.warn('"window.Shopify3d" does not exist. Please ensure you\'ve added the <script> to your theme');
+      return;
+    }
+    {% for variant in product.variants %}
+      s3d.mapMetafieldAssets('{{ variant.id }}', '{{  variant.metafields.shopify3d['assets'] }}');
+    {% endfor %}
+  })(window.Shopify3d);
+</script>
+
+{% comment %}
+
+  Rich snippets (itemscope, itemtype, etc.) for products are a theme requirement,
+  and allow search engines to easily understand what the content is.
+
+  For more information on these Scheme.org tags, visit:
+    - http://schema.org/docs/gs.html
+
+{% endcomment %}
+
+
+
+<!-- ======================= Product Detail ==================== -->
+<div class="content">
+
+	<form class="container assembly" id="assembly-form" >
+		{{ page.content }}    
+      
+      <div class="assembly__select" >
+    <div class="assembly__select--category " >
+      
+       {% assign categories =  page.metafields["global"]["category-options"]  | split: ',' %}
+     
+        <select class="select " name="category" id="category-select">
+          {% for category in categories %}
+            <option value='{{ category | downcase }}'>{{ category }}</option>
+          {% endfor %}
+        </select>
+        </div>
+      
+  	<div class="assembly__select--model " id="select-model" >
+ 
+ 
+      <select class="select" name="chairs" id="chair-select" >
+   <option value=''>Select Chair Model</option>
+          {% for product in collections.chairs.products %}
+       
+        <option value='{{ product.metafields["global"]["Assembly-PDF-Url"] }}+{{ product.metafields["global"]["Assembly-Video-Url"] }}+{{ product.metafields["global"]["Branding-Bundle"] }}+{{ product.metafields["global"]["Tear-Sheet-Url"] }}'name='{{ product.metafields["global"]["Parent"] }}'>{{ product.metafields["global"]["Parent"] }}</option>
+        
+          {% endfor %}
+        
+      
+      </select>
+      
+      
+      <select class="select" name="desks" id="desk-select" >
+        <option value=''>Select Desk Model</option>
+         {% for product in collections.gaming-desks.products %}
+       <option value='{{ product.metafields["global"]["Assembly-PDF-Url"] }}+{{ product.metafields["global"]["Assembly-Video-Url"] }}+{{ product.metafields["global"]["Branding-Bundle"] }}+{{ product.metafields["global"]["Tear-Sheet-Url"] }}'name='{{ product.metafields["global"]["Parent"] }}'>{{ product.metafields["global"]["Parent"] }}</option>
+
+         {% endfor %}
+   
+       </select>   
+        </div>
+      </div>
+      </form>
+        	
+          
+      </div>
+
+<div id="selected-model"></div>
+
+{% javascript %}
+
+
+{% endjavascript %}
+
+
+
+  
+
+{{ 'instructions.js'  | asset_url | script_tag }} 
+
+  	
+  	

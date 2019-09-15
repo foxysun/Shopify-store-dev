@@ -1,0 +1,281 @@
+{% assign styles = '' %}
+
+<!-- ======================== Main Slider ========================= -->
+{% if section.blocks.size > 0 %}
+
+{% capture style %}
+.hero-slider__homepage {
+  background-color: {{ section.settings.section_bg_color }};
+}
+{% endcapture %}
+{% assign styles = styles | append: style %}
+
+<div class="hero-slider hero-slider__homepage">
+  <ul class="bxslider_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="slideshow-section" data-transition="{{ section.settings.slider_home_transition }}" data-autoplay="{{ section.settings.slideshow_auto }}" data-speed="{{ section.settings.slider_home_rate }}" >       
+  {% for block in section.blocks %}
+    {% if block.settings.image != blank %}
+
+    <li class="hero-banner" {{ block.shopify_attributes }}>
+      <span class="slide_overlay"></span>
+      <div class="container container__homepage">
+        <div class="caption caption--{{ block.id }}">
+          <div class="caption_text">
+            {% if block.settings.title != empty %}<h1 class="heading slideshow__header">{{ block.settings.title }}</h1>{% endif %}
+            {% if block.settings.content != empty %}<p>{{ block.settings.content }}</p>{% endif %}
+          </div>
+
+          {% if block.settings.link != empty %}
+          <div class="slide_btn">
+            <a href="{{ block.settings.link }}" class="btn">{{ block.settings.button_name }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </li>
+      {% capture style %}
+      .hero-banner {
+        background-image: url({{ block.settings.image | img_url: '2048x' }});
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: contain;
+      }
+      #shopify-section-Slideshow .caption--{{ block.id }}{
+        {% if block.settings.position == 'left' %}
+        left:15px;text-align:left;-webkit-transform:translateY(-50%);transform:translateY(-50%);
+        {% endif %}
+        {% if block.settings.position == 'right' %}
+        left:auto;right:15px;text-align:right;-webkit-transform:translate(0%, -50%);transform:translate(0%, -50%);
+        {% endif %}
+      }
+
+      {% if block.settings.title_color != blank %}
+      #shopify-section-Slideshow .caption--{{ block.id }} .slideshow__header{
+        color:{{ block.settings.title_color }};
+      }
+      {% endif %}
+      {% if block.settings.text_color != blank %}
+      #shopify-section-Slideshow .caption--{{ block.id }} p {
+        color:{{ block.settings.text_color }};
+      }
+      {% endif %}
+      #shopify-section-Slideshow .caption--{{ block.id }} a.btn {
+        border-radius: {{ block.settings.title_btn_border_radius }}px;
+        {% if block.settings.button_bkg_color != blank %}
+        background-color:{{ block.settings.button_bkg_color }};
+        {% endif %}
+        {% if block.settings.title_color_btn != blank %}
+        color:{{ block.settings.title_color_btn }};
+        {% endif %}
+      }
+      #shopify-section-Slideshow .caption--{{ block.id }} a.btn:hover {
+        text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+        box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0 0 0 2px rgb(255,255,255), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+      }
+      {% endcapture %}
+      {% assign styles = styles | append: style %}
+
+     {% else %}
+   
+       <li style="background:url({{ 'slider-placeholder.png' | asset_url }}) no-repeat 50% 50%; background-size:contain;" {{ block.shopify_attributes }}>
+    	    <span class="slide_overlay"></span>
+          <div class="container"> 
+          <div class="caption">
+         
+             <div class="caption_text">
+                <h2>Lorem ipsum dolor sit amet</h2> 
+               	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+           
+              <div class="slide_btn">
+                <a href="/" class="btn" style="border-radius: {{ block.settings.title_btn_border_radius }}px;">SHOP NOW</a>
+              </div>
+            </div>
+          </div>
+    	</li>
+    {% endif %}
+    {% endfor %}       
+ </ul>
+	
+</div>
+
+{% endif %}
+
+{% if styles != blank %}
+<style>{{ styles }}</style>
+{% endif %}
+{% schema %}
+{
+  "name": "Slideshow",
+  "max_blocks": 6,	
+  "settings": [
+    {
+      "type": "select",
+      "id": "slider_home_transition",
+      "label": "Transition effect",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "horizontal",
+          "label": "Slide"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "slideshow_auto",
+      "label": "Slideshow Automatically"
+    },
+    {
+    "type": "select",
+    "id": "slider_home_rate",
+    "label": "Change slides every",
+    "options": [
+        {
+          "value": "3000",
+          "label": "3 seconds"
+        },
+        {
+          "value": "4000",
+          "label": "4 seconds"
+        },
+        {
+          "value": "5000",
+          "label": "5 seconds"
+        },
+        {
+          "value": "7000",
+          "label": "7 seconds"
+        },
+        {
+          "value": "10000",
+          "label": "10 seconds"
+        },
+        {
+          "value": "15000",
+          "label": "15 seconds"
+        }
+      ]
+    },
+    {
+      "type":"color",
+      "id":"section_bg_color",	
+      "label":"Background Color",
+      "default": "#fff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+            "type": "select",
+            "id": "position",
+            "label": "Caption Position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type":"color",
+          "id":"title_color",
+          "label":"Title Color",
+          "default": "#fff"
+        },
+        {
+          "type":"textarea",
+          "id":"content",
+          "label":"Content"
+        },
+        {
+          "type":"color",
+          "id":"text_color",
+          "label":"Content Color",
+          "default": "#fff"
+        },
+        {
+          "type": "text",
+          "id": "button_name",
+          "label": "Button Name"
+        },
+        {
+          "type":"color",
+          "id":"button_bkg_color",
+          "label":"Button Background color",
+          "default": "#F21010"
+        },
+        {
+          "type":"color",
+          "id":"title_color_btn",	
+          "label":"Button Text Color",
+          "default": "#fff"
+        },
+        {
+          "type":"range",
+          "id":"title_btn_border_radius",	
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label":"Button Border Radius",
+          "default": 0
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Image",
+      "settings": {
+        "slideshow_auto": true,
+          "slider_home_rate": "7000",
+        "slider_home_transition": "fade"
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

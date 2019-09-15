@@ -1,0 +1,28 @@
+<!-- /snippets/search-bar.liquid -->
+
+{% if search-bar contains 'search' %}
+<form action="/search" method="get" role="search"> 
+  <input type="search" id="search-input_blog" placeholder="Search Blog" name="q"{% if search.performed %} value="{{ search.terms | escape | downcase }}"{% endif %} value="{{ search.terms | escape }}" placeholder="search...">
+
+  <input type="submit" value="Search" class="btn">
+  
+  {% if search-bar == 'search-product' %}
+  	<input type="hidden" name="type" value="product">
+  {% elsif search-bar == 'search-article' %}
+  	<input type="hidden" name="type" value="article">
+  {% endif %}
+
+</form>
+{% else %}
+<form action="/search" method="get" role="search">
+  <div class="search-desktop">
+    <input id="search__input" type="search" name="q" placeholder="Search Products" >
+    <input type="hidden" name="type" value="product" />
+    <button id="search__button" type="submit"> <img src="{{ 'icon-search.svg' | asset_url }}" /></button>
+  </div>
+  <div class="search-mobile">
+  <input id="search__input--mobile" type="search"  placeholder="Search Products" >
+  </div>
+</form>
+
+{% endif %}

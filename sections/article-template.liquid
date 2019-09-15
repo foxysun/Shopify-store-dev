@@ -1,0 +1,219 @@
+ {% assign number_of_comments = article.comments_count %}
+
+{% comment %}
+  If a comment was just submitted and it has no blank fields, we have an extra comment to count.
+{% endcomment %}
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+
+<!-- ======================== Header ========================= -->
+
+
+<div class="header_banner">
+  <h1>Blog Detail</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  	<img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+   {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+
+<!-- ======================= Article Page ==================== -->
+
+<div class="blog_section"  itemscope itemtype="http://schema.org/Article">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__item eight-tenths medium-down--one-whole medium-large--eight-twelfths right">
+        <div class="blog_detail">
+          <div class="blog_detail_img">
+            {% if article.image.src != blank %}
+            	<img src="{{ article.image.src | img_url: 'original' }}" alt="{{ article.image.alt | escape }}" /> 
+            {% else %}
+            	{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          <div class="blog_author">
+            <div class="author_img"> <img src="{{ 'blog-author.jpg'  | asset_url }}" alt="{{ article.author }}" /> </div>
+           {% if section.settings.blog_author_enable %} 
+            <div class="author_desc">
+              <h4>by <span>{{ article.author }}</span> in <span>{{ blog.title }}</span></h4>
+            </div>
+            {% endif %}
+          </div>
+          <div class="blog_detail_desc">
+            <h4>{{ article.published_at | date: "%d %B, %Y" }} <span></span> ({{ article.comments_count }}) Comments </h4>
+            <h2>{{ article.title }}</h2>
+            {{ article.content }}
+            
+            {% if settings.social_sharing_blog %}
+            <div class="blog_share">
+              <p>Share on :</p>
+              {% include 'social-sharing' %} 
+            </div>
+            {% endif %} 
+          </div>
+        </div>
+        
+        {% if section.settings.show_article_nav %}  
+        {% if blog.next_article or blog.previous_article %}
+        <div class="pagination detail_pagination clearfix">
+          <ul>
+            {% if blog.previous_article %}
+            <li class="prev"><a href="{{ blog.previous_article }}"><span><i class="ion-ios-arrow-thin-left"></i></span>{{ 'blogs.article.older_post' | t | capitalize }}</a></li>
+            {% endif %}
+            {% if blog.next_article %}
+            <li class="next"><a href="{{  blog.next_article }}">{{ 'blogs.article.newer_post' | t | capitalize }}<span><i class="ion-ios-arrow-thin-right"></i></span></a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}       
+        
+        {% endif %}
+       
+        {% if blog.comments_enabled? %}
+         {% paginate article.comments by section.settings.no_of_comment %}
+        
+        {% if number_of_comments > 0 %} 
+        <div class="comment_listing">
+         <!-- Comment Listing Start -->
+                {% if comment and comment.created_at %}
+                    <p class="note form-success">
+                    {% if blog.moderated? %}
+                    {{ 'blogs.comments.success_moderated' | t }}
+                    {% else %}
+                    {{ 'blogs.comments.success' | t }}
+                    {% endif %}
+                    </p>
+                {% endif %}
+          <h2>{{ 'blogs.comments.title' | t }}({{ article.comments_count }})</h2>
+           {% for comment in article.comments %}
+          <div class="comment_item">
+            <div class="grid">
+              <div class="grid__item one-tenth small--two-tenths medium--two-tenths medium-large--two-twelfths">
+                <div class="comment_img"> <img src="{{ 'blog-author.jpg' | asset_url }}" /> </div>
+              </div>
+              <div class="grid__item nine-tenths small--eight-tenths medium--eight-tenths medium-large--ten-twelfths">
+                <div class="comment_desc">
+                  <h5>{{ comment.author }}</h5>
+                  <h6>{{ comment.published_at | date: "%d %B, %Y" }}</h6>
+                  <p>{{ comment.content }}</p>
+                   </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+           {% if paginate.pages > 1 %}
+           <div class="pagination"> 
+             {% include 'pagination' %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+
+        <!-- Comment Listing End -->
+        
+         {% endpaginate %} 
+        {% endif %}
+       
+        <div class="leave_comment"> <!-- Leave Comment Start --> 
+          
+          {% form 'new_comment', article %}
+          
+          {{ form.errors | default_errors }}
+          <div class="grid">
+            <div class="grid__item one-half small--one-whole">
+              <div class="row">
+                <label for="ContactFormName" >{{ 'blogs.comments.name' | t }}</label>
+                <input type="text" arial-label="Name" name="comment[author]" id="CommentAuthor"  value="{{ form.author }}"   required>
+              </div>
+            </div>
+            <div class="grid__item one-half small--one-whole">
+              <div class="row">
+                <label for="ContactFormName" >{{ 'blogs.comments.email' | t }}</label>
+                <input type="email" arial-label="Email" name="comment[email]" id="CommentEmail" value="{{ form.email }}" required>
+              </div>
+            </div>
+            <div class="grid__item one-whole">
+              <div class="row">
+                <label for="ContactFormName" >{{ 'blogs.comments.message' | t }}...</label>
+                <textarea name="comment[body]" arial-label="Message" id="CommentBody">{{ form.body }}</textarea>
+              </div>
+            </div>
+            <div class="grid__item one-whole">
+              <div class="submit_row">
+                <button type="submit" class="btn" >{{ 'blogs.comments.post' | t }}</button>
+              </div>
+            </div>
+          </div>
+          {% comment %}
+          Assign variable to be used after timber.init() is run in theme.liquid
+          {% endcomment %}
+          {% if form.errors %}
+          {% assign newHash = 'AddCommentTitle' %}
+          {% endif %}
+          
+          {% if form.posted_successfully? %}
+          {% assign newHash = 'Comments' %}
+          {% endif %}
+          
+          {% endform %} </div>
+       
+        <!-- Leave Comment End --> 
+        
+      </div>
+      {% if settings.enable_blog_sidebar %} 
+      <div class="grid__item two-tenths medium-down--one-whole medium-large--four-twelfths left"> 
+        {% include 'blog-sidebar' %} 
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Article Page",
+    "settings": [
+	
+	{
+		"type":"image_picker",
+		"id":"image",
+		"label":"Banner Image"
+	},
+	 {
+        "type": "header",
+        "content": "Article"
+      },
+      {
+          "type": "checkbox",
+          "id": "show_article_nav",
+          "label": "Show Previous / Next",
+		  "default":true
+        },
+		{
+          "type": "checkbox",
+          "id": "blog_author_enable",
+          "label": "Show blog post author",
+		  "default":true
+        },
+      {
+        "type": "text",
+        "id": "no_of_comment",
+        "label": "No. of Comments Per Article page",
+        "default": "6"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

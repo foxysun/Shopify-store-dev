@@ -1,0 +1,507 @@
+
+{% comment %} {% assign modal_gloss_png = 'modal-gloss.png' | asset_url %} {% endcomment %}
+{% assign modal_gloss_png = '' %}
+
+<style>
+.landing-page-review__heading {
+  font-size: 48px;
+  margin-bottom: 30px;
+  line-height: 48px;
+}
+.landing-page-reviews {
+  max-width: calc(100% - 220px);
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f6f6f6;
+}
+
+.landing-page-review__section {
+  margin: 0 auto;
+  padding: 60px 0 300px 0;
+  background-color: #f6f6f6;
+}
+.landing-page-review {
+  padding: 46px;
+  {% comment %} border: 1px solid #ccc; {% endcomment %}
+  margin: 0 30px 0;
+  background-color: #fff;
+  height: 525px;
+}
+
+.landing-page-review__details {
+  display: flex;
+  justify-content: space-between;
+}
+.landing-page-review__name {
+  font-size: 22px;
+  font-weight: 700;
+}
+.landing-page-review__date {
+  font-size: 18px;
+  color: #666;
+  padding-top: 20px;
+}
+.landing-page-review__model {
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 22px;
+  clear: both;
+}
+
+.landing-page-review__title {
+  display: block;
+  margin-top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.landing-page-review__description {
+  margin: 5px auto;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.landing-page-review__read-more a {
+  display: block;
+  color: red;
+  font-size: 16px;
+}
+
+.stars .star {
+  float: left;
+}
+.stars .star polygon {
+}
+
+.landing-page-review__section .owl-carousel .owl-stage-outer {
+  width: 100%;
+}
+
+.owl-dots {
+  width: 200px;
+  margin: 15px auto;
+  text-align: center;
+}
+.owl-carousel button.owl-dot {
+  background: #cecece;
+  padding: 0 !important;
+  font: inherit;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.owl-carousel button.owl-dot.active {
+  background: #666;
+}
+
+.reveal-modal.landing-page__review-modal {
+  visibility: hidden;
+  top: 100px;
+  left: 12.5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  {% if modal_gloss_png != blank %}
+  background: #fff url({{ modal_gloss_png }}) no-repeat -200px -80px;
+  {% endif %}
+  position: absolute;
+  z-index: 101;
+  padding: 30px 40px 34px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  color: #333;
+  font-size: 18px;
+  line-height: 32px;
+}
+  .close-reveal-modal.landing-page__review-modal--close {
+    font-size: 50px;
+    font-weight: 300;
+    top: 0;
+    right: 0;
+    color: red;
+    display: block;
+    background-color: #fff;
+    padding: 10px 10px 25px 10px;
+  }
+
+@media only screen and (max-width: 750px) {
+  .landing-page-review__heading {
+    padding-top: 100px;
+    font-size: 48px;
+  }
+  .landing-page-reviews {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .landing-page-review__section {
+    margin: -50px auto 0 auto;
+    padding: 10px 0 10px 0;
+  }
+  .landing-page-review {
+    padding: 10px;
+
+    overflow: hidden;
+    margin: 0 10px 0 10px;
+  }
+
+  .landing-page-review__details {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+  .landing-page-review__name {
+    font-size: 22px;
+    margin-top: 15px;
+  }
+  .landing-page-review__date {
+    font-size: 18px;
+  }
+  .landing-page-review__model {
+    font-size: 22px;
+  }
+
+  .landing-page-review__title {
+    font-size: 28px;
+  }
+  .landing-page-reviews.owl-carousel {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+  }
+  .reveal-modal.landing-page__review-modal {
+    visibility: hidden;
+    top: 5%;
+	  left: 5%;
+    width: 90%;
+    {% if modal_gloss_png != blank %}
+    background: #fff url({{ modal_gloss_png }}) no-repeat -200px -80px;
+    {% endif %}
+    position: absolute;
+    z-index: 101;
+    padding: 5px 10px 7px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .close-reveal-modal.landing-page__review-modal--close {
+   font-size: 50px;
+    font-weight: 300;
+    top: 0;
+    right: 0;
+    color: red;
+    display: block;
+    background-color: #fff;
+    padding: 10px 10px 25px 10px;
+  }
+}
+  
+  
+</style>
+
+{% assign limit_no = section.settings.limit %}
+{% assign page_handle = page.handle %}
+
+  <script> 
+$(document).ready(function() {
+  var reviewCount = 20;
+
+  for (var i = 0; i < reviewCount; i++) {
+    $("#reviewModal_" + reviewCount).reveal({
+      animation: "fadeAndPop", //fade, fadeAndPop, none
+      animationspeed: 300, //how fast animtions are
+      closeonbackgroundclick: true, //if you click background will modal close?
+      dismissmodalclass: "close-reveal-modal" //the class of a button or element that will close an open modal
+    });
+  }
+});
+
+</script>
+
+<div class="landing-page-review__section"  >
+
+
+<h2 class="secondary-heading landing-page-review__heading" >Reviews</h2>
+
+<div class="landing-page-reviews owl-carousel"  >
+
+  
+  
+{% if section.blocks.size > 0 %}
+  
+{% for block in section.blocks %}
+  {% if block.settings.page_handle == page_handle %}
+  
+<div class="landing-page-review item">
+  <div class="landing-page-review__details">
+    <div class="landing-page-review__name">{{ block.settings.reviewer-name }}</div>
+    <div class="landing-page-review__date">{{ block.settings.date-of-review }}</div>
+  </div>
+  <div class="landing-page-review__stars">
+    
+    
+    
+   {% if block.settings.review-stars == "1" %} 
+    <div class="stars" data-stars="1">
+      <svg height="25" width="23" class="star rating" data-rating="1">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="2">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="3">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="4">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="5">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#cccc"></polygon>
+      </svg>
+    </div>
+    {% endif %}
+    {% if block.settings.review-stars == "2" %}
+    <div class="stars" data-stars="1">
+      <svg height="25" width="23" class="star rating" data-rating="1">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="2">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="3">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="4">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="5">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#cccc"></polygon>
+      </svg>
+    </div>
+    {% endif %}
+    {% if block.settings.review-stars == "3" %}
+      <div class="stars" data-stars="1">
+      <svg height="25" width="23" class="star rating" data-rating="1">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="2">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="3">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="4">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="5">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#cccc"></polygon>
+      </svg>
+    </div>
+    {% endif %}
+    {% if block.settings.review-stars == "4" %}
+    <div class="stars" data-stars="1">
+      <svg height="25" width="23" class="star rating" data-rating="1">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="2">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="3">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="4">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="5">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#cccc"></polygon>
+      </svg>
+    </div>
+    {% endif %}
+    {% if block.settings.review-stars == "5" %}
+      <div class="stars" data-stars="1">
+        <svg height="25" width="23" class="star rating" data-rating="1">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+        </svg>
+        <svg height="25" width="23" class="star rating" data-rating="2">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red" ></polygon>
+        </svg>
+        <svg height="25" width="23" class="star rating" data-rating="3">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+        </svg>
+        <svg height="25" width="23" class="star rating" data-rating="4">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+        </svg>
+        <svg height="25" width="23" class="star rating" data-rating="5">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="red"></polygon>
+        </svg>
+      </div>
+    {% endif %}
+     {% if block.settings.review-stars == "" %}
+    <div class="stars" data-stars="1">
+      <svg height="25" width="23" class="star rating" data-rating="1">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="2">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc" ></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="3">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="4">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#ccc"></polygon>
+      </svg>
+      <svg height="25" width="23" class="star rating" data-rating="5">
+        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill="#cccc"></polygon>
+      </svg>
+    </div>
+    {% endif %}
+
+  </div>
+    
+  <div class="landing-page-review__model">{{ block.settings.review-model }}</div>
+  <div class="landing-page-review__title">{{ block.settings.title-of-review }}</div>
+  <div class="landing-page-review__description">{{ block.settings.review-content-teaser }}</div>
+  <div class="landing-page-review__read-more " > <a href="#"  class="big-link" data-reveal-id="reviewModal_{{ forloop.index0 }}" >Continue Reading...</a></div>
+ 
+  </div>  
+  
+    {% endif %}
+{% endfor %}
+</div>
+
+</div>
+  
+{% for block in section.blocks %}
+  
+<div id="reviewModal_{{ forloop.index0 }}" class="reveal-modal landing-page__review-modal">
+
+  <div class="landing-page-review__details">
+    <div class="landing-page-review__name">{{ block.settings.reviewer-name }}</div>
+    <div class="landing-page-review__date">{{ block.settings.date-of-review }}</div>
+  </div>
+  <div class="landing-page-review__stars">
+
+    <div class="landing-page-review__model">{{ block.settings.review-model }}</div>
+    <div class="landing-page-review__title">{{ block.settings.title-of-review }}</div>
+
+    {{  block.settings.review-content-all  }}
+
+    <a class="close-reveal-modal landing-page__review-modal--close">&#215;</a>
+  </div>
+</div>
+{% endfor %}
+
+
+<script>
+
+$('#shopify-section-landing-page-reviews .owl-carousel').owlCarousel({
+  loop: false,
+  margin: 0,
+  nav: false,
+  items: 3,
+  dots: true,
+  autoplay: false,
+  autoplayHoverPause: true,
+  center: false,
+  responsive: {
+    0: {
+      items: 1,
+      stagePadding: 0
+    },
+    600: {
+      items: 1,
+      stagePadding: 0
+    },
+    751: {
+      items: 2,
+      stagePadding:0
+    },
+    1250: {
+      items: 3,
+      stagePadding: 0
+    }
+  }
+})
+
+</script>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Feature Item Reviews",
+    "blocks":[
+		{
+			"type":"select",
+			"name": "Add Review",
+			"settings":[
+				{	
+          "id": "reviewer-name",
+          "type":"text",
+          "label": "Name of Reviewer"
+				},
+        {
+          "type": "page",
+          "id": "page_handle",
+          "label": "Select a page"
+        },
+				{
+				  "id": "date-of-review",
+				  "type": "text",
+				  "label": "Date of Review"
+				},
+				{
+				  "id": "review-stars",
+				  "type": "text",
+				  "label": "Number of Stars (enter 1,2,3,4, or 5)"
+				},
+				{
+					"id": "review-model",
+					"type": "text",
+					"label": "Model Reviewed"
+				},
+				{
+					"id": "title-of-review",
+					"type": "text",
+					"label": "Title of Review"
+				},
+				{
+					"id": "review-content-teaser",
+					"type": "textarea",
+					"label": "Review Description Teaser (150 characters max)"
+				},
+				{
+					"id": "review-content-all",
+					"type": "textarea",
+					"label": "Review Description All"
+				}
+			]
+		}
+  
+	]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}

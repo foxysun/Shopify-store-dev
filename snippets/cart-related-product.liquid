@@ -1,0 +1,71 @@
+<div class="related_product">
+
+<h1>{{ settings.featured_title }}</h1>
+<div class="product-carousel owl-theme related_slider">           
+
+{% for product in collections[settings.you_may_like_collection].products %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+{% assign sold_out = false %}
+{% endif %}
+
+<div class="product_item {% if sold_out %}sold_product{% endif %}{% if on_sale %}sell{% endif %}"  data-id ="{{product.id}}">
+
+
+  <div class="product_img">
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+    </a>
+
+    <div class="overlay">
+
+      {% if settings.enable_quickview %}
+      <button class="overlay_cart" id="quickviewbutton" data-id="{{ product.handle }}"><span class="ion-eye"></span></button>
+      {% endif %}
+
+      {% if customer %}
+      {% include 'wishlist-product' %}
+      {% else %}
+      <button class="overlay_wishlist"><a href="/account/login"><span class="ion-heart"></span></a></button>
+      {% endif %}
+
+    </div>
+
+    {% if sold_out %}<span class="sold_out">{{ 'products.product.sold_out' | t }}</span>{% endif %}
+
+
+    {% if on_sale %}
+    <span class="onsale">Sale</span>
+    {% endif %}
+  </div>
+
+  <div class="product_desc" >
+    <a href="{{ product.url | within: collection }}">
+      {{ product.title | capitalize  }}</a>
+    <p>{{ product.price | money }}
+      {% if product.compare_at_price %}
+      <span><del>{{ product.compare_at_price | money }}</del></span>
+      {% endif %}</p>
+ </div>
+
+</div>
+  
+{% else %}
+  
+  <script>
+  	$('.related_product').parent().hide();
+  </script> 
+  
+{% endfor %}
+</div>
+</div>

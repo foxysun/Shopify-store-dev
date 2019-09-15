@@ -1,0 +1,311 @@
+{% if customer %}
+<!-- ======================== Header ========================= -->
+
+   
+<div class="header_banner">
+    	<h1>{{ page.title }}</h1>
+    	<span class="header_overlay"></span>
+          {% if settings.page_banner != blank %} 	
+        	<img src="{{ settings.page_banner | img_url : 'master' }}" alt="{{ page.title }}" />
+        {% else %}
+         {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+       {% endif %} 
+</div>   
+
+
+
+<div class="container">
+ <div class="wishlist_section">		<!-- wishlist Section Start -->
+   
+		<div class="wishlist-layout">
+             <div class="grid">
+               <!-- Cart Header   -->
+               <div class="grid__item">
+                 <div class="wishlist-header">
+                 
+                   <div class="grid">
+
+                    <div class="grid__item one-tenth small--three-twelfths medium--two-twelfths"></div>
+
+                    <div class="grid__item three-tenths small--six-twelfths medium--six-twelfths">
+                       <div class="th wishlist-des">
+                         <h3>Product name</h3>
+                       </div>
+                     </div>
+
+                    <div class="grid__item two-tenths small--hide medium--two-twelfths">
+                       <div class="th wishlist-qty medium--hide">
+                         <h3>stock status</h3>
+                       </div>
+                     </div>
+
+                     <div class="grid__item three-tenths medium--two-twelfths small--two-twelfths small--hide medium--three-twelfths medium--hide">
+                       <div class="th wishlist-total">
+                         <h3>Option</h3>
+                       </div>
+                     </div>
+
+                    <div class="grid__item one-tenth medium--two-twelfths small--two-twelfths">
+                       <div class="th wishlist-total medium-large--hide">
+                         <h3>Delete</h3>
+                       </div>
+                     </div>
+
+                   </div>
+
+                 </div>
+               </div>
+			   <div class="grid__item wishlistItemWrapper">                    
+                <div class="wishlist-items">  
+				
+                   {% for tag in customer.tags %}
+                   {% assign the_test = 'nutthin' %}
+                   {% capture tag_id %}{{ tag }}{% endcapture %}
+                   {% assign tag_size = tag_id.size %}
+                   {% for tag in customer.tags %}
+                   {% capture cur_tag %}{{ tag }}{% endcapture %}
+                   {% if cur_tag contains tag_id %}
+                   {% assign difference = tag_size | minus:cur_tag.size %}
+                   {% if difference == 0 %}
+                   {% assign the_test = tag_id %}
+                   {% else %}
+                   {% assign the_test = 'nutthin' %}
+                   {% endif %}
+                   {% endif %}
+                   {% endfor %}
+                   {% for collection in collections %}
+                   {% paginate collection.products by collection.all_products_count %}
+                   {% for product in collection.products %}
+                   {% capture product_id %}{{ product.id }}{% endcapture %}
+                   {% unless used contains product_id %}
+                   {% capture diff %}{{ tag_size | minus:product_id.size | money_without_currency | times:100 | divided_by:2 }}{% endcapture %}
+                   {% assign check = diff | split:'.' %}
+                   {% if check[1] contains '5' %}{% assign display = false %}{% else %}{% assign display = true %}{% endif %}
+                   {% if display and the_test contains product_id %}
+                   <div class="row-{{tag_id}} product-item" id="x{{ tag_id }}">
+                     <div class="wishlist-item">
+                       <div class="grid">
+
+                         <div class="grid__item one-tenth small--two-tenths medium--two-twelfths">            
+                          <div class="tr wishlist-item-name">
+                             <a href="{{product.url}}">
+                               <img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.title }}" />
+                             </a>
+                           </div>
+                         </div>
+
+                         <div class="grid__item three-tenths small--four-tenths medium--six-twelfths">
+                             <div class="tr wishlist-des wishlist_title">
+                               <h2><a href="{{product.url}}">{{product.title | capitalize }}</a></h2>
+                              
+                           </div>
+                         </div>
+                         {% assign sold_out = true %}
+                         {% if product.available %}
+                         {% assign sold_out = false %}
+                         {% endif %}   
+
+                         <div class="grid__item two-tenths small--two-tenths medium--two-twelfths">           
+
+                           <div class="tr wishlist-status">
+                             {% if sold_out %}                                   
+                             <p>Out of Stock</p>
+							 {% else %}
+                             <p>In Stock</p>
+                             {% endif %}                                    
+                           </div>
+                         </div>
+                         <div class="grid__item three-tenths small--hide medium--hide">          
+                           <div class="tr wishlist-add-cart">
+                            {% assign variantCount = product.variants | size %}  
+                             {% if sold_out %}
+                               <button class="btn"  disabled="disabled" >Unavailable</button>
+                               {% else %}	
+                               
+                               {% if variantCount > 1 %}
+
+                               <button><a href="{{product.url | within: collection  }}" class="btn">Select Option</a>
+                               </button>
+                               {% else %}
+                                 <form action="/cart/add" method="post" id="product-actions-{{ product.id }}" enctype="multipart/form-data">
+
+                                   <button class="js-add-to-cart btn"> Add to Cart</button>
+
+                                   <input type="hidden" name="id" value="{{ product.variants[0].id }}" />  
+                                 </form> 
+                               {% endif %}
+                                     
+                               {% endif %}
+                           </div>
+                         </div>
+
+                         <div class="grid__item one-tenth medium--two-twelfths small--two-tenths">
+                           <div class="tr wishlist-cancel">
+                             <a href="#0" class="js-remove-button"> <span class="ion-close-round"></span></a>
+                           </div>
+                         </div>
+
+                       </div>
+                     </div>                        
+                   </div>    
+                   {% capture used %}{{ product_id }} {{ used }}{% endcapture %}
+                   {% endif %}
+                   {% endunless %}
+                   {% endfor %}
+                   {% endpaginate %}
+                   {% endfor %}
+                   {% endfor %}
+                 </div>  
+               </div>
+          </div>
+  	
+             
+           
+  <form method='post' action='/contact' id='remove' accept-charset='UTF-8'>
+    <input name='form_type' type='hidden' value='customer'/>
+    <input name='utf8' type='hidden' value='✓'>
+    <input type='hidden' name='contact[email]' value='{{ customer.email }}'/>
+    <input type='hidden' name='contact[tags]'id="remove-value" value='' />
+  </form>
+  {% capture subject %}My%20{{ shop.name | replace: ' ','%20' }}%20Wish%20List{% endcapture %}
+  {% capture body %}I&rsquo;ve%20added%20the%20following%20items%20to%20my%20wish%20list%20at%20{{ shop.name | replace: ' ','%20' }}{% endcapture %}
+  {% capture body %}{{ body }}{% for tag in customer.tags %}{% assign the_test = 'nutthin' %}{% capture tag_id %}{{ tag }}{% endcapture %}{% assign tag_count = 0 %}{% assign tag_size = tag_id | size %}{% for tag in customer.tags %}{% capture cur_tag %}{{ tag }}{% endcapture %}{% if cur_tag contains tag_id %}{% assign cur_tag_size = cur_tag | size %}{% assign difference = tag_size | minus: cur_tag_size %}{% if difference == 0 %}{% assign the_test = tag_id %}{% else %}{% assign the_test = 'nutthin' %}{% endif %}{% endif %}{% endfor %}{% for collection in collections %}{% paginate collection.products by collection.all_products_count %}{% for product in collection.products %}{% for variant in product.variants %}{% capture variant_id %}{{ variant.id }}{% endcapture %}{% unless email_used contains variant_id %}{% capture diff %}{{ tag_size | minus:variant_id.size | money_without_currency | times:100 | divided_by:2 }}{% endcapture %}{% assign check = diff | split:'.' %}{% if check[1] contains '5' %}{% assign display = false %}{% else %}{% assign display = true %}{% endif %}{% if display and the_test contains variant_id %}%0A%0A{{ product.title | replace: ' ','%20' }}%20-%20{{ variant.title | replace: ' ','%20' }}%3A%20%20{{ shop.url }}{{ variant.url }}{% capture email_used %}{{ variant_id }} {{ email_used }}{% endcapture %}{% endif %}{% endunless %}{% endfor %}{% endfor %}{% endpaginate %}{% endfor %}{% endfor %}{% endcapture %}
+
+ 
+   <a class="share" id="share_via_mail" href='mailto:?to=&?subject={{ subject }}&amp;body={{ body }}'>Share my wish list via email</a>                                 
+     <div class="container">                
+       <div class="empty_wishlist" id="empty_wslt">                
+          <div class="wishlist_empty_txt"> 
+            <span><i class="ion-ios-heart"></i></span>
+          <h3>YOU HAVE '0' ITEMS IN YOUR WISHLIST</h3>
+          <p>To add items to your wishlist simply click the icon</p>
+          <a href="/collections/all" class="btn">continue shopping</a>
+          </div>
+        </div>               
+      </div>     
+   </div>                   
+ </div> 
+</div>                        
+{% else %}
+              
+   <!-- /templates/customers/login.liquid -->
+<div class="blank_section"></div>
+
+<!-- ======================== Header ========================= -->
+
+<div class="header_banner blog_banner">
+  <div class="container">
+      <h1>{{ 'customer.login.title' | t }}</h1>
+      <span class="header_overlay"></span>
+    <img src="{{ 'about-banner2.jpg' | asset_url }}" />
+    </div>
+</div>
+
+<!-- ======================= Login Content ==================== -->
+
+<div class="container">
+  <div class="login_content">
+                
+                    <div class="grid">
+                    
+                        <div class="grid__item one-half medium-down--one-whole">
+                        
+                            <div class="login_section">
+                        
+                               <h3>{{ 'customer.login.title' | t }}</h3>
+
+                                
+                                <div class="login_form">
+                                
+                                   {% form 'customer_login' %}
+                                    
+                                      {{ form.errors | default_errors }}
+                                  <div class="row">
+                                    <label for="CustomerEmail" >{{ 'customer.login.email' | t }}</label>
+                                    <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}"  >
+                                  </div>
+
+                                  <div class="row">
+                                    {% if form.password_needed %}
+                                    <label for="CustomerPassword" >{{ 'customer.login.password' | t }}</label>
+                                    <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" >
+                                    {% endif %}
+                                  </div>
+                                        {% if form.password_needed %} 
+                                        <div class="row">
+                                            <a href="#recover" id="RecoverPassword">Lost Password?</a>
+                                        </div>
+                                        {% endif %}
+
+                                        <div class="submit_row">
+                                            <button type="submit" class="btn">{{ 'layout.customer.log_in' | t }}</button>
+                                        </div>
+                                    
+                                   {% endform %}
+                                
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="reset_pass_section"  id="RecoverPasswordForm" style="display:none;">
+                        
+                                  <h3>{{ 'customer.recover_password.title' | t }}</h3>
+
+                                <div class="reset_form">
+                                
+                                     {% form 'recover_customer_password' %}
+                                    
+                                        {% if form.posted_successfully? %}
+                                             {% assign resetPassword = true %}
+                                        {% endif %}
+                                        <div class="row">
+                                             <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" >
+
+                                        </div>
+                                        
+                                        <div class="submit_row">
+                                            <button type="submit" class="submit_btn">send</button>
+                                             <button type="button" id="HideRecoverPasswordLink" class="submit_btn">{{ 'customer.recover_password.cancel' | t }}</button>
+                                        </div>
+                                    
+                                  {% endform %}
+                                
+                                </div>
+                            
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="grid__item one-half medium-down--one-whole">
+                        
+                            <div class="new_register_section">
+                        
+                              <h3>{{ settings.register_title }}</h3>
+                              <p>{{ settings.register_content }}</p>
+ 								<div class="submit_row">
+                                  <a href="/account/register" class="btn">{{ 'customer.register.submit' | t }}</a>
+                                </div>
+                            
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+
+
+</div>
+                    
+    <script type="text/javascript">
+        $(".wishlist-header").hide();
+    </script>
+  
+{% endif %}
+    
+ 
+
+
+ {{ 'wishlist.js' | asset_url | script_tag }}  
+  

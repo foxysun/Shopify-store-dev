@@ -1,0 +1,90 @@
+<style>
+  #PageContainer{
+    background-color:#000;
+  }
+</style>
+<!-- /templates/page.liquid -->
+
+<!-- ======================== Header ========================= -->
+
+     
+<div class="header_banner blog_banner affiliate_banner">
+  	<div class="affiliate__heading">
+    	<h1 class="affiliate__header">Become a RESPAWN Affiliate</h1>
+  		<a class="affiliate__button" href="https://respawnproducts.typeform.com/to/dxLMvt" data-mode="popup"  target="_blank" rel="noopener noreferrer">ENROLL NOW </a>
+  	</div>
+
+  <span class="header_overlay"></span>
+  {% if settings.page_banner != blank %} 	
+  <img src="{{ page.metafields["global"]["header-background-image"] }}" alt="{{ page.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %} 
+</div>   
+
+
+
+<!-- ======================= About Content ==================== -->
+
+
+<div class="container affiliate">
+        {{ page.content }}
+  
+
+  
+    </div>
+
+  <div class="affiliate-application">
+    <h2>RESPAWN Affiliate Application</h2>
+	<a class="typeform-share button affiliate__button" href="https://respawnproducts.typeform.com/to/dxLMvt" data-mode="popup"  target="_blank">ENROLL NOW </a>
+    <p><a href="https://respawnproducts.com/pages/support">For detailed information regarding RESPAWN Affiliate Terms &amp; Conditions, please click here.</a></p>
+  </div>
+  
+
+
+<script>
+  window.addEventListener("load", function() {
+	// store tabs variable
+	var myTabs = document.querySelectorAll("ul.nav-tabs > li");
+  function myTabClicks(tabClickEvent) {
+		for (var i = 0; i < myTabs.length; i++) {
+			myTabs[i].classList.remove("active");
+		}
+		var clickedTab = tabClickEvent.currentTarget;
+		clickedTab.classList.add("active");
+		tabClickEvent.preventDefault();
+		var myContentPanes = document.querySelectorAll(".tab-pane");
+		for (i = 0; i < myContentPanes.length; i++) {
+			myContentPanes[i].classList.remove("active");
+		}
+		var anchorReference = tabClickEvent.target;
+		var activePaneId = anchorReference.getAttribute("href");
+		var activePane = document.querySelector(activePaneId);
+		activePane.classList.add("active");
+	}
+	for (i = 0; i < myTabs.length; i++) {
+		myTabs[i].addEventListener("click", myTabClicks)
+	}
+});
+</script>
+
+
+<script>
+  
+  var accItem = document.getElementsByClassName('accordionItem');
+    var accHD = document.getElementsByClassName('accordionItemHeading');
+    for (i = 0; i < accHD.length; i++) {
+        accHD[i].addEventListener('click', toggleItem, false);
+    }
+    function toggleItem() {
+        var itemClass = this.parentNode.className;
+        for (i = 0; i < accItem.length; i++) {
+            accItem[i].className = 'accordionItem close';
+        }
+        if (itemClass == 'accordionItem close') {
+            this.parentNode.className = 'accordionItem open';
+        }
+    }
+</script>
+
+

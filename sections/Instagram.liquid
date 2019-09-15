@@ -1,0 +1,58 @@
+<!-- ======================= Instagram Section ==================== -->
+{% if section.settings.insta_access_Token != blank %}
+<div class="insta_section">
+
+  <h1>{{ section.settings.title }} </h1>
+  
+    <div id="instafeed" data-access_Token="{{section.settings.insta_access_Token}}" data-User_Id="{{section.settings.insta_access_Token | split:'.' | first }}" data-limit="{{section.settings.insta_limit}}">
+    </div>
+  
+</div>
+
+{{ 'instafeed.min.js' | asset_url | script_tag }}
+{{ 'insta.js' | asset_url | script_tag }}
+{% else %}
+<div class="insta_section">
+{% include 'onboarding-instagram' %}
+</div>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      
+      {
+        "type": "text",
+        "id": "insta_access_Token",
+        "label": "Enter AccessToken",
+	"info": "[Where I can get My AccessToken?](https:\/\/www.hulkthemes.com\/pages\/instagram-access-token)"
+      },
+      
+      {
+        "type": "text",
+        "id": "insta_limit",
+        "label": "Number Of Images"
+      }
+	],
+    "presets": [
+      {
+        "name": "Instagram",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+{% endjavascript %}

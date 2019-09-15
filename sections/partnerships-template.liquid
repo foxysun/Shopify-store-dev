@@ -1,0 +1,341 @@
+<style>
+  
+.results {
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.partner__logo, .gap {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.partner__logo{
+  align-items: center;
+  background: #fff;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 15px;
+}
+
+.partner__logo:before {
+  content: '';
+  display: inline-block;
+  padding-top: 66.25%;
+}
+.logos{
+  width: 80%;
+  margin: 30px auto;
+}
+.partner-name {
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #000;
+    font-weight: 700;
+    height: 80px;
+    float: none;
+    display: flex;
+    width: 100%;
+  	line-height: 1.5;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 18px;
+}  
+.partnership-filter .btn{
+  	text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    text-align: center;
+  	border: none;
+  	color: #000;
+    text-decoration: none;
+    background: transparent;
+  	padding-bottom: 6px;
+}
+.partnership-filter .btn:hover,
+.partnership-filter .btn.mixitup-control-active  {
+  border-bottom: 2px solid red;
+  padding-bottom: 3px;
+}
+  
+/* Responsive layout */
+/* 2 columns */
+
+/* 3 columns */
+@media screen and (min-width: 1026px) { 
+    .partner__logo, .gap {
+    width: calc( 100% / 3 - (((3 - 1) * 2rem) / 3));
+  }
+}
+@media screen and (min-width: 551px) and (max-width: 1025px) {
+  .partner__logo, .gap {
+    width: calc( 100% / 3 - (((3 - 1) * 2rem) / 3));
+  }
+  .logos{
+  width: 90%;
+  margin: 30px auto;
+  }
+  .partner-name {
+
+    height: 60px;
+    
+    margin-bottom: .5rem;
+    font-size: 16px;
+	} 
+}
+ 
+@media screen and (max-width: 550px) {
+
+  .logos{
+  width: 98%;
+  margin: 30px auto;
+  }
+  .partner-name {
+    height: 30px;
+    margin-bottom: .5rem;
+    font-size: 14px;
+	} 
+  .results {
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: column;  
+  justify-content: flex-start;
+	}
+  .partnership-filter .btn{
+    font-size: 18px;
+	}
+}
+  
+</style>
+
+
+<script>
+
+
+$(document).ready(function() {
+  var partnerCount = 100;
+
+  for (var i = 0; i < partnerCount; i++) {
+    $("#partnershipModal_" + partnerCount).reveal({
+      animation: "fadeAndPop", //fade, fadeAndPop, none
+      animationspeed: 300, //how fast animtions are
+      closeonbackgroundclick: true, //if you click background will modal close?
+      dismissmodalclass: "close-reveal-modal" //the class of a button or element that will close an open modal
+    });
+
+  }
+  
+ $(function() {
+   $(".partnership-filter  a").click(function() {
+      // remove classes from all
+      $(".partnership-filter  a").removeClass("active");
+      // add class to the one we clicked
+      $(this).addClass("active");
+   });
+});
+  
+  var resultItems = $('.results');
+  var mixer = mixitup(resultItems);
+  
+});
+
+</script>
+
+
+ <nav class="partnership-filter">
+      <button type=button class="btn" data-filter="all">All</button>
+      <button type="button" class="btn" data-filter=".team">Teams</button>
+      <button type="button" class="btn" data-filter=".school">Schools</button>
+</nav>
+
+<main class="results logos">
+{% assign logo_count = 0 %}
+
+{% for block in section.blocks %}
+  
+ 
+  <div class="partner__logo mix  {{ block.settings.partner-category }}">
+    <a href="#" class="big-link" data-reveal-id="partnershipModal_{{ logo_count }}" ><img src="{{ block.settings.logo-graphic |  img_url:'720x720' }}" alt="{{ block.settings.logo-graphic-alt }}" /><div class="partner-name">{{ block.settings.partner-name }}</div></a>
+  </div>
+
+  {% assign logo_count = logo_count | plus: 1 %}
+{% endfor %}
+
+</main>
+
+<!-- Modal -->
+{% assign modal_count = 0 %}
+{% for block in section.blocks %}
+	<div id="partnershipModal_{{ modal_count }}" class="reveal-modal partnership-modal">
+      <div class="partnership">
+		 <div class="partnership__info">
+                <div class="partnership__modal-logo">
+              		<img src="{{ block.settings.logo-graphic |  img_url:'720x720' }}" alt="{{ block.settings.logo-graphic-alt }}" />
+                </div>
+                <div class="partnership__copy">
+                  <h2 class="tertiary-heading partnership__name">{{ block.settings.partner-name }}</h2>
+                  <p class="paragraph partnership__description">{{ block.settings.partner-description }}</p>
+                </div>
+              </div>
+				
+              	<hr class="partnership__divider" />
+          		{% assign product_item_one = all_products[block.settings.partner-product-one] %}
+              	{% assign product_item_two = all_products[block.settings.partner-product-two] %}
+              	{% assign product_item_three = all_products[block.settings.partner-product-three] %}
+       
+              	<div class="partnership__products" >
+                   
+                  {% if product_item_one.title != '' %}
+                    <div class="partnership__product">
+                   <a href="{{ product_item_one.url }}" >
+                   <div class="partnership__product--image">
+                     <img src="{{ product_item_one | img_url : '300x300' }}" alt="{{ product_item_one.title }}" />
+                     </div>
+                      <div class="partnership__product--title">
+                      {{ product_item_one.title }} 
+                     </div>
+                      <div class="partnership__product--price">
+                     {{ product_item_one.price | money }}
+                     </div>
+                    
+                     
+                       <div class="partnership__product--more-info btn">
+                       More info
+                     </div>
+ 
+                     
+                  </a>
+                      
+                      </div>
+                  {% endif %}
+                  
+                   {% if product_item_two.title != '' %}
+                      <div class="partnership__product">
+                   <a href="{{ product_item_two.url }}" >
+                    <div class="partnership__product--image">
+                     <img src="{{ product_item_two | img_url : '300x300' }}" alt="{{ product_item_two.title }}"  />
+                     </div>
+                      <div class="partnership__product--title">
+                      {{ product_item_two.title }} 
+                     </div>
+                      <div class="partnership__product--price">
+                     {{ product_item_two.price | money }}
+                     </div>
+                     <div class="partnership__product--more-info btn">
+                       More info
+                     </div>
+                     </a>
+                      </div>
+                  {% endif %}
+                  
+                  {% if product_item_three.title != '' %}
+                      <div class="partnership__product">
+                   <a href="{{ product_item_three.url }}" >
+                   
+                      <div class="partnership__product--image">
+                     <img src="{{ product_item_three | img_url : '300x300' }}" alt="{{ product_item_three.title }}"  />
+                     </div>
+                      <div class="partnership__product--title">
+                      {{ product_item_three.title }} 
+                     </div>
+                      <div class="partnership__product--price">
+                     {{ product_item_three.price | money }}
+                     </div>
+                     <div class="partnership__product--more-info btn">
+                       More info
+                     </div>
+                     
+                     </a>
+                      </div>
+                  {% endif %}
+
+              </div>
+              <a class="close-reveal-modal partnerships-modal--close">&#215;</a>
+      </div>
+			</div>
+  {% assign modal_count = modal_count | plus: 1 %}
+{% endfor %}
+
+
+
+
+{% schema %}
+  {
+    "name": "Partners",
+    "blocks":[
+		{
+			"type":"select",
+			"name": "Add Partnership Logo",
+			"settings":[
+				{
+				  "id": "logo-graphic",
+				  "type": "image_picker",
+				  "label": "Logo Graphic"
+				},
+      			{
+				  "id": "logo-graphic-alt",
+				  "type": "text",
+				  "label": "Logo Alt Text"
+				},
+				{
+					"id": "partner-name",
+					"type": "text",
+					"label": "Name of Partner"
+				},
+				{
+					"id": "partner-description",
+					"type": "textarea",
+					"label": "Partner Description"
+				},
+                {
+                   "type":      "select",
+                   "id":        "partner-category",
+                   "label":     "Partner Category",
+                   "options": [
+                      	{ "value": "team", "label": "Team"},
+      					{ "value": "school", "label": "School"}
+                   ]
+                },
+				{
+					"id": "partner-product-one",
+					"type": "product",
+					"label": "Partner Product One"
+				},
+				{
+					"id": "partner-product-two",
+					"type": "product",
+					"label": "Partner Product Two"
+				},
+
+				{
+					"id": "partner-product-three",
+					"type": "product",
+					"label": "Partner Product Three"
+				}
+
+			]
+		}
+  
+	]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}
+

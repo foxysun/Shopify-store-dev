@@ -1,0 +1,198 @@
+<!-- ======================== Header ========================= -->
+
+<header class="home_headerPDP">
+
+	<div class="header_main clearfix">
+            
+      <div class="top_left_navs">
+        <div class="top_links">
+          {% if shop.customer_accounts_enabled %}
+          <ul>
+            {% unless customer %}
+            <li><a href="/account/login">{{ 'customer.login.sign_in' | t }}</a></li>
+            {% endunless %}
+            <li><a href="/account">{{ 'layout.customer.account' | t }}</a></li>
+            {% if customer %}
+            <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}
+            </li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </div>
+        <nav class="bottom_links">
+          <ul>
+            {% include 'bottom_nav_menu' %}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="logo_section">
+       {% if section.settings.logo_use_image %}
+          <a href="/" itemprop="url">
+          	{% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+            <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name }}"  itemprop="logo">
+          </a>
+          {% else %}
+           <h1><a href="/" itemprop="url">{{ shop.name }}</a></h1>
+          {% endif %}   
+      </div>
+
+      <div class="top_right_navs">
+          <div class="top_links ">
+                <ul>
+                  {% if settings.enable_cart_button %}
+                  <li><a href="/cart" class="{% if settings.ajax_cart_enable %}site-header__cart-toggle js-drawer-open-right{% endif %} bag_icon" {% if settings.ajax_cart_enable %}aria-controls="CartDrawer" aria-expanded="false"{% endif %}>Cart
+                    (<span class="CartCount">{{ cart.item_count }}</span>)</a></li>
+                  {% endif %}
+                  {% if settings.enable_wishlist %}
+                  {% if customer %}
+                  <li><a href="/pages/wishlist">My Wishlist</a></li>
+                  {% else %}
+                  <li><a href="/account/login">My Wishlist</a></li>
+                  {% endif %}
+                  {% endif %}
+                  {% comment %}
+                  {% if settings.show_multiple_currencies %}
+                  <li>
+                    <div class="currency_option">
+                      {% include 'currency-picker' %}
+                    </div>
+                  </li>
+                  {% endif %}
+                  {% endcomment %}
+                </ul>
+              </div>
+            {% if settings.enable_search_header  %}
+            <div class="search_section">
+            	 {% include 'search-bar' %}
+            </div>
+            {% endif %}
+        
+            <div class="mob_header">
+              <div class="mean_icon">
+                <ul>
+                  {% if settings.enable_cart_button %}
+                  <li class="mob_cart"><a href="/cart"><span class="ion-bag"></span>
+                    <p>{% if cart.item_count > 0 %}{{ cart.item_count }}{% else %}0{% endif %}</p>
+                    </a></li>
+                  {% endif %}  {% if settings.enable_wishlist %}
+                  <li><a href="/pages/wishlist"><span class="ion-heart"></span></a></li>
+                  {% endif %} {% if settings.enable_search_header  %}
+                  <li><a href="#" class="mob_search"><span class="ion-ios-search-strong"></span></a></li>
+                  {% endif %}
+                  {% comment %}
+                  {% if settings.show_multiple_currencies %}
+                  <li>
+                    <div class="currency_option">
+                      {% include 'currency-picker' %}
+                    </div>
+                  </li>
+                  {% endif %}
+                  {% endcomment %}
+                </ul>
+              </div>
+              <div class="open_search">
+                <form action="/search" method="get" role="search">
+                  <input type="search" name="q" placeholder="Search Products">
+                  <input type="hidden" name="type" value="product">
+                  <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                </form>
+              </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    <div class="header_main small_header">
+            
+        <div class="top_left_navs">
+            
+            <div class="bottom_links">
+            	<ul>
+                 {% include 'bottom_nav_menu' %}
+                </ul>
+            </div>
+            
+        </div>
+     <div class="logo_section">
+       {% if section.settings.logo_use_image %}
+          <a href="/" itemprop="url">
+          	{% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+            <img src="{{ section.settings.logo | img_url: image_size }}"
+                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   itemprop="logo">
+          </a>
+          {% else %}
+            <h1><a href="/" itemprop="url">{{ shop.name }}</a></h1>
+          {% endif %}   
+      </div>
+
+    
+        <div class="top_right_navs">
+        	<div class="top_links">
+              <ul>
+                 {% if settings.enable_cart_button %}
+                <li><a href="#" class="site-header__cart-toggle js-drawer-open-right bag_icon" aria-controls="CartDrawer" aria-expanded="false">Cart
+                  (<span class="CartCount">{% if cart.item_count > 0 %}{{ cart.item_count }}{% else %}0{% endif %}</span>)</a></li>
+				{% endif %}
+                
+                {% if settings.enable_wishlist %}
+                  {% if customer %}
+                  <li><a href="/pages/wishlist">My Wishlist</a></li>
+                  {% else %}
+                  <li><a href="/account/login">My Wishlist</a></li>
+                  {% endif %}
+                {% endif %}
+                {% comment %}
+                {% if settings.show_multiple_currencies %} 
+                <li>
+                  <div class="currency_option">
+                    {% include 'currency-picker' %}
+                  </div>
+				 </li>
+                {% endif %}
+                {% endcomment %}
+              </ul>
+            </div>
+         </div>
+     </div>
+  
+</header>
+
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom Logo"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "450"
+      }
+      
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,108 @@
+<!-- ======================= New Arrival ==================== -->
+{% assign limit_no = section.settings.limit %}
+
+<div class="arrival_section">
+
+  <div class="container">
+    
+      <div class="grid">
+        
+       
+          <div class="grid__item three-twelfths medium-down--one-whole medium-large--one-whole">
+            <div class="arrival_title">
+              {% if  collections[section.settings.bestseller_collection].title != blank %} 
+             <h4 class="featured-collection__heading">{{ collections[section.settings.bestseller_collection].title }}</h4>
+              {% else %}
+              <h4 class="featured-collection__heading">Featured Collections</h4>
+              {% endif %}
+              <div id="owl_controls">
+                <a class="prev"><i class="ion-ios-arrow-thin-left"></i></a>
+                <a class="next"><i class="ion-ios-arrow-thin-right"></i></a>
+              </div>
+            </div>
+          </div>
+	
+        <div class="grid__item nine-twelfths medium-down--one-whole medium-large--one-whole">
+			
+            <div class="owl-carousel owl-theme arrival_slider" data-section-id="{{ section.id }}" data-section-type="slideshow-featured-collection">
+              {% for product in collections[section.settings.bestseller_collection].products limit: limit_no %}
+
+              {% include 'product-grid-item' %}
+
+              {% else %}
+					  {% for i in (1..limit_no) %}
+                         
+              			<div class="wow fadeIn product_item">
+                        
+                          <div class="product_img">
+                             <a href="/admin/products">
+                           	   {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                  {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                            </a>
+                            
+                          </div>
+                           <div class="product_desc">
+          
+							  <div class="desc_detail">
+                              <p class="grid-link__title">{{ 'homepage.onboarding.product_title' | t }}</p>
+                              <p class="grid-link__meta">
+                                <strong>$19.99</strong>
+                              </p>
+                             </div>
+                          </div>
+                          </div>
+                        {% endfor %}
+                    
+              
+           
+			{% endfor %}   
+
+            </div>
+          </div>    
+
+        
+        </div>
+    
+    </div>
+
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Featured Products"
+      },
+      {
+        "type": "collection",
+        "id": "bestseller_collection",
+        "label": "Select Collection"
+      },
+	  {
+     	"type":"text",
+         "id":"limit",
+		"label":"No. of products display",
+		"default":"8"
+       }
+	
+	],
+
+	"presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Collection"
+    }
+  ]	
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

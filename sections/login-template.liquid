@@ -1,0 +1,188 @@
+
+<style>
+  #RecoverPasswordForm{
+    display: none;
+  }
+  
+  .reset_pass_section{
+    display: block;
+    width: 90%;
+    margin: 30px auto;
+  }
+  .password-recovery-text{
+    width: 90%;
+    margin: 30px auto 30px auto;
+  }
+  
+  .reset-password-submit{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .reset-password-submit .btn{
+    width: 49%;
+  }
+
+</style>
+
+
+
+<!-- ======================== Header ========================= -->
+<div class="header_banner">
+   <h1>{{ 'customer.login.title' | t }}</h1>
+  <span class="header_overlay"></span>
+  {% if section.settings.image != blank %}   
+  <img src="{{ section.settings.image | img_url : 'master' }}" alt="{{ article.title }}" />
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'icon icon--placeholder' }}
+  {% endif %}  
+</div>
+
+
+<!-- ======================= Login Content ==================== -->
+
+
+<div class="container account-page">
+  <div class="login_content ">
+                
+                    <div class="grid">
+                    
+                        <div class="grid__item one-half medium-down--one-whole">
+                        
+                            <div class="login_section" id="CustomerLoginForm">
+                        
+                               <h3 class="account-title">{{ 'customer.login.title' | t }}</h3>
+
+                                
+                                <div class="login_form ">
+                                <div class="one-click-social-login animated slideInLeft"></div>
+                                   {% form 'customer_login' %}
+                                    
+                                      {{ form.errors | default_errors }}
+                                  <div class="row">
+                                    <label for="CustomerEmail" >{{ 'customer.login.email' | t }}</label>
+                                    <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}"  >
+                                  </div>
+
+                                  <div class="row">
+                                    {% if form.password_needed %}
+                                    <label for="CustomerPassword" >{{ 'customer.login.password' | t }}</label>
+                                    <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" >
+                                    {% endif %}
+                                  </div>
+                                      
+                                        <div class="submit_row">
+                                            <button type="submit" class="btn signin">Sign In</button>
+                                        </div>
+                                  
+                                    {% if form.password_needed %} 
+                                        <div class="row">
+                                            <a href="#" class="lost-password" id="RecoverPassword">Forgot Password?</a>
+                                        </div>
+                                        {% endif %}
+
+                                    
+                                   {% endform %}
+                                
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="reset_pass_section animated slideInDown"  id="RecoverPasswordForm" >
+                        
+                                  <h3 class="account-title">{{ 'customer.recover_password.title' | t }}</h3>
+                              
+                              <p class="password-recovery-text">Please enter the email address registered to your account. We will email you a link to change your password.</p>
+
+                                <div class="reset_form">
+                                
+                                     {% form 'recover_customer_password' %}
+                                    
+                                        {% if form.posted_successfully? %}
+                                             {% assign resetPassword = true %}
+                                        {% endif %}
+                                        <div class="row">
+                                             <label for="RecoverEmail" >{{ 'customer.recover_password.email' | t }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full"  >
+
+                                        </div>
+                                        
+                                        <div class="submit_row reset-password-submit">
+                                            <button type="submit" class="submit_btn btn reset-password-send">send</button>
+                                             <button type="button" id="HideRecoverPasswordLink" class="reset-password-cancel submit_btn btn">{{ 'customer.recover_password.cancel' | t }}</button>
+                                        </div>
+                                    
+                                  {% endform %}
+                                
+                                </div>
+                              <p class="password-recovery-text">Don't have an account? <a href="/account/register">Create one</a></p>
+                            </div>
+                        
+                        </div>
+                        
+                        <div  class="grid__item one-half medium-down--one-whole">
+                        
+                            <div  id="create-account-section" class="new_register_section">
+                        
+                               <h3 class="account-title__sub">{{ section.settings.register_title }}</h3>
+                          
+
+                               <div class="submit_row">
+                                  <a href="/account/register" class="btn register">{{ 'layout.customer.create_account' | t }}</a>
+                                </div>
+                            
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+</div>
+
+
+<script>
+   $("#RecoverPassword").click(function(){
+  	$("#RecoverPasswordForm").show( );
+    $("#CustomerLoginForm").hide( );
+    $("#create-account-section").hide();
+
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Login Page",
+    "settings": [
+	  {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Banner Image",
+	    "info": "Maximum image dimensions are  1920px wide by 278px high. The uploaded file will be resized to fit within those constraints."
+    
+      },
+	 {
+        "type": "header",
+        "content": "Register"
+      },
+      {
+        "type": "text",
+        "id": "register_title",
+        "label": "Title Name",
+        "default": "New here"
+      },
+      {
+        "type": "textarea",
+        "id": "register_content",
+        "label": "Description",
+        "default": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
